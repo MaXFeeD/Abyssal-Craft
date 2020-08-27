@@ -1,0 +1,33 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "abyss:shadow_creature",
+      "materials": {
+        "default": "abyss"
+      },
+      "textures": {
+        "default": "textures/entity/shadow/ShadowCreature"
+      },
+      "geometry": {
+        "default": "geometry.shadow_creature"
+      },
+      "animations": {
+        "move": "animation.shadow_creature.move",  
+        "look_at_target": "animation.common.look_at_target",
+
+        "move": "controller.animation.shadow_creature.move",
+      },
+      "scripts": {
+        "animate": [
+          "move"
+        ]  
+      },
+      "render_controllers": [ "controller.render.shadow_creature" ],
+       "spawn_egg": {
+        "overlay_color": "#12800",
+        "base_color": "#101013"
+    }
+  }
+}
+}

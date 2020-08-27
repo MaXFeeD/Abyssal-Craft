@@ -1,0 +1,27 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "abyss:shadow_monster",
+      "materials": {
+        "default": "abyss"
+      },
+      "textures": {
+        "default": "textures/entity/shadow/ShadowMonster"
+      },
+      "geometry": {
+        "default": "geometry.shadow_monster"
+      },
+      "animations": {  
+        "look_at_target": "animation.common.look_at_target", 
+      },
+      "scripts": {    
+      },
+      "render_controllers": [ "controller.render.shadow_monster" ],
+       "spawn_egg": {
+        "overlay_color": "#12800",
+        "base_color": "#101013"
+    }
+  }
+}
+}

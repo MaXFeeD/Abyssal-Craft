@@ -1,0 +1,33 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "abyss:jzahar",
+      "materials": {
+        "default": "abyss"
+      },
+      "textures": {
+        "default": "textures/entity/boss/j'zahar"
+      },
+      "geometry": {
+        "default": "geometry.jzahar"
+      },
+      "animations": {
+        "attack": "animation.jzahar.summon",
+        "look_at_target": "animation.common.look_at_target",
+
+        "attack": "controller.animation.jzahar.summon"
+      },
+      "scripts": {
+        "animate": [
+          "move", "attack"
+        ]  
+      },
+      "render_controllers": [ "controller.render.jzahar" ],
+       "spawn_egg": {
+        "overlay_color": "#12800",
+        "base_color": "#101013"
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+"pools": [
+{
+"rolls": 1,
+"entries": [
+{
+"type": "item",
+"name": "minecraft:item_cb",
+"functions": [
+{
+"function": "set_count",
+"count": {
+"min": 1,
+"max": 3
+}
+}
+]
+},
+{
+"type": "item",
+"name": "minecraft:item_cf",
+"functions": [
+{
+"function": "set_count",
+"count": {
+"min": 1,
+"max": 3
+}
+}
+]
+}
+]
+}
+]
+}

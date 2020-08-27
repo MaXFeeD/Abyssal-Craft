@@ -1,0 +1,19 @@
+{
+"pools": [
+{
+"rolls": 1,
+"entries": [
+{
+"type": "item",
+"name": "minecraft:item_abyss_necromomicon",
+"weight": 100
+},
+{
+"type": "item",
+"name": "minecraft:item_cane_j",
+"weight": 100
+}
+]
+}
+]
+}

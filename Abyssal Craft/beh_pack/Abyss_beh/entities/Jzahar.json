@@ -1,0 +1,130 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "abyss:jzahar",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+
+    "components": {
+    "minecraft:behavior.summon_entity": {
+    "priority": 2,
+   "summon_choices": [
+      {
+     "min_activation_range": 0.0,
+      "max_activation_range": 4.0,
+       "cooldown_time": 20.0,
+        "weight": 3,
+         "cast_duration": 4.0,
+          "particle_color": "#FF664D59",
+           "start_sound_event": "cast.spell",
+            "sequence": [
+      {
+     "shape": "circle",
+      "target": "self",
+       "base_delay": 80,
+        "delay_per_summon": 2.0,
+         "num_entities_spawned": 3,
+          "entity_type": "abyss:summoned",
+           "size": 4,  
+            "sound_event": "cast.spell"
+      },
+      {
+     "shape": "circle",
+      "target": "self",
+       "base_delay": 95,
+        "delay_per_summon": 2.0,
+         "num_entities_spawned": 4,
+          "entity_type": "abyss:summoned",
+           "size": 4   
+      }
+     ]
+    },
+       {
+      "weight": 1,
+       "cooldown_time": 130,
+        "cast_duration": 5.0,          
+         "particle_color": "#FFB3B3CC",
+         "sequence": [
+       {
+      "shape": "circle",
+       "target": "self",
+        "base_delay": 5.0,
+         "num_entities_spawned": 3,
+          "entity_type": "abyss:summoned",
+           "summon_cap": 12,
+            "summon_cap_radius": 15.0,
+             "size": 3.0,
+              "sound_event": "prepare.summon"
+        }]
+      }]
+      },
+      "minecraft:breathable": {
+        "totalSupply": 40,
+        "suffocateTime": 0
+      },
+      "minecraft:fire_immune": true,
+      "minecraft:nameable": {
+      },
+      "minecraft:health": {
+        "value": 350,
+        "max": 350
+      },
+      "minecraft:collision_box": {
+        "width": 2.5,
+        "height": 1.2
+      },
+      "minecraft:movement": {
+        "value": 0.03
+      },
+      "minecraft:knockback_resistance": {
+        "value": 100,
+        "max": 100
+      }, 
+      "minecraft:loot": {
+        "table": "loot_tables/entities/jzahar_gatekeeper.json"
+      },
+      "minecraft:shooter": {
+        "type": "largefireball",
+        "def": "minecraft:fireball"
+      },
+      "minecraft:type_family": {
+        "family": [ "ghast", "monster" ]
+      },
+      "minecraft:fall_damage": {
+        "value": 0.0
+      },  
+      "minecraft:behavior.ranged_attack": {
+        "priority": 1,
+        "attack_radius": 18,
+        "charge_shoot_trigger": 2,
+        "charge_charged_trigger": 1
+      },
+      "minecraft:follow_range": {
+        "value": 5,
+        "max": 8
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 1
+      },
+      "minecraft:behavior.nearest_attackable_target": {
+        "priority": 0,
+        "entity_types": [
+          {
+            "filters": {
+              "test": "is_family",
+              "subject": "other",
+              "value": "player"
+            },
+            "max_dist": 28
+          }
+        ],
+        "must_see": true
+      },
+      "minecraft:physics": {
+      }
+    }
+  }
+}

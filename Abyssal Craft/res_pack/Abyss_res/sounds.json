@@ -1,0 +1,151 @@
+{
+    "entity_sounds": {
+        "entities": {
+            "abyss:zombie": {
+                "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.abyssal_zombie.idle",
+          "attack": "mob.abyssal_zombie.attack",
+          "hurt": "mob.abyssal_zombie.attack",
+          "death": "mob.abyssal_zombie.death",
+           "step": {
+            "sound": "mob.snake.step",
+            "volume": 2.0,
+            "pitch": 2.0
+          }
+        }
+      },
+            "abyss:zombie_end": {
+                "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.abyssal_zombie.idle",
+          "attack": "mob.abyssal_zombie.attack",
+          "hurt": "mob.abyssal_zombie.attack",
+          "death": "mob.abyssal_zombie.death",
+           "step": {
+            "sound": "mob.snake.step",
+            "volume": 2.0,
+            "pitch": 2.0
+          }
+        }
+      },
+            "abyss:golema": {
+                "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "attack": "mob.abyssal_golem.attack",
+          "hurt": "mob.abyssal_golem.attack",
+          "death": "mob.abyssal_golem.death",
+           "step": {
+            "sound": "mob.snake.step",
+            "volume": 2.0,
+            "pitch": 2.0
+          }
+        }
+      },
+            "abyss:golemd": {
+                "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "attack": "mob.abyssal_golem.attack",
+          "hurt": "mob.abyssal_golem.attack",
+          "death": "mob.abyssal_golem.death",
+           "step": {
+            "sound": "mob.snake.step",
+            "volume": 2.0,
+            "pitch": 2.0
+          }
+        }
+      },
+            "abyss:dreadling": {
+                "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "attack": "mob.abyssal_golem.attack",
+          "hurt": "mob.abyssal_golem.attack",
+          "death": "mob.abyssal_golem.death",
+           "step": {
+            "sound": "mob.snake.step",
+            "volume": 2.0,
+            "pitch": 2.0
+          }
+        }
+      },
+            "abyss:shadow_creature": {
+                "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "attack": "mob.shadow_creature.attack",
+          "hurt": "mob.shadow_creature.attack",
+          "death": "mob.shadow_creature.death",
+           "step": {
+            "sound": "mob.snake.step",
+            "volume": 2.0,
+            "pitch": 2.0
+          }
+        }
+      },
+      "abyss:shadow_monster": {
+                "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "attack": "mob.shadow_creature.attack",
+          "hurt": "mob.shadow_creature.attack",
+          "death": "mob.shadow_creature.death",
+           "step": {
+            "sound": "mob.snake.step",
+            "volume": 2.0,
+            "pitch": 2.0
+          }
+        }
+      },
+      "abyss:summoned": {
+                "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.summoned.idle",
+          "attack": "mob.summoned.attack",
+          "hurt": "mob.summoned.attack",
+          "death": "mob.summoned.death",
+           "step": {
+            "sound": "mob.snake.step",
+            "volume": 2.0,
+            "pitch": 2.0
+          }
+        }
+      },
+      "abyss:remnant": {
+                "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.remnant.idle",
+          "attack": "mob.remnant.attack",
+          "hurt": "mob.remnant.attack",
+          "death": "mob.remnant.death",
+           "step": {
+            "sound": "mob.snake.step",
+            "volume": 2.0,
+            "pitch": 2.0
+          }
+        }
+      },
+      "abyss:Jzahar": {
+                "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.summoned.idle",
+          "attack": "mob.summoned.attack",
+          "hurt": "mob.summoned.attack",
+          "death": "mob.summoned.death",
+           "step": {
+            "sound": "mob.snake.step",
+            "volume": 2.0,
+            "pitch": 2.0
+          }
+        }
+      },
+    }
+  }
+}

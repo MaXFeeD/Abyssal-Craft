@@ -1,0 +1,116 @@
+{
+	"format_version": "1.10.0",
+	"geometry.remnant": {
+		"texturewidth": 128,
+		"textureheight": 64,
+		"visible_bounds_width": 3,
+		"visible_bounds_height": 2,
+		"visible_bounds_offset": [0, 0, 0],
+		"bones": [
+			{
+				"name": "body",
+				"pivot": [0, 0, 0],
+				"cubes": [
+					{"origin": [-4, 2, -2], "size": [8, 22, 4], "uv": [16, 16]}
+				]
+			},
+			{
+				"name": "tentacleA1",
+				"pivot": [7, 14, 1],
+				"cubes": [
+					{"origin": [6, 8, 0], "size": [2, 6, 2], "uv": [0, 46]}
+				]
+			},
+			{
+				"name": "tentacleA2",
+				"pivot": [5, 14, -1],
+				"cubes": [
+					{"origin": [4, 8, -2], "size": [2, 6, 2], "uv": [0, 46]}
+				]
+			},
+			{
+				"name": "tentacleA3",
+				"pivot": [7, 14, -1],
+				"cubes": [
+					{"origin": [6, 8, -2], "size": [2, 6, 2], "uv": [0, 45]}
+				]
+			},
+			{
+				"name": "tentacleA4",
+				"pivot": [5, 14, 1],
+				"cubes": [
+					{"origin": [4, 8, 0], "size": [2, 6, 2], "uv": [0, 46]}
+				]
+			},
+			{
+				"name": "arm1",
+				"pivot": [-6, 24, 0],
+				"cubes": [
+					{"origin": [-8, 8, -2], "size": [4, 16, 4], "uv": [0, 20]}
+				]
+			},
+			{
+				"name": "arm2",
+				"pivot": [6, 24, 0],
+				"cubes": [
+					{"origin": [4, 14, -2], "size": [4, 10, 4], "uv": [0, 20]}
+				]
+			},
+			{
+				"name": "head",
+				"pivot": [0, 0, 0],
+				"cubes": [
+					{"origin": [-4, 24, -4], "size": [8, 8, 8], "uv": [0, 0]}
+				]
+			},
+			{
+				"name": "mask",
+				"pivot": [2, 28, -3],
+				"rotation": [0, -30, 0],
+				"cubes": [
+					{"origin": [-1.5, 24, -5], "size": [6, 8, 1], "uv": [32, 0]}
+				]
+			},
+			{
+				"name": "mask2",
+				"pivot": [-2, 28, -3],
+				"rotation": [0, 30, 0],
+				"cubes": [
+					{"origin": [-4.5, 24, -5], "size": [6, 8, 1], "uv": [32, 0]}
+				]
+			},
+			{
+				"name": "tentaclel",
+				"pivot": [0, 0, 0],
+				"rotation": [0, 45, 0],
+				"cubes": [
+					{"origin": [2, 0, -1], "size": [10, 2, 2], "uv": [0, 42]}
+				]
+			},
+			{
+				"name": "tentaclel2",
+				"pivot": [0, 0, 0],
+				"rotation": [0, 135, 0],
+				"cubes": [
+					{"origin": [2, 0, -1], "size": [10, 2, 2], "uv": [0, 42]}
+				]
+			},
+			{
+				"name": "tentaclel3",
+				"pivot": [0, 0, 0],
+				"rotation": [0, -45, 0],
+				"cubes": [
+					{"origin": [2, 0, -1], "size": [10, 2, 2], "uv": [0, 42]}
+				]
+			},
+			{
+				"name": "tentaclel4",
+				"pivot": [0, 0, 0],
+				"rotation": [0, -135, 0],
+				"cubes": [
+					{"origin": [2, 0, -1], "size": [10, 2, 2], "uv": [0, 42]}
+				]
+			}
+		]
+	}
+}

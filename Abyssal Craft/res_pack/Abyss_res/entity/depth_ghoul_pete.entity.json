@@ -1,0 +1,38 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "abyss:depth_ghoul_pete",
+      "materials": {
+        "default": "abyss"
+      },
+      "textures": {
+        "default": "textures/entity/humanoid/depths_ghoul_pete"
+      },
+      "geometry": {
+        "default": "geometry.depth_ghoul"
+      },
+      "animations": {
+        "move": "animation.remnant.move",  
+        "attack": "animation.remnant.attack",
+        "look_at_target": "animation.common.look_at_target",
+
+        "move": "controller.animation.remnant.move",
+        "attack": "controller.animation.remnant.attack"
+      },
+      "scripts": {
+        "animate": [
+          "move", "attack"
+        ],
+        "pre_animation": [
+          "variable.attack = Math.sin(variable.attack_time * 38.17);"
+        ]
+      },
+      "render_controllers": [ "controller.render.ghoul" ],
+       "spawn_egg": {
+        "overlay_color": "#12800",
+        "base_color": "#101013"
+      }
+    }
+  }
+}

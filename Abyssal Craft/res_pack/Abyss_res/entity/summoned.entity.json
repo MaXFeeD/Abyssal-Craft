@@ -1,0 +1,38 @@
+  {
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "abyss:summoned",
+      "materials": {
+        "default": "abyss"
+      },
+      "textures": {
+        "default": "textures/entity/boss/gatekeeperminion"
+      },
+      "geometry": {
+        "default": "geometry.summoned"
+      },
+      "animations": {
+        "move": "animation.summoned.move",  
+        "attack": "animation.summoned.attack",
+        "look_at_target": "animation.common.look_at_target",
+
+        "move": "controller.animation.summoned.move",
+        "attack": "controller.animation.summoned.attack"
+      },
+      "scripts": {
+        "animate": [
+          "move", "attack"
+        ],
+        "pre_animation": [
+          "variable.attack = Math.sin(variable.attack_time * 92);"
+        ]
+      },
+      "render_controllers": [ "controller.render.summoned" ],
+       "spawn_egg": {
+        "overlay_color": "#12800",
+        "base_color": "#101013"
+      }
+    }
+  }
+}
