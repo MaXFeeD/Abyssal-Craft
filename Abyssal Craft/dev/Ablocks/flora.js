@@ -1,3 +1,13 @@
+var BLOCK_TYPE_LEAVES = Block.createSpecialType({
+    base: 18,
+    destroytime: 0.2,
+    explosionres: 1,
+    renderallfaces: true,
+    renderlayer: 1,
+    lightopacity: 1,
+    translucency: 0.5
+});
+
 //DARK
 const Treesd = ["Dark_Trees1", "Dark_Trees2"];
 
@@ -20,11 +30,11 @@ ToolAPI.registerBlockMaterial(BlockID.darkP, "wood");
 IDRegistry.genBlockID("darkLeaves");
 Block.createBlock("darkLeaves", [
     {name: "Dark Leaves", texture: [["DLT_L", 0]], inCreative: true}
-]);
+], BLOCK_TYPE_LEAVES);
 ToolAPI.registerBlockMaterial(BlockID.darkLeaves, "plant");
 
 Block.registerDropFunction("darkLeaves", function(){
-    if(Math.random() < .075){
+    if(Math.random() < .085){
         return [[ItemID.darkSapling, 1, 0]]
     }
     else {
@@ -64,13 +74,13 @@ Player.setCarriedItem(id, count - 1, data);
 }
 });
 
-Block.setRandomTickCallback(BlockID.darkSapling, function(x, y, z, id, data){       
+/*Block.setRandomTickCallback(BlockID.darkSapling, function(x, y, z, id, data){       
 var coords = coords.relative;
 if(World.getBlockID(coords.x, coords.y - 1, coords.z)==BlockID.grassDark){
 World.destroyBlock(coords.x,coords.y,coords.z,false);                      
 Str.generateTrees(crd.x, crd.z, Treesd, {min_y:crd.y,max_y:crd.y, check: BlockID.grassDark});
      }
-});         
+});*/         
 
 
 //DREAD
@@ -96,11 +106,11 @@ ToolAPI.registerBlockMaterial(BlockID.dreadP, "wood");
 IDRegistry.genBlockID("dreadLeaves");
 Block.createBlock("dreadLeaves", [
     {name: "Dread Leaves", texture: [["DrT_L", 0]], inCreative: true}
-]);
+], BLOCK_TYPE_LEAVES);
 ToolAPI.registerBlockMaterial(BlockID.dreadLeaves, "plant");
 
 Block.registerDropFunction("dreadLeaves", function(){
-    if(Math.random() < .075){
+    if(Math.random() < .085){
         return [[ItemID.dreadSapling, 1, 0]]
     }
     else {
@@ -140,13 +150,13 @@ Player.setCarriedItem(id, count - 1, data);
 }
 });
 
-Block.setRandomTickCallback(BlockID.dreadSapling, function(x, y, z, id, data){
+/*Block.setRandomTickCallback(BlockID.dreadSapling, function(x, y, z, id, data){
 var coords = coords.relative;       
 if(World.getBlockID(coords.x, coords.y - 1, coords.z)==BlockID.grassDread){
 World.destroyBlock(coords.x,coords.y,coords.z,false);                      
 Str.generateTrees(crd.x, crd.z, Treesdr, {min_y:crd.y,max_y:crd.y, check: BlockID.grassDread});
      }
-});  
+});*/
 
 Callback.addCallback("PostLoaded", function(){
 Recipes.addShaped({id: BlockID.darkP, count: 4, data: 0}, [

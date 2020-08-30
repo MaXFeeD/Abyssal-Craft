@@ -13,12 +13,12 @@ checkerMode: params.checkerMode
       }); 
    }  
 },
-generateOreInDimension: function(id, data, chunkX, chunkZ, params){  
-for (var i = 0; i < params.veinCounts; i++){ 
+generateOreInDimension: function(id, data, chunkX, chunkZ, params) {  
+for (var i = 0; i < params.veinCounts; i++) { 
 var coords = GenerationUtils.randomCoords(chunkX, chunkZ, params.min_y, params.max_y); 
-if(Math.random() * 100 < params.veinChance)GenerationUtils.generateOreCustom(coords.x, coords.y, coords.z, id, data, params.count, params.mode, params.check);
-   }  
-}
+if (Math.random() * 100 < params.veinChance) GenerationUtils.generateOreCustom(coords.x, coords.y, coords.z, id, data, params.count, params.mode, params.check);
+      }  
+   }
 }
 
 ToolAPI.addToolMaterial("ds", {durability: 940, level: 2, efficiency: 4, damage: 4, enchantability: 4});    
@@ -80,14 +80,6 @@ encreasePEFromItem: function(idb, count) {
    if (this.getPEFromItem(idb) != 0 && this.getPEFromItem(idb) >= count) {
        return this.getBookData(idb).PEvalue += count;  
         }
-},
-showPE: function(idbs) {
- for(var k in idbs) {
-  Callback.addCallback("ItemUseNoTarget", function(item){
-   if (Player.getCarriedItem().id == idbs[k])
-     Game.tipMessage("PE  " + this.getPEFromItem(idbs[k]));
-        });
-    }
 }
 } 
 
@@ -95,35 +87,33 @@ Callback.addCallback("PreLoaded", function() {
 Necronomicons.setUpNecronomicons();   
 });
 
-/*Callback.addCallback("tick", function() {
-Necronomicons.showPE([ItemID.normalNecronomicon, ItemID.normalNecronomiconC, ItemID.abyssNecronomicon, ItemID.drainS, ItemID.drainSA, ItemID.drainSD, ItemID.drainSO]);
-});*/
-
 var Str = {
 BuildF:55,
 TreesF:26,
 generateTrees:function(chunkX, chunkZ, names, params) {
  for(var i in names){
-var coords = GenerationUtils.randomCoords(chunkX, chunkZ, params.min_y, params.max_y);
-if (World.getBlockID(coords.x,coords.y,coords.z)==params.check) {
+  var coords = GenerationUtils.randomCoords(chunkX, chunkZ, params.min_y, params.max_y);
+   if (World.getBlockID(coords.x,coords.y,coords.z)==params.check) {
   Structure.setInWorld(names[i], coords.x, coords.y+1, coords.z, [Structure.ROTATE_90Y,Structure.ROTATE_270Y,Structure.ROTATE_180Y], false, 2);
     } 
   }
 },
+
 generateBuildings:function(chunkX, chunkZ, names, params) {
-for (var i in names) {
-var coords = GenerationUtils.randomCoords(chunkX, chunkZ, params.min_y, params.max_y);
-if (World.getBlockID(coords.x,coords.y,coords.z)==params.check) {
+ for (var i in names) {
+  var coords = GenerationUtils.randomCoords(chunkX, chunkZ, params.min_y, params.max_y);
+   if (World.getBlockID(coords.x,coords.y,coords.z)==params.check) {
   Structure.setInWorld(names[i], coords.x, coords.y, coords.z, [Structure.ROTATE_90Y,Structure.ROTATE_270Y,Structure.ROTATE_180Y], false, 2);
     } 
   }
 },
-generateShoggoth:function(chunkX, chunkZ, names, params) {
-var coords = GenerationUtils.randomCoords(chunkX, chunkZ, params.min_y, params.max_y);
-if (World.getBlockID(coords.x,coords.y,coords.z)==params.check) {
-  Structure.setInWorld(names, coords.x, coords.y-2, coords.z, [Structure.ROTATE_90Y,Structure.ROTATE_270Y,Structure.ROTATE_180Y], false, 2);
+
+generateShoggoth:function(chunkX, chunkZ, name, params) {
+ var coords = GenerationUtils.randomCoords(chunkX, chunkZ, params.min_y, params.max_y);
+  if (World.getBlockID(coords.x,coords.y,coords.z)==params.check) {
+  Structure.setInWorld(name, coords.x, coords.y-2, coords.z, [Structure.ROTATE_90Y,Structure.ROTATE_270Y,Structure.ROTATE_180Y], false, 2);
+    }
   }
-}
 }
 
 const Crafts = [];
@@ -169,6 +159,13 @@ const AbyssTable = {
         return listCrafts;
     },
     
+    getPE: function(item) {
+      for (var l in Crafts) {
+        if (Player.getCarriedItem().id == item && Necronomicons.getPEFromItem(item) >= Crafts[l].PE)
+          return;        
+        }  
+    },
+    
     onCraftStart: function(item, func) {
         if (!item) return Logger.Log("item not listed", "AbyssAPI ERROR");
         if (!func) return Logger.Log("func not listed", "AbyssAPI ERROR");
@@ -179,11 +176,5 @@ const AbyssTable = {
         if (!item) return Logger.Log("item not listed", "AbyssAPI ERROR");
         if (!func) return Logger.Log("func not listed", "AbyssAPI ERROR");
         onCraftEnd[item.toString()] = func;
-    },
-    getPE: function(item) {
-      for (var l in Crafts) {
-        if (Player.getCarriedItem().id == item && Necronomicons.getPEFromItem(item) >= Crafts[l].PE)
-          return;        
-        }  
-    }
+    } 
 }

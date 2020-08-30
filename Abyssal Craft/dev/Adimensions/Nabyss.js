@@ -52,7 +52,7 @@ let crdsP = Player.getPosition();
 if(World.getBlockID(crdsP.x, crdsP.y, crdsP.z) == BlockID.abyssWastes && Player.getDimension() != Abyss.id) {  
     Dimensions.transfer(Player.get(), Abyss.id);  
     } else if(World.getBlockID(crdsP.x, crdsP.y, crdsP.z) == BlockID.abyssWastes && Player.getDimension() == Abyss.id) {
-    Dimensions.transfer(Player.get(), 1); 
+    Dimensions.transfer(Player.get(), 0); 
     }
 });
 
@@ -61,8 +61,9 @@ Callback.addCallback('DimensionLoaded', function (dimension) {
 if (dimension != Abyss.id) return;
  if (teleports < 1) {
  var CP = Player.getPosition();
-  var crD = GenerationUtils.findSurface(CP.x, CP.z, 48, 72); 
-   shape.buildPortal(crD, true);
+  var crD = GenerationUtils.findHighSurface(CP.x, CP.z, 48, 72);
+    shape.buildPortal(crD, true);
+     Player.setPosition(CP.x, crD.y, CP.z);
    teleports += 1;
 }
 });

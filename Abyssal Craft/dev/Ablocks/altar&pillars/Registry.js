@@ -142,10 +142,4 @@ var Azrender = new ICRender.Model();
 Azrender.addEntry(new BlockRenderer.Model(Azmesh));
 BlockRenderer.setStaticICRender(BlockID.statueAz,0,Azrender);
 
-Callback.addCallback('ItemUse', function (coords, item, block) {
-if(item.id == 280){
-if(block.id == BlockID.statueCt || block.id == BlockID.statueJz || block.id == BlockID.statueAz){
-CTmesh.mesh.rotate(coords.x + .5, coords.y, coords.z + .5, 0, Math.Pi/2, 0);
-}
-}
-});
+//CTmesh.mesh.rotate(coords.x + .5, coords.y, coords.z + .5, 0, Math.Pi/2, 0);
