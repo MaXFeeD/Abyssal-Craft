@@ -61,7 +61,7 @@ var teleport = false;
 
 Callback.addCallback('DimensionLoaded', function (dimension) {
 if (dimension != Abyss.id) return;
- if (teleports < 1) {
+ if (!teleport) {
  var CP = Player.getPosition();
   var crD = GenerationUtils.findHighSurface(CP.x, CP.z, 48, 72);
     shape.buildPortal(crD, true);
