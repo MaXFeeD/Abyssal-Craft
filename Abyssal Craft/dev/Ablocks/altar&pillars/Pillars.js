@@ -91,9 +91,14 @@ TileEntity.registerPrototype(BlockID.PillarAbyssalC,{
             this.data.anim = null;
        }
     },
-    init: function() {
+    load: function() {
         if(this.data.anim) this.data.anim.load();
     },
+    unload: function() {
+        if(this.data.anim){
+            this.data.anim.destroy();
+      }
+   },
     destroyBlock:function(coords, player){
         if (this.data.anim){
             this.data.anim.destroy();

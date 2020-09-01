@@ -195,7 +195,7 @@ TileEntity.registerPrototype(BlockID.AltarAbyssalC,{
             this.data.anim = null;
        }  
     },
-    init:function(){
+    load:function(){
         if(this.data.anim) this.data.anim.load();
         if(this.data.step){
             if(!this.data.step.i) return;
@@ -230,9 +230,15 @@ TileEntity.registerPrototype(BlockID.AltarAbyssalC,{
          });            
       }
    },
+    unload: function() {
+        if(this.data.anim){
+            this.data.anim.destroy();
+      }
+   },
     destroyBlock: function(coords, player) {
         if(this.data.anim){
             this.data.anim.destroy();
+            this.data.anim = null;
       }
    } 
 });

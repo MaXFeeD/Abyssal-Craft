@@ -56,7 +56,9 @@ if(World.getBlockID(crdsP.x, crdsP.y, crdsP.z) == BlockID.abyssWastes && Player.
     }
 });
 
-var teleports = 0;
+
+var teleport = false;
+
 Callback.addCallback('DimensionLoaded', function (dimension) {
 if (dimension != Abyss.id) return;
  if (teleports < 1) {
@@ -64,6 +66,15 @@ if (dimension != Abyss.id) return;
   var crD = GenerationUtils.findHighSurface(CP.x, CP.z, 48, 72);
     shape.buildPortal(crD, true);
      Player.setPosition(CP.x, crD.y, CP.z);
-   teleports += 1;
+   teleport = true;
 }
 });
+
+Saver.addSavesScope("teleported",
+function read(scope){
+TP = scope.teleport;
+},
+function save(){
+return {TP : teleport };
+}
+);

@@ -197,6 +197,15 @@ var coordss = coords.relative;
     }
 });
 
+Callback.addCallback("GenerateCustomDimensionChunk", function(chunkX, chunkZ, random, dimensionId){       
+  for(var i = 0; i < randomInt(2, 5); i++){ 
+    var coords = GenerationUtils.findHighSurface(chunkX, chunkZ, 49, 75);
+         if(Math.random() < .65){
+       World.setBlock(coords.x, coords.y + 1, coords.z, BlockID.plantWaste, 0);                       
+         }  
+     }  
+});
+
 IDRegistry.genBlockID("plantWasteL");
 Block.createBlock("plantWasteL", [{name: "Wastalands Lumin", texture: [["luminousthistle", 0]], inCreative: false}]);
 TileRenderer.setPlantModel(BlockID.plantWasteL, 0, "luminousthistle", 0);
@@ -214,6 +223,15 @@ var coordss = coords.relative;
         World.setBlock(coordss.x,coordss.y,coordss.z,BlockID.plantWasteL,0);
         Player.setCarriedItem(item.id, item.count - 1, item.data);
     }
+});
+
+Callback.addCallback("GenerateCustomDimensionChunk", function(chunkX, chunkZ, random, dimensionId){       
+  for(var i = 0; i < randomInt(1, 4); i++){ 
+    var coords = GenerationUtils.findHighSurface(chunkX, chunkZ, 49, 75);
+         if(Math.random() < .65){
+       World.setBlock(coords.x, coords.y + 1, coords.z, BlockID.plantWasteL, 0);                       
+         }  
+     } 
 });
 
 IDRegistry.genBlockID("plantWDh");
