@@ -295,17 +295,32 @@ Item.createItem("skinDW", "Dreaded Monster Skin", {name: "skin_dreadlands"});
 IDRegistry.genItemID("skinO");
 Item.createItem("skinO", "Omothol Monster Skin", {name: "skin_omothol"});
 
-IDRegistry.genItemID("essenceABW");
-Item.createItem("essenceABW", "Abyss Essence", {name: "essence_abyssalwasteland"});
+IDRegistry.genItemID("essencOrbeABW");
+Item.createItem("essenceOrbABW", "Abyss Essence", {name: "essence_abyssalwasteland"});
 
 IDRegistry.genItemID("essenceOrbABW");
-Item.createItem("essenceOrbABW", "Abyss Essence Pearl", {name: "essence_abyssalwasteland"});
+Item.createItem("essenceOrbABW", "Dreaded Essence", {name: "essence_dreadlands"});
 
-IDRegistry.genItemID("essenceDW");
-Item.createItem("essenceDW", "Dreaded Essence", {name: "essence_dreadlands"});
+IDRegistry.genItemID("essenceOrbDW");
+Item.createItem("essenceOrbDW", "Omothol Essence", {name: "essence_omothol"});
 
 IDRegistry.genItemID("skinSHN");
-Item.createItem("skinSHN", "Shoggoth Skin", {name: "shoggothFlesh_overworld"});
+Item.createItem("skinSHN", "Shoggoth Skin", {name: "shoggothflesh_overworld"});
+
+IDRegistry.genItemID("skinSHDk");
+Item.createItem("skinSHDk", "Dark Shoggoth Skin", {name: "shoggothflesh_darkrealm"});
+
+IDRegistry.genItemID("skinSHA");
+Item.createItem("skinSHA", "Abyss Shoggoth Skin", {name: "shoggothflesh_abyssalwasteland"});
+
+IDRegistry.genItemID("skinSHD");
+Item.createItem("skinSHD", "Dread Shoggoth Skin", {name: "shoggothflesh_dreadlands"});
+
+IDRegistry.genItemID("skinSHO");
+Item.createItem("skinSHO", "Omothol Shoggoth Skin", {name: "shoggothflesh_omothol"});
+
+IDRegistry.genItemID("coalD");
+Item.createItem("coalD", "Dreaded Coal", {name: "charcoal"});
 
 Callback.addCallback('PostLoaded', function () {
 Block.registerDropFunction("oreAbyssalinite", function(coords, blockID, blockData, level, enchant){

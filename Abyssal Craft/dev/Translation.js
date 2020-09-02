@@ -123,8 +123,8 @@ Translation.addTranslation("Shubniggurath's Charm", {ru: "Оберег Шубб�
 Translation.addTranslation("Yogsothoth's Charm", {ru: "Оберег Йогсокота"});
 
 Translation.addTranslation("Abyss Essence", {ru: "Эссенция Бездны"});
-Translation.addTranslation("Abyss Essence Pearl", {ru: "Жемчуг Бездны Наполненный Силой"});
 Translation.addTranslation("Dreaded Essence", {ru: "Эссенция Ужаса"});
+Translation.addTranslation("Omothol Essence", {ru: "Эссенция Тьмы"});
 
 //Tools
 Translation.addTranslation("Dark Stone Sword", {ru: "Меч из Камня Темных Земель"});
@@ -222,7 +222,11 @@ Translation.addTranslation("Anti Milk", {ru: "Анти Молоко"});
 Translation.addTranslation("Anti Pork", {ru: "Анти Свинина"});
 Translation.addTranslation("Dreaded Katana", {ru: "Катана Ужаса"});
 Translation.addTranslation("Shoggoth Skin", {ru: "Кожа Шоггота"});
-
+Translation.addTranslation("Dark Shoggoth Skin", {ru: "Кожа Тёмного Шоггота"});
+Translation.addTranslation("Abyss Shoggoth Skin", {ru: "Кожа Шоггота Бездны"});
+Translation.addTranslation("Dread Shoggoth Skin", {ru: "Кожа Ужасного Шоггота"});
+Translation.addTranslation("Omothol Shoggoth Skin", {ru: "Кожа Шоггота Тьмы"});
+Translation.addTranslation("Dreaded Coal", {ru: "Ужасный Уголь"});
 //GUI
 Translation.addTranslation("Altar", {ru: "Алтарь"});
 Translation.addTranslation("Necronomicons", {ru: "Некрономиконы"});

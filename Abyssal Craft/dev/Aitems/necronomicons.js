@@ -217,9 +217,15 @@ Recipes.addShaped({id:BlockID.Pedestal, count: 1, data: 0}, [
 "asa",
 "axa",
 "aaa"
-], ['a', BlockID.stoneMonolith, 0, 'x', ItemID.soulPa, 0,'s', ItemID.coralPearl, 0]);
+], ['a', BlockID.stoneMonolith, 0, 'x', ItemID.soulPa, 0, 's', ItemID.coralPearl, 0]);
 
-//Item.setCategory(id, category);
+Recipes.addShaped({id:61, count: 1, data: 0}, [
+"aaa",
+"a a",
+"aaa"
+], ['a', BlockID.stoneDark, 0]);
+
+
 Item.addCreativeGroup("Necronomicons", "Necronomicons", [ItemID.normalNecronomicon, ItemID.normalNecronomiconC, ItemID.normalNecronomiconD, ItemID.normalNecronomiconO, ItemID.abyssNecronomicon]);
 Item.addCreativeGroup("Charms", "Charms", [ItemID.charm, ItemID.charmAzathoth, ItemID.charmCthulhu, ItemID.charmHastur, ItemID.charmJzahar, ItemID.charmNyarlathotep, ItemID.charmShubniggurath, ItemID.charmYogsothoth]);
 Item.addCreativeGroup("Drain Staffs", "Drain Staffs", [ItemID.drainS, ItemID.drainSA, ItemID.drainSD, ItemID.drainSO]);
@@ -235,7 +241,7 @@ Recipes.addShaped({id:ItemID.normalNecronomicon, count: 1, data: 0}, [
 "aas",
 "axa",
 "aas"
-], ['a', 367, 0, 'x', 340, 0,'s', 265, 0]);
+], ['a', 367, 0, 'x', 340, 0, 's', 265, 0]);
 });
 
 AbyssTable.addCraft([[ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0]], [ItemID.ABHelm, 0], [ItemID.DABHelm, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);

@@ -172,9 +172,91 @@ Recipes.addShaped({id: 58, count: 1, data: 0}, [
 "xx",
 ], ['x', BlockID.darkP, 0]); 
 
+Recipes.addShaped({id: 280, count: 4, data: 0}, [
+"x",
+"x"
+], ['x', BlockID.darkP, 0]); 
+
+Recipes.addShaped({id: 268, count: 1, data: 0}, [
+" x ",
+" x ",
+" a "
+], ['x', BlockID.darkP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 271, count: 1, data: 0}, [
+" xx",
+" ax",
+" a "
+], ['x', BlockID.darkP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 270, count: 1, data: 0}, [
+"xxx",
+" a ",
+" a "
+], ['x', BlockID.darkP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 290, count: 1, data: 0}, [
+" xx",
+" a ",
+" a "
+], ['x', BlockID.darkP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 269, count: 1, data: 0}, [
+" x ",
+" a ",
+" a "
+], ['x', BlockID.darkP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 54, count: 1, data: 0}, [
+"xxx",
+"x x",
+"xxx"
+], ['x', BlockID.darkP, 0]); 
+
 Recipes.addShaped({id: 58, count: 1, data: 0}, [
 "xx",
 "xx",
+], ['x', BlockID.dreadP, 0]); 
+
+Recipes.addShaped({id: 280, count: 4, data: 0}, [
+"x",
+"x"
+], ['x', BlockID.dreadP, 0]); 
+
+Recipes.addShaped({id: 268, count: 1, data: 0}, [
+" x ",
+" x ",
+" a "
+], ['x', BlockID.dreadP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 271, count: 1, data: 0}, [
+" xx",
+" ax",
+" a "
+], ['x', BlockID.dreadP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 270, count: 1, data: 0}, [
+"xxx",
+" a ",
+" a "
+], ['x', BlockID.dreadP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 290, count: 1, data: 0}, [
+" xx",
+" a ",
+" a "
+], ['x', BlockID.dreadP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 269, count: 1, data: 0}, [
+" x ",
+" a ",
+" a "
+], ['x', BlockID.dreadP, 0, 'a', 280, 0]);
+
+Recipes.addShaped({id: 54, count: 1, data: 0}, [
+"xxx",
+"x x",
+"xxx"
 ], ['x', BlockID.dreadP, 0]); 
 });
 
