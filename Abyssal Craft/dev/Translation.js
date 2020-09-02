@@ -234,3 +234,5 @@ Translation.addTranslation("Charms", {ru: "Обереги"});
 Translation.addTranslation("Drain Staffs", {ru: "Разрушители"});
 Translation.addTranslation("Altars & Sacrafices", {ru: "Алтари и Жертвоприношения"});
 Translation.addTranslation("Pillars & Energy", {ru: "Постаменты и Энергия"});
+Translation.addTranslation("Shoggoths Skin", {ru: "Кожа Шогготов"});
+Translation.addTranslation("Monster Skin", {ru: "Кожа Монстров"});
