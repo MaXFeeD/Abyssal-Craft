@@ -103,12 +103,29 @@ Block.createBlock("stoneABrik", [
 
 IDRegistry.genBlockID("grassDread");
 Block.createBlock("grassDread", [
-{name: "Dreaded Wastlands Grass", texture: [["DLGbottom", 0], ["DrGtop", 0], ["DRGSides", 1]], inCreative: true}], "opaque");
+{name: "Dreaded Wastlands Grass", texture: [["dreadlandsdirt", 0], ["drgtop", 0], ["drgsides", 1]], inCreative: true}], "opaque");
 ToolAPI.registerBlockMaterial(BlockID.grassDread, "dirt", 0, true);
+
+IDRegistry.genBlockID("dirtDread");
+Block.createBlock("dirtDread", [
+{name: "Dreaded Wastlands Dirt", texture: [["dreadlandsdirt", 0]], inCreative: true}], "opaque");
+ToolAPI.registerBlockMaterial(BlockID.dirtDread, "dirt", 0, true);
 
 IDRegistry.genBlockID("stoneDread"); 
 Block.createBlock("stoneDread", [
 {name: "Dread Lands Stone", texture: [["DrS", 0]],inCreative: true}], BLOCK_TYPE_STONE);
+
+IDRegistry.genBlockID("stoneDreadA"); 
+Block.createBlock("stoneDreadA", [
+{name: "Dread Lands Stone", texture: [["AbyDrS", 0]],inCreative: true}], BLOCK_TYPE_STONE);
+
+IDRegistry.genBlockID("stoneDABri"); 
+Block.createBlock("stoneDBri", [
+{name: "Dread Lands Bricks", texture: [["AbyDrSB", 0]],inCreative: true}], BLOCK_TYPE_STONE);
+
+IDRegistry.genBlockID("stoneDABrik"); 
+Block.createBlock("stoneDBrik", [
+{name: "Dread Lands Bricks", texture: [["AbyDrSBf", 0]],inCreative: true}], BLOCK_TYPE_STONE);
 
 IDRegistry.genBlockID("stoneDBri"); 
 Block.createBlock("stoneDBri", [
@@ -151,9 +168,27 @@ Recipes.addShaped({id: BlockID.stoneDBrik, count: 4, data: 0}, [
 "xx",
 ], ['x', BlockID.stoneDread, 0]);
 
+Recipes.addShaped({id: BlockID.stoneDABrik, count: 4, data: 0}, [
+"xx",
+"xx",
+], ['x', BlockID.stoneDreadA, 0]);
+
 Recipes.addFurnace(BlockID.stoneDark, BlockID.stoneDABri, 0);
 Recipes.addFurnace(BlockID.stoneAbyss, BlockID.stoneABri, 0);
-Recipes.addFurnace(BlockID.stoneAbyss, BlockID.stoneABri, 0);
+Recipes.addFurnace(BlockID.stoneDread, BlockID.stoneDBri, 0);
+Recipes.addFurnace(BlockID.stoneDreadA, BlockID.stoneDABri, 0);
 Recipes.addFurnace(BlockID.Etx, BlockID.stoneEtxb, 0);
 Recipes.addFurnace(BlockID.Etx, BlockID.stoneEtxB, 0);
+
+Block.registerDropFunction("grassDark", function(coords, id, data, diggingLevel, toolLevel){
+     return [[3, 1, 0]];
+});
+
+Block.registerDropFunction("grassDread", function(coords, id, data, diggingLevel, toolLevel){
+     return [[BlockID.dirtDread, 1, 0]];
+});
+ 
+Block.registerDropFunction("grassAbyss", function(coords, id, data, diggingLevel, toolLevel){
+     return [[BlockID.sandAbyss, 1, 0]];
+});
 });

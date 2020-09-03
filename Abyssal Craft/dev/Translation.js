@@ -6,9 +6,10 @@ Translation.addTranslation("Abyssal Wastlands Sand", {ru: "Песок Бездн
 Translation.addTranslation("Abyssal Waste Glass", {ru: "Стекло Бездны"});
 Translation.addTranslation("Abyssal Waste Stone", {ru: "Камень Бездны"});
 Translation.addTranslation("Abyssal Waste Bricks", {ru: "Кладка Бездны"});
-Translation.addTranslation("Dreaded Wastlands Grass", {ru: "Дерн Ужасных Земель"});
+Translation.addTranslation("Dreaded Wastlands Grass", {ru: "Дёрн Ужасных Земель"});
 Translation.addTranslation("Dread Lands Stone", {ru: "Камень Ужасных Земенль"});
-Translation.addTranslation("Dread Lands Bricks", {ru: "Кладка Ужасных Земель"});
+Translation.addTranslation("Dread Lands Stone", {ru: "Камень Ужасных Земенль"});
+Translation.addTranslation("Dreaded Wastlands Dirt", {ru: "Земля Ужасных Земель"});
 Translation.addTranslation("Abyssal Waste Bricks", {ru: "Кладка Бездны"});
 Translation.addTranslation("Dark Bricks", {ru: "Кладка Тёмных Земель"});
 Translation.addTranslation("Dark Stone Beacon", {ru: "Маяк Тёмных Земель"});
@@ -236,3 +237,4 @@ Translation.addTranslation("Altars & Sacrafices", {ru: "Алтари и Жерт
 Translation.addTranslation("Pillars & Energy", {ru: "Постаменты и Энергия"});
 Translation.addTranslation("Shoggoths Skin", {ru: "Кожа Шогготов"});
 Translation.addTranslation("Monster Skin", {ru: "Кожа Монстров"});
+Translation.addTranslation("Interdimensional Cage", {ru: "Межпространственная Клетка"});

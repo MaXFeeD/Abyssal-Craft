@@ -188,6 +188,13 @@ tier:4,
 isChargable:true
 });
 
+IDRegistry.genItemID("cageI"); 
+Item.createThrowableItem("cageI", "Interdimensional Cage", { name: "interdimensionalcage", meta: 0});
+
+Item.registerThrowableFunction("cageI", function(projectile, item, target){
+ if(Entity.isExist(target.entity)) Entity.damageEntity(target.entity, 4);
+});
+
 const drains = [ItemID.drainS, ItemID.drainSA, ItemID.drainSD, ItemID.drainSO];
 
 Callback.addCallback("EntityDeath",function (entity, attacker){

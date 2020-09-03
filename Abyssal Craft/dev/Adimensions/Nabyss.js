@@ -1,10 +1,15 @@
 var Abyss = new Dimensions.CustomDimension("Abyss", 1974); 
-Abyss.setSkyColor(0, 2.86, 2.89); 
-Abyss.setFogColor(0, 2.86, 2.89); 
-Abyss.setCloudColor(0, 2.86, 2.89); 
+Abyss.setSkyColor(0, 2.55, 2.55); 
+Abyss.setFogColor(0, 2.55, 2.55); 
+Abyss.setCloudColor(0, 2.55, 2.55); 
  
 Abyss.setGenerator(Dimensions.newGenerator({ 
  layers: [ 
+  {
+minY: 42, maxY: 64,
+yConversion: [[0, 0]],
+material: {base: 8},
+  },
  { 
 minY: 0, maxY: 256, 
 yConversion: [[1.5, -0.8], [.6, -.4], [0, .85], [.5, -.5], [1.5, -1]], 
@@ -13,13 +18,8 @@ noise: {octaves: {count: 3, scale: 126}}
   }, 
  {
 minY: 0, maxY: 1,
-yConversion: [[.0,.0]],
+yConversion: [[0, 0]],
 material: {base: 7},
-  },
- {
-minY: 42, maxY: 64,
-yConversion: [[.0,.0]],
-material: {base: 8},
   }  
  ] 
 }
@@ -27,16 +27,16 @@ material: {base: 8},
  
 PortalUtils.newPortalBlock("abyssWastes", ["AG", 0], {type: "v-plane", frameId: BlockID.stoneAbyss}, false);
 
-var shape = new PortalShape();
-shape.setPortalId(BlockID.abyssWastes);
-shape.setFrameIds(BlockID.stoneAbyss);
-shape.setMinSize(2, 3);
+var Ashape = new PortalShape();
+Ashape.setPortalId(BlockID.abyssWastes);
+Ashape.setFrameIds(BlockID.stoneAbyss);
+Ashape.setMinSize(2, 3);
  
 Callback.addCallback("ItemUse", function(coords, item, block){ 
 if(Player.getCarriedItem().id == ItemID.keyABW) 
 var rect = shape.findPortal(coords.relative.x, coords.relative.y, coords.relative.z);
   if (rect) {
-            shape.buildPortal(rect, false);
+            Ashape.buildPortal(rect, false);
    }
 }); 
     
@@ -63,8 +63,8 @@ Callback.addCallback('DimensionLoaded', function (dimension) {
 if (dimension != Abyss.id) return;
  if (!teleport) {
  var CP = Player.getPosition();
-  var crD = GenerationUtils.findHighSurface(CP.x, CP.z, 48, 72);
-    shape.buildPortal(crD, true);
+  var crD = GenerationUtils.findHighSurface(CP.x, CP.z, 65, 75);
+    Ashape.buildPortal(crD, true);
      Player.setPosition(CP.x, crD.y, CP.z);
    teleport = true;
 }

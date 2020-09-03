@@ -7,6 +7,8 @@ Ablocks/altar&pillars/Altars.js
 Ablocks/ores.js
 Ablocks/flora.js
 Adimensions/generation/Normal.js
+Adimensions/generation/Ndredland.js
+Adimensions/Ndreadlands.js
 Aitems/items.js
 Aitems/food.js
 Aitems/tools.js
