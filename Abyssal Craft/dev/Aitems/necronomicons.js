@@ -122,6 +122,55 @@ Recipes.addShaped({id:ItemID.keyABW, count: 1, data: 0}, [
 ], ['a', ItemID.catalObl, 0, 'x', 369, 0,'s', ItemID.coralPearl, 0]);
 
 //CHARMS
+IDRegistry.genItemID("charmRe"); 
+Item.createItem("charmRe", "Ritual Charm", {name: "ritualCharm_empty"});
+
+IDRegistry.genItemID("charmRr"); 
+Item.createItem("charmRr", "Ritual Charm Range", {name: "ritualCharm_range"});
+
+//IDRegistry.genItemID("charmRd"); 
+//Item.createItem("charmRd", "Ritual Charm Duration", {name: "ritualCharm_duration"});
+
+IDRegistry.genItemID("charmRp"); 
+Item.createItem("charmRp", "Ritual Charm Power", {name: "ritualCharm_power"});
+
+Callback.addCallback('EntityHurt', function (attacker, victim, damageValue) {
+ if(!attacker == Player.get()) return;
+   for(var i = 35; i < 45; i++){
+    if(Player.getInventorySlot(i) == ItemID.charmRp){
+     Entity.damageEntity(victim, damageValue * 2);
+      }
+   }
+});
+
+var isdamaged = false;
+Callback.addCallback('ProjectileHit', function (projectile, item, target) {
+if(Player.getCarriedItem().id == 261 || Player.getCarriedItem().id == NativeItemID.crossbow){
+  for(var i = 35; i < 45; i++){
+    if(Player.getInventorySlot(i) == ItemID.charmRr){
+      if(target.entity == -1){
+     Entity.remove(projectile);
+      } else {   
+      isdamaged = true;
+     Entity.remove(projectile);
+      }
+      }
+   }
+}});
+
+Callback.addCallback('EntityHurt', function (attacker, victim, damageValue) {
+ if(isdamaged){
+     Entity.damageEntity(victim, damageValue * 2);   
+   }
+});
+
+Recipes.addShaped({id:ItemID.charmRe, count: 1, data: 0}, [
+"aaa",
+"axa",
+"aaa"
+], ['a', 266, 0, 'x', 264, 0]);
+
+
 IDRegistry.genItemID("charm"); 
 Item.createItem("charm", "Charm", {name: "charm"});
 
@@ -192,8 +241,29 @@ IDRegistry.genItemID("cageI");
 Item.createThrowableItem("cageI", "Interdimensional Cage", { name: "interdimensionalcage", meta: 0});
 
 Item.registerThrowableFunction("cageI", function(projectile, item, target){
- if(Entity.isExist(target.entity)) Entity.damageEntity(target.entity, 4);
+ if(Entity.isExist(target.entity)){  
+   Entity.damageEntity(target.entity, 4); 
+     World.drop(target.x, target.y, target.z, ItemID.cageI, 1, 0);
+   }
 });
+
+IDRegistry.genItemID("scrollB"); 
+Item.createThrowableItem("scrollB", "Basic Scroll", { name: "scroll_basic", meta: 0});
+
+IDRegistry.genItemID("scrollL"); 
+Item.createThrowableItem("scrollL", "Lesser Scroll", { name: "scroll_lesser", meta: 0});
+
+IDRegistry.genItemID("scrollM"); 
+Item.createThrowableItem("scrollM", "Moderete Scroll", { name: "scroll_moderate", meta: 0});
+
+IDRegistry.genItemID("scrollG"); 
+Item.createThrowableItem("scrollG", "Greater Scroll", { name: "scroll_greater", meta: 0});
+
+IDRegistry.genItemID("scrollUA"); 
+Item.createThrowableItem("scrollUA", "Antimatter Scroll", { name: "scroll_unique_anti", meta: 0});
+
+IDRegistry.genItemID("scrollUO"); 
+Item.createThrowableItem("scrollUO", "Oblivion Scroll", { name: "scroll_unique_oblivion", meta: 0});
 
 const drains = [ItemID.drainS, ItemID.drainSA, ItemID.drainSD, ItemID.drainSO];
 
@@ -238,6 +308,7 @@ Item.addCreativeGroup("Charms", "Charms", [ItemID.charm, ItemID.charmAzathoth, I
 Item.addCreativeGroup("Drain Staffs", "Drain Staffs", [ItemID.drainS, ItemID.drainSA, ItemID.drainSD, ItemID.drainSO]);
 Item.addCreativeGroup("Shoggoths Skin", "Shoggoths Skin", [ItemID.skinSHN, ItemID.skinSHDk, ItemID.skinSHA, ItemID.skinSHD, ItemID.skinSHO]);
 Item.addCreativeGroup("Monster Skin", "Monster Skin", [ItemID.skinABW, ItemID.skinDW, ItemID.skinO]);
+Item.addCreativeGroup("Scrolls", "Scrolls", [ItemID.scrollB, ItemID.scrollL, ItemID.scrollM, ItemID.scrollG, ItemID.scrollUA, ItemID.scrollUO]);
 AbyssTable.addCraft([[371, 0], [371, 0], [371, 0], [371, 0], [371, 0], [371, 0], [371, 0], [371, 0]], [ItemID.coralPearl, 0], [ItemID.trsGem, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 2000);
 Item.setGlint(ItemID.trsGem, true);
 AbyssTable.addCraft([[331, 0], [331, 0], [331, 0], [331, 0], [ItemID.shardObl, 0], [ItemID.shardObl, 0], [ItemID.shardObl, 0], [ItemID.shardObl, 0]], [381, 0], [ItemID.catalObl, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 5000);
@@ -245,12 +316,29 @@ Item.setGlint(ItemID.catalObl, true);
 AbyssTable.addCraft([[ItemID.essenceABW, 0], [ItemID.essenceABW, 0], [ItemID.essenceABW, 0], [ItemID.essenceABW, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0]], [ItemID.coralPearl, 0], [ItemID.essenceOrbABW, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 3500);
 AbyssTable.addCraft([[ItemID.coralIron, 0], [ItemID.coralIron, 0], [ItemID.coralIron, 0], [ItemID.coralIron, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0]], [ItemID.coralPearl, 0], [ItemID.coralPlate, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);
 Item.setGlint(ItemID.essenceOrbABW, true);
+AbyssTable.addCraft([[101, 0], [101, 0], [101, 0], [101, 0], [101, 0], [101, 0], [101, 0], [101, 0]], [ItemID.shardObl, 0], [ItemID.cageI, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
+
+AbyssTable.addCraft([[340, 0], [340, 0], [340, 0], [340, 0], [0, 0], [0, 0], [0, 0], [0, 0]], [339, 0], [ItemID.scrollB, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
+AbyssTable.addCraft([[340, 0], [ItemID.plantWaste, 0], [340, 0], [ItemID.plantWasteL, 0], [0, 0], [0, 0], [0, 0], [0, 0]], [339, 0], [ItemID.scrollL, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
+AbyssTable.addCraft([[340, 0], [ItemID.dreadPeace, 0], [340, 0], [ItemID.dreadChunck, 0], [0, 0], [0, 0], [0, 0], [0, 0]], [339, 0], [ItemID.scrollM, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
+AbyssTable.addCraft([[340, 0], [ItemID.dreadPeace, 0], [340, 0], [ItemID.dreadChunck, 0], [0, 0], [0, 0], [0, 0], [0, 0]], [339, 0], [ItemID.scrollM, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
+
+AbyssTable.addCraft([[0, 0], [ItemID.trsGem, 0], [ItemID.dreadChunck, 0], [ItemID.coralPearlD, 0], [0, 0], [0, 0], [0, 0], [0, 0]], [339, 0], [ItemID.scrollM, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
+
+AbyssTable.addCraft([[ItemID.soulPe, 0], [ItemID.soulPe, 0], [ItemID.soulPe, 0], [ItemID.soulPe, 0], [262, 0], [262, 0], [262, 0], [262, 0]], [ItemID.charmRe, 0], [ItemID.charmRr, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
+AbyssTable.addCraft([[ItemID.soulPe, 0], [ItemID.soulPe, 0], [ItemID.soulPe, 0], [ItemID.soulPe, 0], [348, 0], [348, 0], [348, 0], [348, 0]], [ItemID.charmRe, 0], [ItemID.charmRpe, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
 
 Recipes.addShaped({id:ItemID.normalNecronomicon, count: 1, data: 0}, [
 "aas",
 "axa",
 "aas"
 ], ['a', 367, 0, 'x', 340, 0, 's', 265, 0]);
+
+Recipes.addShaped({id: ItemID.keyABW, count: 1, data: 0}, [
+"oxa",
+"obx",
+"boo"
+], ['a', ItemID.catalObl, 0, 'x', ItemID.coralPearl, 0, 'b', 369, 0]);
 });
 
 AbyssTable.addCraft([[ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0]], [ItemID.ABHelm, 0], [ItemID.DABHelm, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);

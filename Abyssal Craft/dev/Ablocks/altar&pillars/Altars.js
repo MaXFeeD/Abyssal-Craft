@@ -160,7 +160,11 @@ TileEntity.registerPrototype(BlockID.AltarAbyssalC,{
             this.setSlot('slot', 0, 0, 0);
        }
     },
-    tick: function() {   
+    tick: function() {
+      Particles.addParticle(this.x + 0.1, this.y + 0.1, this.z + 0.9, 7, 0, .04, 0, 0); 
+      Particles.addParticle(this.x + 0.9, this.y + 0.1, this.z + 0.1, 7, 0, .04, 0, 0);  
+      Particles.addParticle(this.x + 0.9, this.y + 0.1, this.z + 0.9, 7, 0, .04, 0, 0);
+      Particles.addParticle(this.x + 0.1, this.y + 0.1, this.z + 0.1, 7, 0, .04, 0, 0);
         var item = this.container.getSlot('slot');
         if ((!this.data.anim || (this.data.lastid != item.id || this.data.lastdata != item.data)) && item.id != 0) {
             if ((this.data.lastid != item.id || this.data.lastdata != item.data) && this.data.anim) this.data.anim.destroy();

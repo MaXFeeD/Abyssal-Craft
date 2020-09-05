@@ -130,6 +130,24 @@ var Jzrender = new ICRender.Model();
 Jzrender.addEntry(new BlockRenderer.Model(Jzmesh));
 BlockRenderer.setStaticICRender(BlockID.statueJz,0,Jzrender);
 
+Callback.addCallback('BuildBlock', function (coords, block, entity) {
+if(block.id == BlockID.statueJz){
+let  pc = Player.getPosition();
+if(pc.x > coords.x){ 
+  Jzmesh.mesh.rotate(coords.x + .5, coords.y, coords.z + .5, 0, 0, 0); 
+      }
+if(pc.x < coords.x){ 
+  Jzmesh.mesh.rotate(coords.x + .5, coords.y, coords.z + .5, 0, 180, 0); 
+      }
+if(pc.z > coords.z){ 
+  Jzmesh.mesh.rotate(coords.x + .5, coords.y, coords.z + .5, 0, 90, 0); 
+      }
+if(pc.z < coords.z){ 
+  Jzmesh.mesh.rotate(coords.x + .5, coords.y, coords.z + .5, 0, 270, 0); 
+      }
+   }
+});
+
 IDRegistry.genBlockID("statueAz");
 Block.createBlockWithRotation("statueAz", [
 {name: "Azathoth statue", texture: [["azathothstatue", 0]], inCreative: true}]);

@@ -82,6 +82,9 @@ Item.createItem("coralPearl", "Coralium Pearl", {name: "CP"});
 IDRegistry.genItemID("coralPlate");
 Item.createItem("coralPlate", "Reinforced Coralium Plate", {name: "CPP"});
 
+IDRegistry.genItemID("coralPearlD");
+Item.createItem("coralPearlD", "Coralium Pearl", {name: "EoA"});
+
 
 //Upgrade kits
 IDRegistry.genItemID("cobUpgr");
@@ -285,7 +288,6 @@ Item.createItem("keyABW", "Geateway Key Tier 1", {name: "GK"});
 IDRegistry.genItemID("keyDW");
 Item.createItem("keyDW", "Geateway Key Tier 2", {name: "GKD"});
 
-
 IDRegistry.genItemID("skinABW");
 Item.createItem("skinABW", "Depths Monster Skin", {name: "skin_abyssalwasteland"});
 
@@ -417,7 +419,7 @@ Recipes.addFurnace(BlockID.sandAbyss, BlockID.glassAbyss, 0);
 Recipes.addShaped({id: BlockID.blockEthaxium, count: 1, data: 0}, [
 "xx",
 "xx"
-], ['a', ItemID.ethIron, 0]);
+], ['x', ItemID.ethIron, 0]);
 
 Recipes.addShaped({id: BlockID.stoneEtxP, count: 1, data: 0}, [
 "x",

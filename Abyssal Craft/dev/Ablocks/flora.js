@@ -159,6 +159,9 @@ Str.generateTrees(crd.x, crd.z, Treesdr, {min_y:crd.y,max_y:crd.y, check: BlockI
 });*/
 
 Callback.addCallback("PostLoaded", function(){
+Recipes.addFurnace(BlockID.dreadLog,ItemID.coalD);
+Recipes.addFurnace(BlockID.dreadLogS,ItemID.coalD);
+
 Recipes.addShaped({id: BlockID.darkP, count: 4, data: 0}, [
 "x",
 ], ['x', BlockID.darkLog, 0]); 

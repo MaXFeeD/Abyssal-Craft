@@ -228,6 +228,7 @@ Translation.addTranslation("Abyss Shoggoth Skin", {ru: "Кожа Шоггота 
 Translation.addTranslation("Dread Shoggoth Skin", {ru: "Кожа Ужасного Шоггота"});
 Translation.addTranslation("Omothol Shoggoth Skin", {ru: "Кожа Шоггота Тьмы"});
 Translation.addTranslation("Dreaded Coal", {ru: "Ужасный Уголь"});
+Translation.addTranslation("Interdimensional Cage", {ru: "Межпространственная Клетка"});
 //GUI
 Translation.addTranslation("Altar", {ru: "Алтарь"});
 Translation.addTranslation("Necronomicons", {ru: "Некрономиконы"});
@@ -237,4 +238,17 @@ Translation.addTranslation("Altars & Sacrafices", {ru: "Алтари и Жерт
 Translation.addTranslation("Pillars & Energy", {ru: "Постаменты и Энергия"});
 Translation.addTranslation("Shoggoths Skin", {ru: "Кожа Шогготов"});
 Translation.addTranslation("Monster Skin", {ru: "Кожа Монстров"});
-Translation.addTranslation("Interdimensional Cage", {ru: "Межпространственная Клетка"});
+Translation.addTranslation("Scrolls", {ru: "Свитки"});
+
+
+Translation.addTranslation("Basic Scroll", {ru: "Базовый Свиток"});
+Translation.addTranslation("Lesser Scroll", {ru: "Небольшой Свиток"});
+Translation.addTranslation("Moderete Scroll", {ru: "Средний Свиток"});
+Translation.addTranslation("Greater Scroll", {ru: "Большой Свиток"});
+Translation.addTranslation("Antimatter Scroll", {ru: "Свиток Антиматерии"});
+Translation.addTranslation("Oblivion Scroll", {ru: "Забытый Свиток"});
+
+Translation.addTranslation("Ritual Charm", {ru: "Ритуальный Амулет"});
+Translation.addTranslation("Ritual Charm Range", {ru: "Ритуальный Амулет Лука"});
+//Translation.addTranslation("Ritual Charm Duration", {ru: "Ритуальный Амулет ПРОЧНОСТИ?"});
+Translation.addTranslation("Ritual Charm Power", {ru: "Ритуальный Амулет Силы"});

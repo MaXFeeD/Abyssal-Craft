@@ -2,7 +2,7 @@
 NIDE BUILD INFO:
   dir: dev
   target: main.js
-  files: 17
+  files: 19
 */
 
 
@@ -15,6 +15,7 @@ IMPORT("ToolLib");
 IMPORT("TileRender");
 IMPORT("StructuresAPI");
 IMPORT("PortalUtils");
+IMPORT("GuideAPI");
 
 function randomInt(min, max){ 
 return Math.floor(Math.random() * (max - min + 1)) + min; 
@@ -213,12 +214,12 @@ checkerMode: params.checkerMode
       }); 
    }  
 },
-generateOreInDimension: function(id, data, chunkX, chunkZ, params){  
-for (var i = 0; i < params.veinCounts; i++){ 
+generateOreInDimension: function(id, data, chunkX, chunkZ, params) {  
+for (var i = 0; i < params.veinCounts; i++) { 
 var coords = GenerationUtils.randomCoords(chunkX, chunkZ, params.min_y, params.max_y); 
-if(Math.random() * 100 < params.veinChance)GenerationUtils.generateOreCustom(coords.x, coords.y, coords.z, id, data, params.count, params.mode, params.check);
-   }  
-}
+if (Math.random() * 100 < params.veinChance) GenerationUtils.generateOreCustom(coords.x, coords.y, coords.z, id, data, params.count, params.mode, params.check);
+      }  
+   }
 }
 
 ToolAPI.addToolMaterial("ds", {durability: 940, level: 2, efficiency: 4, damage: 4, enchantability: 4});    
@@ -280,14 +281,6 @@ encreasePEFromItem: function(idb, count) {
    if (this.getPEFromItem(idb) != 0 && this.getPEFromItem(idb) >= count) {
        return this.getBookData(idb).PEvalue += count;  
         }
-},
-showPE: function(idbs) {
- for(var k in idbs) {
-  Callback.addCallback("ItemUseNoTarget", function(item){
-   if (Player.getCarriedItem().id == idbs[k])
-     Game.tipMessage("PE  " + this.getPEFromItem(idbs[k]));
-        });
-    }
 }
 } 
 
@@ -295,35 +288,33 @@ Callback.addCallback("PreLoaded", function() {
 Necronomicons.setUpNecronomicons();   
 });
 
-/*Callback.addCallback("tick", function() {
-Necronomicons.showPE([ItemID.normalNecronomicon, ItemID.normalNecronomiconC, ItemID.abyssNecronomicon, ItemID.drainS, ItemID.drainSA, ItemID.drainSD, ItemID.drainSO]);
-});*/
-
 var Str = {
 BuildF:55,
 TreesF:26,
 generateTrees:function(chunkX, chunkZ, names, params) {
  for(var i in names){
-var coords = GenerationUtils.randomCoords(chunkX, chunkZ, params.min_y, params.max_y);
-if (World.getBlockID(coords.x,coords.y,coords.z)==params.check) {
+  var coords = GenerationUtils.randomCoords(chunkX, chunkZ, params.min_y, params.max_y);
+   if (World.getBlockID(coords.x,coords.y,coords.z)==params.check) {
   Structure.setInWorld(names[i], coords.x, coords.y+1, coords.z, [Structure.ROTATE_90Y,Structure.ROTATE_270Y,Structure.ROTATE_180Y], false, 2);
     } 
   }
 },
+
 generateBuildings:function(chunkX, chunkZ, names, params) {
-for (var i in names) {
-var coords = GenerationUtils.randomCoords(chunkX, chunkZ, params.min_y, params.max_y);
-if (World.getBlockID(coords.x,coords.y,coords.z)==params.check) {
+ for (var i in names) {
+  var coords = GenerationUtils.randomCoords(chunkX, chunkZ, params.min_y, params.max_y);
+   if (World.getBlockID(coords.x,coords.y,coords.z)==params.check) {
   Structure.setInWorld(names[i], coords.x, coords.y, coords.z, [Structure.ROTATE_90Y,Structure.ROTATE_270Y,Structure.ROTATE_180Y], false, 2);
     } 
   }
 },
-generateShoggoth:function(chunkX, chunkZ, names, params) {
-var coords = GenerationUtils.randomCoords(chunkX, chunkZ, params.min_y, params.max_y);
-if (World.getBlockID(coords.x,coords.y,coords.z)==params.check) {
-  Structure.setInWorld(names, coords.x, coords.y-2, coords.z, [Structure.ROTATE_90Y,Structure.ROTATE_270Y,Structure.ROTATE_180Y], false, 2);
+
+generateShoggoth:function(chunkX, chunkZ, name, params) {
+ var coords = GenerationUtils.randomCoords(chunkX, chunkZ, params.min_y, params.max_y);
+  if (World.getBlockID(coords.x,coords.y,coords.z)==params.check) {
+  Structure.setInWorld(name, coords.x, coords.y-2, coords.z, [Structure.ROTATE_90Y,Structure.ROTATE_270Y,Structure.ROTATE_180Y], false, 2);
+    }
   }
-}
 }
 
 const Crafts = [];
@@ -369,6 +360,13 @@ const AbyssTable = {
         return listCrafts;
     },
     
+    getPE: function(item) {
+      for (var l in Crafts) {
+        if (Player.getCarriedItem().id == item && Necronomicons.getPEFromItem(item) >= Crafts[l].PE)
+          return;        
+        }  
+    },
+    
     onCraftStart: function(item, func) {
         if (!item) return Logger.Log("item not listed", "AbyssAPI ERROR");
         if (!func) return Logger.Log("func not listed", "AbyssAPI ERROR");
@@ -379,13 +377,7 @@ const AbyssTable = {
         if (!item) return Logger.Log("item not listed", "AbyssAPI ERROR");
         if (!func) return Logger.Log("func not listed", "AbyssAPI ERROR");
         onCraftEnd[item.toString()] = func;
-    },
-    getPE: function(item) {
-      for (var l in Crafts) {
-        if (Player.getCarriedItem().id == item && Necronomicons.getPEFromItem(item) >= Crafts[l].PE)
-          return;        
-        }  
-    }
+    } 
 }
 
 
@@ -497,12 +489,29 @@ Block.createBlock("stoneABrik", [
 
 IDRegistry.genBlockID("grassDread");
 Block.createBlock("grassDread", [
-{name: "Dreaded Wastlands Grass", texture: [["DLGbottom", 0], ["DrGtop", 0], ["DRGSides", 1]], inCreative: true}], "opaque");
+{name: "Dreaded Wastlands Grass", texture: [["dreadlandsdirt", 0], ["drgtop", 0], ["drgsides", 1]], inCreative: true}], "opaque");
 ToolAPI.registerBlockMaterial(BlockID.grassDread, "dirt", 0, true);
+
+IDRegistry.genBlockID("dirtDread");
+Block.createBlock("dirtDread", [
+{name: "Dreaded Wastlands Dirt", texture: [["dreadlandsdirt", 0]], inCreative: true}], "opaque");
+ToolAPI.registerBlockMaterial(BlockID.dirtDread, "dirt", 0, true);
 
 IDRegistry.genBlockID("stoneDread"); 
 Block.createBlock("stoneDread", [
 {name: "Dread Lands Stone", texture: [["DrS", 0]],inCreative: true}], BLOCK_TYPE_STONE);
+
+IDRegistry.genBlockID("stoneDreadA"); 
+Block.createBlock("stoneDreadA", [
+{name: "Dread Lands Stone", texture: [["AbyDrS", 0]],inCreative: true}], BLOCK_TYPE_STONE);
+
+IDRegistry.genBlockID("stoneDABri"); 
+Block.createBlock("stoneDBri", [
+{name: "Dread Lands Bricks", texture: [["AbyDrSB", 0]],inCreative: true}], BLOCK_TYPE_STONE);
+
+IDRegistry.genBlockID("stoneDABrik"); 
+Block.createBlock("stoneDBrik", [
+{name: "Dread Lands Bricks", texture: [["AbyDrSBf", 0]],inCreative: true}], BLOCK_TYPE_STONE);
 
 IDRegistry.genBlockID("stoneDBri"); 
 Block.createBlock("stoneDBri", [
@@ -545,11 +554,29 @@ Recipes.addShaped({id: BlockID.stoneDBrik, count: 4, data: 0}, [
 "xx",
 ], ['x', BlockID.stoneDread, 0]);
 
+Recipes.addShaped({id: BlockID.stoneDABrik, count: 4, data: 0}, [
+"xx",
+"xx",
+], ['x', BlockID.stoneDreadA, 0]);
+
 Recipes.addFurnace(BlockID.stoneDark, BlockID.stoneDABri, 0);
 Recipes.addFurnace(BlockID.stoneAbyss, BlockID.stoneABri, 0);
-Recipes.addFurnace(BlockID.stoneAbyss, BlockID.stoneABri, 0);
+Recipes.addFurnace(BlockID.stoneDread, BlockID.stoneDBri, 0);
+Recipes.addFurnace(BlockID.stoneDreadA, BlockID.stoneDABri, 0);
 Recipes.addFurnace(BlockID.Etx, BlockID.stoneEtxb, 0);
 Recipes.addFurnace(BlockID.Etx, BlockID.stoneEtxB, 0);
+
+Block.registerDropFunction("grassDark", function(coords, id, data, diggingLevel, toolLevel){
+     return [[3, 1, 0]];
+});
+
+Block.registerDropFunction("grassDread", function(coords, id, data, diggingLevel, toolLevel){
+     return [[BlockID.dirtDread, 1, 0]];
+});
+ 
+Block.registerDropFunction("grassAbyss", function(coords, id, data, diggingLevel, toolLevel){
+     return [[BlockID.sandAbyss, 1, 0]];
+});
 });
 
 
@@ -700,13 +727,7 @@ var Azrender = new ICRender.Model();
 Azrender.addEntry(new BlockRenderer.Model(Azmesh));
 BlockRenderer.setStaticICRender(BlockID.statueAz,0,Azrender);
 
-Callback.addCallback('ItemUse', function (coords, item, block) {
-if(item.id == 280){
-if(block.id == BlockID.statueCt || block.id == BlockID.statueJz || block.id == BlockID.statueAz){
-CTmesh.mesh.rotate(coords.x + .5, coords.y, coords.z + .5, 0, Math.Pi/2, 0);
-}
-}
-});
+//CTmesh.mesh.rotate(coords.x + .5, coords.y, coords.z + .5, 0, Math.Pi/2, 0);
 
 
 
@@ -805,9 +826,14 @@ TileEntity.registerPrototype(BlockID.PillarAbyssalC,{
             this.data.anim = null;
        }
     },
-    init: function() {
+    load: function() {
         if(this.data.anim) this.data.anim.load();
     },
+    unload: function() {
+        if(this.data.anim){
+            this.data.anim.destroy();
+      }
+   },
     destroyBlock:function(coords, player){
         if (this.data.anim){
             this.data.anim.destroy();
@@ -1164,7 +1190,7 @@ TileEntity.registerPrototype(BlockID.AltarAbyssalC,{
             this.data.anim = null;
        }  
     },
-    init:function(){
+    load:function(){
         if(this.data.anim) this.data.anim.load();
         if(this.data.step){
             if(!this.data.step.i) return;
@@ -1199,9 +1225,15 @@ TileEntity.registerPrototype(BlockID.AltarAbyssalC,{
          });            
       }
    },
+    unload: function() {
+        if(this.data.anim){
+            this.data.anim.destroy();
+      }
+   },
     destroyBlock: function(coords, player) {
         if(this.data.anim){
             this.data.anim.destroy();
+            this.data.anim = null;
       }
    } 
 });
@@ -1280,7 +1312,7 @@ Block.setDestroyLevel("oreNitre", 4);
 Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ){ 
 UniqueGen.generateOre(BlockID.Etx, 0, chunkX, chunkZ, { 
 veinCounts: 3, 
-veinChance: 28, 
+veinChance: .38, 
 minY: 12, 
 maxY: 48,  
 size: randomInt(1, 3),  
@@ -1294,7 +1326,7 @@ checkerMode: true
 Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ){ 
 UniqueGen.generateOre(BlockID.oreAbyssalinite, 0, chunkX, chunkZ, { 
 veinCounts: 4, 
-veinChance: 48, 
+veinChance: .5, 
 minY: 4, 
 maxY: 27,  
 size: randomInt(1, 3),  
@@ -1306,10 +1338,10 @@ checkerMode: true
   
  
 Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ){ 
-if(World.getBiome(chunkX, chunkZ) == 134 || World.getBiome(chunkX, chunkZ) == CoralSwamp.id)
+if(World.getBiome(chunkX, chunkZ) == 134 || World.getBiome(chunkX, chunkZ) == CoralSwamp.id || World.getBiome(chunkX, chunkZ) == 6)
 UniqueGen.generateOre(BlockID.oreCoral, 0, chunkX, chunkZ, { 
 veinCounts: 3, 
-veinChance: 30, 
+veinChance: .35, 
 minY: 4, 
 maxY: 27,  
 size: randomInt(1, 3),  
@@ -1321,10 +1353,10 @@ checkerMode: true
 
 
 Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ){
-if(World.getBiome(chunkX, chunkZ) == 134 || World.getBiome(chunkX, chunkZ) == CoralSwamp.id)
+if(World.getBiome(chunkX, chunkZ) == 134 || World.getBiome(chunkX, chunkZ) == CoralSwamp.id || World.getBiome(chunkX, chunkZ) == 6)
 UniqueGen.generateOre(BlockID.oreCoralInfused, 0, chunkX, chunkZ, { 
 veinCounts: 3, 
-veinChance: 36, 
+veinChance: .35, 
 minY: 4, 
 maxY: 30,  
 size: 1,  
@@ -1338,7 +1370,7 @@ checkerMode: true
 Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ){ 
 UniqueGen.generateOre(BlockID.oreNitre, 0, chunkX, chunkZ, { 
 veinCounts: 4, 
-veinChance: 40, 
+veinChance: .40, 
 minY: 22, 
 maxY: 58,  
 size: randomInt(1, 4),  
@@ -1421,6 +1453,16 @@ GenerationUtils.generateOreCustom(coords.x, coords.y, coords.z, BlockID.oreAcorp
 
 // file: Ablocks/flora.js
 
+var BLOCK_TYPE_LEAVES = Block.createSpecialType({
+    base: 18,
+    destroytime: 0.2,
+    explosionres: 1,
+    renderallfaces: true,
+    renderlayer: 1,
+    lightopacity: 1,
+    translucency: 0.5
+});
+
 //DARK
 const Treesd = ["Dark_Trees1", "Dark_Trees2"];
 
@@ -1443,11 +1485,11 @@ ToolAPI.registerBlockMaterial(BlockID.darkP, "wood");
 IDRegistry.genBlockID("darkLeaves");
 Block.createBlock("darkLeaves", [
     {name: "Dark Leaves", texture: [["DLT_L", 0]], inCreative: true}
-]);
+], BLOCK_TYPE_LEAVES);
 ToolAPI.registerBlockMaterial(BlockID.darkLeaves, "plant");
 
 Block.registerDropFunction("darkLeaves", function(){
-    if(Math.random() < .075){
+    if(Math.random() < .085){
         return [[ItemID.darkSapling, 1, 0]]
     }
     else {
@@ -1487,13 +1529,13 @@ Player.setCarriedItem(id, count - 1, data);
 }
 });
 
-Block.setRandomTickCallback(BlockID.darkSapling, function(x, y, z, id, data){       
+/*Block.setRandomTickCallback(BlockID.darkSapling, function(x, y, z, id, data){       
 var coords = coords.relative;
 if(World.getBlockID(coords.x, coords.y - 1, coords.z)==BlockID.grassDark){
 World.destroyBlock(coords.x,coords.y,coords.z,false);                      
 Str.generateTrees(crd.x, crd.z, Treesd, {min_y:crd.y,max_y:crd.y, check: BlockID.grassDark});
      }
-});         
+});*/         
 
 
 //DREAD
@@ -1519,11 +1561,11 @@ ToolAPI.registerBlockMaterial(BlockID.dreadP, "wood");
 IDRegistry.genBlockID("dreadLeaves");
 Block.createBlock("dreadLeaves", [
     {name: "Dread Leaves", texture: [["DrT_L", 0]], inCreative: true}
-]);
+], BLOCK_TYPE_LEAVES);
 ToolAPI.registerBlockMaterial(BlockID.dreadLeaves, "plant");
 
 Block.registerDropFunction("dreadLeaves", function(){
-    if(Math.random() < .075){
+    if(Math.random() < .085){
         return [[ItemID.dreadSapling, 1, 0]]
     }
     else {
@@ -1563,13 +1605,13 @@ Player.setCarriedItem(id, count - 1, data);
 }
 });
 
-Block.setRandomTickCallback(BlockID.dreadSapling, function(x, y, z, id, data){
+/*Block.setRandomTickCallback(BlockID.dreadSapling, function(x, y, z, id, data){
 var coords = coords.relative;       
 if(World.getBlockID(coords.x, coords.y - 1, coords.z)==BlockID.grassDread){
 World.destroyBlock(coords.x,coords.y,coords.z,false);                      
 Str.generateTrees(crd.x, crd.z, Treesdr, {min_y:crd.y,max_y:crd.y, check: BlockID.grassDread});
      }
-});  
+});*/
 
 Callback.addCallback("PostLoaded", function(){
 Recipes.addShaped({id: BlockID.darkP, count: 4, data: 0}, [
@@ -1585,9 +1627,91 @@ Recipes.addShaped({id: 58, count: 1, data: 0}, [
 "xx",
 ], ['x', BlockID.darkP, 0]); 
 
+Recipes.addShaped({id: 280, count: 4, data: 0}, [
+"x",
+"x"
+], ['x', BlockID.darkP, 0]); 
+
+Recipes.addShaped({id: 268, count: 1, data: 0}, [
+" x ",
+" x ",
+" a "
+], ['x', BlockID.darkP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 271, count: 1, data: 0}, [
+" xx",
+" ax",
+" a "
+], ['x', BlockID.darkP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 270, count: 1, data: 0}, [
+"xxx",
+" a ",
+" a "
+], ['x', BlockID.darkP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 290, count: 1, data: 0}, [
+" xx",
+" a ",
+" a "
+], ['x', BlockID.darkP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 269, count: 1, data: 0}, [
+" x ",
+" a ",
+" a "
+], ['x', BlockID.darkP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 54, count: 1, data: 0}, [
+"xxx",
+"x x",
+"xxx"
+], ['x', BlockID.darkP, 0]); 
+
 Recipes.addShaped({id: 58, count: 1, data: 0}, [
 "xx",
 "xx",
+], ['x', BlockID.dreadP, 0]); 
+
+Recipes.addShaped({id: 280, count: 4, data: 0}, [
+"x",
+"x"
+], ['x', BlockID.dreadP, 0]); 
+
+Recipes.addShaped({id: 268, count: 1, data: 0}, [
+" x ",
+" x ",
+" a "
+], ['x', BlockID.dreadP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 271, count: 1, data: 0}, [
+" xx",
+" ax",
+" a "
+], ['x', BlockID.dreadP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 270, count: 1, data: 0}, [
+"xxx",
+" a ",
+" a "
+], ['x', BlockID.dreadP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 290, count: 1, data: 0}, [
+" xx",
+" a ",
+" a "
+], ['x', BlockID.dreadP, 0, 'a', 280, 0]); 
+
+Recipes.addShaped({id: 269, count: 1, data: 0}, [
+" x ",
+" a ",
+" a "
+], ['x', BlockID.dreadP, 0, 'a', 280, 0]);
+
+Recipes.addShaped({id: 54, count: 1, data: 0}, [
+"xxx",
+"x x",
+"xxx"
 ], ['x', BlockID.dreadP, 0]); 
 });
 
@@ -1610,6 +1734,15 @@ var coordss = coords.relative;
     }
 });
 
+Callback.addCallback("GenerateCustomDimensionChunk", function(chunkX, chunkZ, random, dimensionId){       
+  for(var i = 0; i < randomInt(2, 5); i++){ 
+    var coords = GenerationUtils.findHighSurface(chunkX, chunkZ, 49, 75);
+         if(Math.random() < .65){
+       World.setBlock(coords.x, coords.y + 1, coords.z, BlockID.plantWaste, 0);                       
+         }  
+     }  
+});
+
 IDRegistry.genBlockID("plantWasteL");
 Block.createBlock("plantWasteL", [{name: "Wastalands Lumin", texture: [["luminousthistle", 0]], inCreative: false}]);
 TileRenderer.setPlantModel(BlockID.plantWasteL, 0, "luminousthistle", 0);
@@ -1627,6 +1760,15 @@ var coordss = coords.relative;
         World.setBlock(coordss.x,coordss.y,coordss.z,BlockID.plantWasteL,0);
         Player.setCarriedItem(item.id, item.count - 1, item.data);
     }
+});
+
+Callback.addCallback("GenerateCustomDimensionChunk", function(chunkX, chunkZ, random, dimensionId){       
+  for(var i = 0; i < randomInt(1, 4); i++){ 
+    var coords = GenerationUtils.findHighSurface(chunkX, chunkZ, 49, 75);
+         if(Math.random() < .65){
+       World.setBlock(coords.x, coords.y + 1, coords.z, BlockID.plantWasteL, 0);                       
+         }  
+     } 
 });
 
 IDRegistry.genBlockID("plantWDh");
@@ -1659,9 +1801,9 @@ const hills = [3, 131, 162, 20];
 //Biomes
 var CoralSwamp = new CustomBiome("coral_swamp")
 //цвет травы(возможно 48D1CC)
-.setGrassColor(0x20B2AA)
+.setGrassColor(0x00CED1)
 // цвет листвы(возможно 48D1CC)
-.setFoliageColor(0x20B2AA)
+.setFoliageColor(0x00CED1)
 .setCoverBlock(2, 0)
 .setSurfaceBlock(1, 0)
 .setFillingBlock(3, 0);
@@ -1669,7 +1811,7 @@ var CoralSwamp = new CustomBiome("coral_swamp")
 
 Callback.addCallback("GenerateBiomeMap", function(chunkX, chunkZ, rnd, dimensionId, chunkSeed,
 worldSeed, dimensionSeed) {
-if (dimensionId != 1) {
+if (dimensionId != 0) {
 return;
 }
 for (var x = chunkX * 16; x < (chunkX + 1) * 16; x++) {
@@ -1683,23 +1825,23 @@ World.setBiomeMap(x, z, CoralSwamp.id);
 
 var DarkLand = new CustomBiome("dark_land")
 //цвет травы(возможно 483D8B)
-.setGrassColor(0x4B0082)
+.setGrassColor(0x191970)
 // цвет листвы(возможно 483D8B)
-.setFoliageColor(0x4B0082)
+.setFoliageColor(0x191970)
 .setCoverBlock(BlockID.grassDark, 0)
 .setSurfaceBlock(1, 0)
 .setFillingBlock(BlockID.stoneDark, 0);
 
 var DarkHills = new CustomBiome("dark_hills")
 //цвет травы(возможно 483D8B)
-.setGrassColor(0x4B0082)
+.setGrassColor(0x191970)
 // цвет листвы(возможно 483D8B)
-.setFoliageColor(0x4B0082)
+.setFoliageColor(0x191970)
 .setCoverBlock(BlockID.stoneDark, 0)
 .setSurfaceBlock(1, 0)
 .setFillingBlock(BlockID.stoneDark, 0);
 
-Callback.addCallback("GenerateBiomeMap", function(chunkX, chunkZ, rnd, dimensionId, chunkSeed,
+/*Callback.addCallback("GenerateBiomeMap", function(chunkX, chunkZ, rnd, dimensionId, chunkSeed,
 worldSeed, dimensionSeed){
 if (dimensionId != 0){
 return;
@@ -1736,7 +1878,92 @@ if (World.getBiome(coords.x, coords.z) == CoralSwamp.id && Math.random() < .29 |
 //Game.message("X: " + coords.x + "Y: " + coords.y+ "Z: " + coords.z);
         } 
     }
+});*/
+
+
+
+// file: Adimensions/Ndreadlands.js
+
+var Dreadlands = new Dimensions.CustomDimension("Dreadlands", 1975); 
+Dreadlands.setSkyColor(1.78, .34, .34); 
+Dreadlands.setFogColor(1.39, 0, 0); 
+Dreadlands.setCloudColor(1.39, 0, 0); 
+ 
+Dreadlands.setGenerator(Dimensions.newGenerator({ 
+ layers: [ 
+ {
+minY: 63, maxY: 70,
+yConversion: [[0, 0]],
+material: {base: 8},
+  },   
+ { 
+minY: 0, maxY: 256, 
+yConversion: [[1.5, -0.8], [.6, -.4], [0, 0.92], [.5, -.4], [1.5, -1]], 
+material: {base: BlockID.stoneDread, surface: {id:BlockID.dirtDread, data: 0, width:4}, cover: BlockID.grassDread}, 
+noise: {octaves: {count: 3, scale: 85}}
+  }, 
+ {
+minY: 0, maxY: 1,
+yConversion: [[0, 0]],
+material: {base: 7},
+  }
+ ] 
+}
+)); 
+ 
+PortalUtils.newPortalBlock("dreadLands", ["DG", 0], {type: "v-plane", frameId: BlockID.stoneDread}, false);
+
+var Dshape = new PortalShape();
+Dshape.setPortalId(BlockID.dreadLands);
+Dshape.setFrameIds(BlockID.stoneDread);
+Dshape.setMinSize(2, 3);
+ 
+Callback.addCallback("ItemUse", function(coords, item, block){ 
+if(Player.getCarriedItem().id == ItemID.keyABW) 
+var rect = shape.findPortal(coords.relative.x, coords.relative.y, coords.relative.z);
+  if (rect) {
+            Dshape.buildPortal(rect, false);
+   }
+}); 
+    
+Callback.addCallback("DestroyBlock", function(pos, block){
+    if (block.id == BlockID.stoneDread || block.id == BlockID.dreadLands) {
+        DimensionHelper.eliminateIncorrectPlacedPortals(pos, BlockID.dreadLands, [BlockID.stoneDread]);
+    }
+}); 
+
+
+Callback.addCallback("tick", function() {
+let crdsP = Player.getPosition();
+if(World.getBlockID(crdsP.x, crdsP.y, crdsP.z) == BlockID.dreadLands && Player.getDimension() != Dreadlands.id) {  
+    Dimensions.transfer(Player.get(), Abyss.id);  
+    } else if(World.getBlockID(crdsP.x, crdsP.y, crdsP.z) == BlockID.dreadLands && Player.getDimension() == Dreadlands.id) {
+    Dimensions.transfer(Player.get(), 0); 
+    }
 });
+
+
+var teleportd = false;
+
+Callback.addCallback('DimensionLoaded', function (dimension) {
+if (dimension != Dreadlands.id) return;
+ if (!teleportd) {
+ var CP = Player.getPosition();
+  var crD = GenerationUtils.findHighSurface(CP.x, CP.z, 50, 80);
+    Dshape.buildPortal(crD, true);
+     Player.setPosition(CP.x, crD.y, CP.z);
+   teleportd = true;
+}
+});
+
+Saver.addSavesScope("teleported",
+function read(scope){
+TP = scope.teleportd;
+},
+function save(){
+return {TP : teleportd };
+}
+);
 
 
 
@@ -2039,17 +2266,32 @@ Item.createItem("skinDW", "Dreaded Monster Skin", {name: "skin_dreadlands"});
 IDRegistry.genItemID("skinO");
 Item.createItem("skinO", "Omothol Monster Skin", {name: "skin_omothol"});
 
-IDRegistry.genItemID("essenceABW");
-Item.createItem("essenceABW", "Abyss Essence", {name: "essence_abyssalwasteland"});
+IDRegistry.genItemID("essencOrbeABW");
+Item.createItem("essenceOrbABW", "Abyss Essence", {name: "essence_abyssalwasteland"});
 
 IDRegistry.genItemID("essenceOrbABW");
-Item.createItem("essenceOrbABW", "Abyss Essence Pearl", {name: "essence_abyssalwasteland"});
+Item.createItem("essenceOrbABW", "Dreaded Essence", {name: "essence_dreadlands"});
 
-IDRegistry.genItemID("essenceDW");
-Item.createItem("essenceDW", "Dreaded Essence", {name: "essence_dreadlands"});
+IDRegistry.genItemID("essenceOrbDW");
+Item.createItem("essenceOrbDW", "Omothol Essence", {name: "essence_omothol"});
 
 IDRegistry.genItemID("skinSHN");
-Item.createItem("skinSHN", "Shoggoth Skin", {name: "shoggothFlesh_overworld"});
+Item.createItem("skinSHN", "Shoggoth Skin", {name: "shoggothflesh_overworld"});
+
+IDRegistry.genItemID("skinSHDk");
+Item.createItem("skinSHDk", "Dark Shoggoth Skin", {name: "shoggothflesh_darkrealm"});
+
+IDRegistry.genItemID("skinSHA");
+Item.createItem("skinSHA", "Abyss Shoggoth Skin", {name: "shoggothflesh_abyssalwasteland"});
+
+IDRegistry.genItemID("skinSHD");
+Item.createItem("skinSHD", "Dread Shoggoth Skin", {name: "shoggothflesh_dreadlands"});
+
+IDRegistry.genItemID("skinSHO");
+Item.createItem("skinSHO", "Omothol Shoggoth Skin", {name: "shoggothflesh_omothol"});
+
+IDRegistry.genItemID("coalD");
+Item.createItem("coalD", "Dreaded Coal", {name: "charcoal"});
 
 Callback.addCallback('PostLoaded', function () {
 Block.registerDropFunction("oreAbyssalinite", function(coords, blockID, blockData, level, enchant){
@@ -2740,10 +2982,11 @@ Item.addRepairItemIds(ItemID.DABBoot, [ItemID.DABBoot]);
 
 Armor.registerFuncs(ItemID.DABHelm, {
   tick: function(slot, inventory, index){
-   if(Player.getArmorSlot(1).id == ItemID.DABCh && Player.getArmorSlot(2).id == ItemID.DABLeg ) 
+   if(Player.getArmorSlot(1).id == ItemID.DABCh && Player.getArmorSlot(2).id == ItemID.DABLeg && Player.getArmorSlot(3).id == ItemID.DABBoot){
  Entity.addEffect(Player.get(), 16, 4440, 0, false, false);         
  Entity.addEffect(Player.get(), 12, 4440, 0, false, false);    
    }
+}
 });
 
 IDRegistry.genItemID("RCHelm");
@@ -2783,6 +3026,14 @@ Recipes.addShaped({id: ItemID.RCBoot, count: 1, data: 0}, [
 ], ['x', ItemID.coralIron, 0]);
 //effects:, Speed II, Water Breathing I
 
+Armor.registerFuncs(ItemID.RCHelm, {
+  tick: function(slot, inventory, index){
+   if(Player.getArmorSlot(1).id == ItemID.RCCh && Player.getArmorSlot(2).id == ItemID.RCLeg && Player.getArmorSlot(3).id == ItemID.RCBoot){
+ Entity.addEffect(Player.get(), 1, 4440, 1, false, false);         
+ Entity.addEffect(Player.get(), 13, 4440, 0, false, false);    
+   }
+}
+});
 
 //Tier: 3
 IDRegistry.genItemID("PRCHelm");
@@ -2803,6 +3054,16 @@ Item.addRepairItemIds(ItemID.PRCLeg, [ItemID.PRCLeg]);
 Item.addRepairItemIds(ItemID.PRCBoot, [ItemID.PRCBoot]);
 
 //effects: Night Vision I, Speed II, Water Breathing II
+
+Armor.registerFuncs(ItemID.PRCHelm, {
+  tick: function(slot, inventory, index){
+   if(Player.getArmorSlot(1).id == ItemID.PRCCh && Player.getArmorSlot(2).id == ItemID.PRCLeg && Player.getArmorSlot(3).id == ItemID.PRCBoot){
+ Entity.addEffect(Player.get(), 16, 4440, 0, false, false);         
+ Entity.addEffect(Player.get(), 1, 4440, 1, false, false); 
+ Entity.addEffect(Player.get(), 13, 4440, 1, false, false);    
+   }
+}
+});
 
 Recipes.addShaped({id: ItemID.PRCHelm, count: 1, data: 0}, [
 "aba",
@@ -2843,6 +3104,17 @@ Item.addRepairItemIds(ItemID.DPBoot, [ItemID.DPBoot]);
 
 //effects: Night Vision II, Speed III, Water Breathing II, Jump Boost II
 
+Armor.registerFuncs(ItemID.DPHelm, {
+  tick: function(slot, inventory, index){
+   if(Player.getArmorSlot(1).id == ItemID.DPCh && Player.getArmorSlot(2).id == ItemID.DPLeg && Player.getArmorSlot(3).id == ItemID.DPBoot){
+ Entity.addEffect(Player.get(), 16, 4440, 1, false, false);         
+ Entity.addEffect(Player.get(), 1, 4440, 2, false, false); 
+ Entity.addEffect(Player.get(), 13, 4440, 1, false, false); 
+ Entity.addEffect(Player.get(), 8, 4440, 1, false, false);  
+   }
+}
+});
+
 IDRegistry.genItemID("DADHelm");
 Item.createArmorItem("DADHelm", "Dredalinite helmet", {name: "ADDH"}, {type: "helmet", armor: 3, durability: 1844, texture: "armor/dreadium_1.png", isTech:false});
 
@@ -2880,6 +3152,15 @@ Recipes.addShaped({id: ItemID.DADBoot, count: 1, data: 0}, [
 ], ['x', ItemID.dreadIron, 0]);
 
 //EFFECTS: Resistance III, Speed III
+
+Armor.registerFuncs(ItemID.DADHelm, {
+  tick: function(slot, inventory, index){
+   if(Player.getArmorSlot(1).id == ItemID.DADCh && Player.getArmorSlot(2).id == ItemID.DADLeg && Player.getArmorSlot(3).id == ItemID.DADBoot){
+ Entity.addEffect(Player.get(), 11, 4440, 2, false, false);         
+ Entity.addEffect(Player.get(), 1, 4440, 2, false, false); 
+   }
+}
+});
 
 //tier:4
 IDRegistry.genItemID("DADSHelm");
@@ -2920,6 +3201,17 @@ Recipes.addShaped({id: ItemID.DADSBoot, count: 1, data: 0}, [
 });
 //EFFECTS: Resistance 4, Speed III, Fire Resistance II, Strength II
 
+Armor.registerFuncs(ItemID.DADSHelm, {
+  tick: function(slot, inventory, index){
+   if(Player.getArmorSlot(1).id == ItemID.DADSCh && Player.getArmorSlot(2).id == ItemID.DADSLeg && Player.getArmorSlot(3).id == ItemID.DADSBoot){
+ Entity.addEffect(Player.get(), 16, 4440, 1, false, false);         
+ Entity.addEffect(Player.get(), 11, 4440, 3, false, false); 
+ Entity.addEffect(Player.get(), 12, 4440, 1, false, false); 
+ Entity.addEffect(Player.get(), 5, 4440, 1, false, false);  
+   }
+}
+});
+
 //Ethaxium
 IDRegistry.genItemID("AEHelm");
 Item.createArmorItem("AEHelm", "Ethaxium helmet", {name: "AEH"}, {type: "helmet", armor: 9, durability: 2889, texture: "armor/ethaxium_1.png", isTech:false});
@@ -2958,6 +3250,17 @@ Recipes.addShaped({id: ItemID.AEBoot, count: 1, data: 0}, [
 ], ['x', ItemID.ethIron, 0]);
 
 //EFFECTS: Resistance 5, Speed III, Fire Resistance II, Strength II
+
+Armor.registerFuncs(ItemID.AEHelm, {
+  tick: function(slot, inventory, index){
+   if(Player.getArmorSlot(1).id == ItemID.AECh && Player.getArmorSlot(2).id == ItemID.AELeg && Player.getArmorSlot(3).id == ItemID.AEBoot){
+ Entity.addEffect(Player.get(), 1, 4440, 2, false, false);         
+ Entity.addEffect(Player.get(), 11, 4440, 4, false, false); 
+ Entity.addEffect(Player.get(), 12, 4440, 1, false, false); 
+ Entity.addEffect(Player.get(), 5, 4440, 1, false, false);  
+   }
+}
+});
 
 
 
@@ -3153,6 +3456,34 @@ tier:4,
 isChargable:true
 });
 
+IDRegistry.genItemID("cageI"); 
+Item.createThrowableItem("cageI", "Interdimensional Cage", { name: "interdimensionalcage", meta: 0});
+
+Item.registerThrowableFunction("cageI", function(projectile, item, target){
+ if(Entity.isExist(target.entity)){  
+   Entity.damageEntity(target.entity, 4); 
+     World.drop(target.x, target.y, target.z, ItemID.cageI, 1, 0);
+   }
+});
+
+IDRegistry.genItemID("scrollB"); 
+Item.createThrowableItem("scrollB", "Basic Scroll", { name: "scroll_basic", meta: 0});
+
+IDRegistry.genItemID("scrollL"); 
+Item.createThrowableItem("scrollL", "Lesser Scroll", { name: "scroll_lesser", meta: 0});
+
+IDRegistry.genItemID("scrollM"); 
+Item.createThrowableItem("scrollM", "Moderete Scroll", { name: "scroll_moderate", meta: 0});
+
+IDRegistry.genItemID("scrollG"); 
+Item.createThrowableItem("scrollG", "Greater Scroll", { name: "scroll_greater", meta: 0});
+
+IDRegistry.genItemID("scrollUA"); 
+Item.createThrowableItem("scrollUA", "Antimatter Scroll", { name: "scroll_unique_anti", meta: 0});
+
+IDRegistry.genItemID("scrollUO"); 
+Item.createThrowableItem("scrollUO", "Oblivion Scroll", { name: "scroll_unique_oblivion", meta: 0});
+
 const drains = [ItemID.drainS, ItemID.drainSA, ItemID.drainSD, ItemID.drainSO];
 
 Callback.addCallback("EntityDeath",function (entity, attacker){
@@ -3182,12 +3513,20 @@ Recipes.addShaped({id:BlockID.Pedestal, count: 1, data: 0}, [
 "asa",
 "axa",
 "aaa"
-], ['a', BlockID.stoneMonolith, 0, 'x', ItemID.soulPa, 0,'s', ItemID.coralPearl, 0]);
+], ['a', BlockID.stoneMonolith, 0, 'x', ItemID.soulPa, 0, 's', ItemID.coralPearl, 0]);
 
-//Item.setCategory(id, category);
+Recipes.addShaped({id:61, count: 1, data: 0}, [
+"aaa",
+"a a",
+"aaa"
+], ['a', BlockID.stoneDark, 0]);
+
+
 Item.addCreativeGroup("Necronomicons", "Necronomicons", [ItemID.normalNecronomicon, ItemID.normalNecronomiconC, ItemID.normalNecronomiconD, ItemID.normalNecronomiconO, ItemID.abyssNecronomicon]);
 Item.addCreativeGroup("Charms", "Charms", [ItemID.charm, ItemID.charmAzathoth, ItemID.charmCthulhu, ItemID.charmHastur, ItemID.charmJzahar, ItemID.charmNyarlathotep, ItemID.charmShubniggurath, ItemID.charmYogsothoth]);
 Item.addCreativeGroup("Drain Staffs", "Drain Staffs", [ItemID.drainS, ItemID.drainSA, ItemID.drainSD, ItemID.drainSO]);
+Item.addCreativeGroup("Shoggoths Skin", "Shoggoths Skin", [ItemID.skinSHN, ItemID.skinSHDk, ItemID.skinSHA, ItemID.skinSHD, ItemID.skinSHO]);
+Item.addCreativeGroup("Monster Skin", "Monster Skin", [ItemID.skinABW, ItemID.skinDW, ItemID.skinO]);
 AbyssTable.addCraft([[371, 0], [371, 0], [371, 0], [371, 0], [371, 0], [371, 0], [371, 0], [371, 0]], [ItemID.coralPearl, 0], [ItemID.trsGem, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 2000);
 Item.setGlint(ItemID.trsGem, true);
 AbyssTable.addCraft([[331, 0], [331, 0], [331, 0], [331, 0], [ItemID.shardObl, 0], [ItemID.shardObl, 0], [ItemID.shardObl, 0], [ItemID.shardObl, 0]], [381, 0], [ItemID.catalObl, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 5000);
@@ -3195,12 +3534,15 @@ Item.setGlint(ItemID.catalObl, true);
 AbyssTable.addCraft([[ItemID.essenceABW, 0], [ItemID.essenceABW, 0], [ItemID.essenceABW, 0], [ItemID.essenceABW, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0]], [ItemID.coralPearl, 0], [ItemID.essenceOrbABW, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 3500);
 AbyssTable.addCraft([[ItemID.coralIron, 0], [ItemID.coralIron, 0], [ItemID.coralIron, 0], [ItemID.coralIron, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0]], [ItemID.coralPearl, 0], [ItemID.coralPlate, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);
 Item.setGlint(ItemID.essenceOrbABW, true);
+AbyssTable.addCraft([[101, 0], [101, 0], [101, 0], [101, 0], [101, 0], [101, 0], [101, 0], [101, 0]], [ItemID.shardObl, 0], [ItemID.cageI, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
+AbyssTable.addCraft([[340, 0], [340, 0], [340, 0], [340, 0], [0, 0], [0, 0], [0, 0], [0, 0]], [ItemID.shardObl, 0], [ItemID.cageI, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
+
 
 Recipes.addShaped({id:ItemID.normalNecronomicon, count: 1, data: 0}, [
 "aas",
 "axa",
 "aas"
-], ['a', 367, 0, 'x', 340, 0,'s', 265, 0]);
+], ['a', 367, 0, 'x', 340, 0, 's', 265, 0]);
 });
 
 AbyssTable.addCraft([[ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0]], [ItemID.ABHelm, 0], [ItemID.DABHelm, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);
@@ -3216,15 +3558,374 @@ AbyssTable.addCraft([[ItemID.trsGem, 0], [0, 0], [111, 0], [ItemID.coralGem, 0],
 
 
 
+// file: Aitems/ru.js
+
+GuideAPI.registerGuide("normalNecronomicon", { 
+item: ItemID.normalNecronomicon, 
+debug: false, 
+textures: { 
+background: "guide_background", 
+nextLink: "next_page", 
+preLink: "pre_page", 
+close: "cancel", 
+}, 
+
+pages: {
+ 
+            "default": {
+                nextLink: "default",
+                left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: "Запретное Знание", size: 25, link: "first"},
+                        {text: "Книга Заклинаний", size: 25, link: "second"},
+                        {text: "Ритуалы", size: 25, link: "third"},
+                        {text: "Что за книга", size: 25, link: "forth"},
+                        {text: "Получение Знаний", size: 25, link: "fifth"},
+                        {text: "Разная информация", size: 25, link: "sixth"},
+                    ]
+                },
+                
+                right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: ".", size: 1},
+                    ]
+                }
+            },
+            
+//Акт Первый     
+"first": {
+                preLink: "default",
+                nextLink: "default",
+            left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: "Abyssal Craft", size: 25, link: "knowone"},
+                         {text: "Пантеон", size: 25, link: "knowtwo"},
+                         {text: "Абиссалнамикон", size: 25, link: "knowthree"},
+                         {text: "Покровители", size: 25, link: "knowfore"},
+                         {text: "Поверхность", size: 25, link: "knowfive"},
+                    ]
+                },
+                
+        right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: ".", size: 1},
+                    ]
+                }
+            },
+         
+"knowone": {
+                preLink: "first",
+                nextLink: "knowone1",
+            left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: "AbyssalCraft - это мод, в изучении которого вам поможет эта книга. Он в основном ориентирован на исследование, с 4 новыми измерениями, которые вы можете исследовать", size: 20},
+                    ]
+                },
+                
+        right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: "Измерения достигаются с помощью «ключей шлюза», которые представляют собой ключи, предназначенные для создания порталов между измерениями (четвертое измерение достигается выпадением из третьего)", size: 20},
+                    ]
+                }
+            },
+            
+ 
+"knowone1": {
+                preLink: "knowone",
+                nextLink: "default",
+            left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: "Также есть 5 новых типов камня и 15 новых руд, которые можно найти по всему Верхнему миру и измерениям", size: 20},
+                    ]
+                },
+                
+        right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: "Помимо исследования, AbyssalCraft вводит свой собственный тип магии, использующийся для ритуалов поклонения Великим Древним.", size: 20},
+                    ]
+                }
+            },
+"knowtwo": {
+                preLink: "first",
+                nextLink: "knowtwo1",
+            left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: "Внешние Боги", size: 25, link: "outside"},
+                         {text: "Великие Древние", size: 25, link: "greatoldones"},
+                    ]
+                },
+                
+        right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: ".", size: 10},
+                    ]
+                }
+            },
+"outside": {
+                preLink: "knowtwo",
+                nextLink: "outside1",
+            left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: "Азатот", size: 20},
+                    ]
+               },
+                
+        right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: "Он находится за пределами вселенной, успокаиваемый вечным звуком дудок и барабанов. Несмотря на это, у него есть собственная воля, и он отдает команды Ньярлатхотепу. Он бог", size: 20},
+                    ]
+                }
+            },
+"outside1": {
+                preLink: "outside",
+                nextLink: "outside2",
+            left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: "Ньярлатхотеп. Ползучий Хаос - это Внешний Бог, который не изгнан и не заключен в тюрьму.", size: 20},
+                    ]
+               },
+                
+        right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: "Он ходит по земле, спрятавшись среди людей, распространяя безумие. Помимо служения культам Внешних Богов, он исполняет желания Азатота, которому служит", size: 20},
+                    ]
+                }
+            },
+"outside2": {
+                preLink: "outside1",
+                nextLink: "outside3",
+            left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: "Йог-Сотот, Скрытый у Порога, - Внешний Бог, потомок Безымянного Тумана.", size: 20},
+                    ]
+               },
+                
+        right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: "В значительной степени подразумевается, если не прямо заявляется, что Йог-Сотот всеведущ и заперт за пределами вселенной, что означает, что он знает и может видеть все пространство-время одновременно, что от Йог-Сотота не скрыто никаких секретов.", size: 20},
+                    ]
+                }
+            },
+"outside3": {
+                preLink: "outside2",
+                nextLink: "default",
+            left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: "Шуб-Ниггурат, Черный Лесной Козел с тысячей детенышей, - Внешний Бог в пантеоне.", size: 20},
+                    ]
+               },
+                
+        right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: "Она - извращенное божество плодородия, которое, как говорят, выглядит как огромная мутная масса, которая выдавливает черные щупальца, мокрые рты и короткие извивающиеся козьи ноги. Маленькие существа постоянно выплевываются чудовищами, которые либо поглощаются, либо убегают", size: 20},
+                    ]
+                }
+            },    
+"greatoldones": {
+                preLink: "knowtwo",
+                nextLink: "greatoldones1",
+            left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: "Ктулху - Великий Древний, заточенный в бесконечном сне под морем в городе Р'льех.", size: 20},
+                    ]
+               },
+                
+        right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: "У него голова осьминога и чешуйчатое тело с крыльями на спине. Его состояние бесконечного сна связано с войной со Старшими Существами, которая закончилась тем, что Р'льех погрузился на дно моря. Однажды он поднимется, чтобы править землей.", size: 20},
+                    ]
+                }
+            },    
+"greatoldones1": {
+                preLink: "greatoldones",
+                nextLink: "greatoldones2",
+            left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: "Хастур, Невыразимый, - Великий Старик и сводный брат Ктулху.", size: 20},
+                    ]
+               },
+                
+        right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: "О Хастуре известно немного, но известно, что он принимает форму Короля в желтых одеждах и маске. Как и большинство Великих Древних, он способен принимать любую форму, какую пожелает", size: 20},
+                    ]
+                }
+            },
+"greatoldones2": {
+                preLink: "greatoldones1",
+                nextLink: "default",
+            left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: "Дж'захар, привратник Бездны, - внебрачный отпрыск Хастура.", size: 20},
+                    ]
+               },
+                
+        right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: "Желая власти и не желая изгнания к звездам, Дж'захар вышел за пределы времени и пространства, чтобы достичь своей свободы. Результатом были силы, подобные силе Йог-Сотота, и в наказание вечная охрана его заключенных в тюрьму собратьев-божеств.", size: 20},
+                    ]
+                }
+            },   
+"knowthree": {
+                preLink: "first",
+                nextLink: "default",
+            left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: "Абиссальномикон - это нечестивый фолиант, из которого был написан Некрономикон, когда Дж'захар читал этот раздел для Альхазреда.", size: 20},
+                    ]
+                },
+                
+        right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: ".", size: 10},
+                    ]
+                }
+            },
+"knowfore": {
+                preLink: "first",
+                nextLink: "default",
+            left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: "В этом разделе появляются люди, которые пообещали как минимум 10 долларов в пользу Shinoow's Patreon .", size: 20},
+                    ]
+                },
+                
+        right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: "Saice Shoop", size: 20},
+                    ]
+                }
+            },
+"knowfive": {
+                preLink: "first",
+                nextLink: "knowtwo1",
+            left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: "", size: 20},
+                    ]
+                },
+                
+        right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: "", size: 20},
+                    ]
+                }
+            },
+//Акт Второй
+"second": {
+                preLink: "default",
+                nextLink: "default",
+            left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: "a", size: 20, link: "bookone"},
+                         {text: "b", size: 20, link: "booktwo"},
+                         {text: "c", size: 20, link: "bookthree"},
+                         {text: "d", size: 20, link: "bookfore"},
+                         {text: "e", size: 20, link: "bookf"},
+                    ]
+                },
+                
+        right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: ".", size: 10},
+                    ]
+                }
+            },
+//Акт Третий
+"third": {
+                preLink: "default",
+                nextLink: "default",
+            left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: "Некронамикон", size: 15, link: "ritualone"},
+                         {text: "Некронамикон Бездной Пустоши", size: 15},
+                         {text: "Некронамикон Ужасных Земель", size: 15},
+                         {text: "Некронамикон Омотула", size: 15},
+                         {text: "Абиссалнамикон", size: 15},
+                    ]
+                },
+                
+        right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: ".", size: 10},
+                    ]
+                }
+            },
+"ritualone": {
+                preLink: "third",
+                nextLink: "default",
+            left: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                         {text: "Катализатор забвения", size: 25},
+                    ]
+                },
+                
+        right: {
+                    controller: PageControllers.BASIC_PAGE,
+                    elements: [
+                        {text: "Катализатор забвения создается путем наполнения Ока Эндера Осколками забвения и Красной пылью.", size: 15},
+                        {text: "Создаётся: Везде", size: 15},
+                        {text: "Энергия: 5000", size: 15},
+                        {text: "Остаточная помощь: нет", size: 15},
+                        {text: "Рецепт: 4x Осколки забвения, 4x Красная пыль", size: 15},
+                        {text: "Подношение алтарю: 1x Глаз Эндера", size: 15},
+                    ]
+                }
+            },
+}   
+});
+
+
+
 // file: Adimensions/Nabyss.js
 
 var Abyss = new Dimensions.CustomDimension("Abyss", 1974); 
-Abyss.setSkyColor(0, 2.86, 2.89); 
-Abyss.setFogColor(0, 2.86, 2.89); 
-Abyss.setCloudColor(0, 2.86, 2.89); 
+Abyss.setSkyColor(0, 2.55, 2.55); 
+Abyss.setFogColor(0, 2.55, 2.55); 
+Abyss.setCloudColor(0, 2.55, 2.55); 
  
 Abyss.setGenerator(Dimensions.newGenerator({ 
  layers: [ 
+  {
+minY: 42, maxY: 64,
+yConversion: [[0, 0]],
+material: {base: 8},
+  },
  { 
 minY: 0, maxY: 256, 
 yConversion: [[1.5, -0.8], [.6, -.4], [0, .85], [.5, -.5], [1.5, -1]], 
@@ -3233,13 +3934,8 @@ noise: {octaves: {count: 3, scale: 126}}
   }, 
  {
 minY: 0, maxY: 1,
-yConversion: [[.0,.0]],
+yConversion: [[0, 0]],
 material: {base: 7},
-  },
- {
-minY: 42, maxY: 64,
-yConversion: [[.0,.0]],
-material: {base: 8},
   }  
  ] 
 }
@@ -3247,16 +3943,16 @@ material: {base: 8},
  
 PortalUtils.newPortalBlock("abyssWastes", ["AG", 0], {type: "v-plane", frameId: BlockID.stoneAbyss}, false);
 
-var shape = new PortalShape();
-shape.setPortalId(BlockID.abyssWastes);
-shape.setFrameIds(BlockID.stoneAbyss);
-shape.setMinSize(2, 3);
+var Ashape = new PortalShape();
+Ashape.setPortalId(BlockID.abyssWastes);
+Ashape.setFrameIds(BlockID.stoneAbyss);
+Ashape.setMinSize(2, 3);
  
 Callback.addCallback("ItemUse", function(coords, item, block){ 
 if(Player.getCarriedItem().id == ItemID.keyABW) 
 var rect = shape.findPortal(coords.relative.x, coords.relative.y, coords.relative.z);
   if (rect) {
-            shape.buildPortal(rect, false);
+            Ashape.buildPortal(rect, false);
    }
 }); 
     
@@ -3272,21 +3968,32 @@ let crdsP = Player.getPosition();
 if(World.getBlockID(crdsP.x, crdsP.y, crdsP.z) == BlockID.abyssWastes && Player.getDimension() != Abyss.id) {  
     Dimensions.transfer(Player.get(), Abyss.id);  
     } else if(World.getBlockID(crdsP.x, crdsP.y, crdsP.z) == BlockID.abyssWastes && Player.getDimension() == Abyss.id) {
-    Dimensions.transfer(Player.get(), 1); 
+    Dimensions.transfer(Player.get(), 0); 
     }
 });
 
-var teleports = 0;
+
+var teleport = false;
+
 Callback.addCallback('DimensionLoaded', function (dimension) {
 if (dimension != Abyss.id) return;
- if (teleports < 1) {
+ if (!teleport) {
  var CP = Player.getPosition();
-  var crD = GenerationUtils.findSurface(CP.x, CP.z, 48, 72); 
-   shape.buildPortal(crD, true);
-   teleports += 1;
+  var crD = GenerationUtils.findHighSurface(CP.x, CP.z, 65, 75);
+    Ashape.buildPortal(crD, true);
+     Player.setPosition(CP.x, crD.y, CP.z);
+   teleport = true;
 }
 });
 
+Saver.addSavesScope("teleported",
+function read(scope){
+TP = scope.teleport;
+},
+function save(){
+return {TP : teleport };
+}
+);
 
 
 
@@ -3471,9 +4178,10 @@ Translation.addTranslation("Abyssal Wastlands Sand", {ru: "Песок Бездн
 Translation.addTranslation("Abyssal Waste Glass", {ru: "Стекло Бездны"});
 Translation.addTranslation("Abyssal Waste Stone", {ru: "Камень Бездны"});
 Translation.addTranslation("Abyssal Waste Bricks", {ru: "Кладка Бездны"});
-Translation.addTranslation("Dreaded Wastlands Grass", {ru: "Дерн Ужасных Земель"});
+Translation.addTranslation("Dreaded Wastlands Grass", {ru: "Дёрн Ужасных Земель"});
 Translation.addTranslation("Dread Lands Stone", {ru: "Камень Ужасных Земенль"});
-Translation.addTranslation("Dread Lands Bricks", {ru: "Кладка Ужасных Земель"});
+Translation.addTranslation("Dread Lands Stone", {ru: "Камень Ужасных Земенль"});
+Translation.addTranslation("Dreaded Wastlands Dirt", {ru: "Земля Ужасных Земель"});
 Translation.addTranslation("Abyssal Waste Bricks", {ru: "Кладка Бездны"});
 Translation.addTranslation("Dark Bricks", {ru: "Кладка Тёмных Земель"});
 Translation.addTranslation("Dark Stone Beacon", {ru: "Маяк Тёмных Земель"});
@@ -3588,8 +4296,8 @@ Translation.addTranslation("Shubniggurath's Charm", {ru: "Оберег Шубб�
 Translation.addTranslation("Yogsothoth's Charm", {ru: "Оберег Йогсокота"});
 
 Translation.addTranslation("Abyss Essence", {ru: "Эссенция Бездны"});
-Translation.addTranslation("Abyss Essence Pearl", {ru: "Жемчуг Бездны Наполненный Силой"});
 Translation.addTranslation("Dreaded Essence", {ru: "Эссенция Ужаса"});
+Translation.addTranslation("Omothol Essence", {ru: "Эссенция Тьмы"});
 
 //Tools
 Translation.addTranslation("Dark Stone Sword", {ru: "Меч из Камня Темных Земель"});
@@ -3687,7 +4395,12 @@ Translation.addTranslation("Anti Milk", {ru: "Анти Молоко"});
 Translation.addTranslation("Anti Pork", {ru: "Анти Свинина"});
 Translation.addTranslation("Dreaded Katana", {ru: "Катана Ужаса"});
 Translation.addTranslation("Shoggoth Skin", {ru: "Кожа Шоггота"});
-
+Translation.addTranslation("Dark Shoggoth Skin", {ru: "Кожа Тёмного Шоггота"});
+Translation.addTranslation("Abyss Shoggoth Skin", {ru: "Кожа Шоггота Бездны"});
+Translation.addTranslation("Dread Shoggoth Skin", {ru: "Кожа Ужасного Шоггота"});
+Translation.addTranslation("Omothol Shoggoth Skin", {ru: "Кожа Шоггота Тьмы"});
+Translation.addTranslation("Dreaded Coal", {ru: "Ужасный Уголь"});
+Translation.addTranslation("Interdimensional Cage", {ru: "Межпространственная Клетка"});
 //GUI
 Translation.addTranslation("Altar", {ru: "Алтарь"});
 Translation.addTranslation("Necronomicons", {ru: "Некрономиконы"});
@@ -3695,3 +4408,14 @@ Translation.addTranslation("Charms", {ru: "Обереги"});
 Translation.addTranslation("Drain Staffs", {ru: "Разрушители"});
 Translation.addTranslation("Altars & Sacrafices", {ru: "Алтари и Жертвоприношения"});
 Translation.addTranslation("Pillars & Energy", {ru: "Постаменты и Энергия"});
+Translation.addTranslation("Shoggoths Skin", {ru: "Кожа Шогготов"});
+Translation.addTranslation("Monster Skin", {ru: "Кожа Монстров"});
+
+
+
+Translation.addTranslation("Basic Scroll", {ru: "Базовый Свиток"});
+Translation.addTranslation("Lesser Scroll", {ru: "Небольшой Свиток"});
+Translation.addTranslation("Moderete Scroll", {ru: "Средний Свиток"});
+Translation.addTranslation("Greater Scroll", {ru: "Большой Свиток"});
+Translation.addTranslation("Antimatter Scroll", {ru: "Свиток Антиматерии"});
+Translation.addTranslation("Oblivion Scroll", {ru: "Забытый Свиток"});

@@ -1,7 +1,7 @@
 {
 "pools": [
 {
-"rolls": 1,
+"rolls": 3,
 "entries": [
 {
 "type": "item",
@@ -19,6 +19,19 @@
 {
 "type": "item",
 "name": "minecraft:item_cb",
+"functions": [
+{
+"function": "set_count",
+"count": {
+"min": 1,
+"max": 2
+}
+}
+]
+},
+{
+"type": "item",
+"name": "minecraft:item_coral_pearl_d",
 "functions": [
 {
 "function": "set_count",

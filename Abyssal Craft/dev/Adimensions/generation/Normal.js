@@ -5,9 +5,9 @@ const hills = [3, 131, 162, 20];
 //Biomes
 var CoralSwamp = new CustomBiome("coral_swamp")
 //цвет травы(возможно 48D1CC)
-.setGrassColor(0x40E0D0)
+.setGrassColor(0x00CED1)
 // цвет листвы(возможно 48D1CC)
-.setFoliageColor(0x40E0D0)
+.setFoliageColor(0x00CED1)
 .setCoverBlock(2, 0)
 .setSurfaceBlock(1, 0)
 .setFillingBlock(3, 0);
@@ -29,18 +29,18 @@ World.setBiomeMap(x, z, CoralSwamp.id);
 
 var DarkLand = new CustomBiome("dark_land")
 //цвет травы(возможно 483D8B)
-.setGrassColor(0x4B0082)
+.setGrassColor(0x191970)
 // цвет листвы(возможно 483D8B)
-.setFoliageColor(0x4B0082)
+.setFoliageColor(0x191970)
 .setCoverBlock(BlockID.grassDark, 0)
 .setSurfaceBlock(1, 0)
 .setFillingBlock(BlockID.stoneDark, 0);
 
 var DarkHills = new CustomBiome("dark_hills")
 //цвет травы(возможно 483D8B)
-.setGrassColor(0x4B0082)
+.setGrassColor(0x191970)
 // цвет листвы(возможно 483D8B)
-.setFoliageColor(0x4B0082)
+.setFoliageColor(0x191970)
 .setCoverBlock(BlockID.stoneDark, 0)
 .setSurfaceBlock(1, 0)
 .setFillingBlock(BlockID.stoneDark, 0);
