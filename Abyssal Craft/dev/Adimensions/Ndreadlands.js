@@ -8,7 +8,7 @@ Dreadlands.setGenerator(Dimensions.newGenerator({
  {
 minY: 63, maxY: 70,
 yConversion: [[0, 0]],
-material: {base: 8},
+material: {base: BlockID.stoneDreadA},
   },   
  { 
 minY: 0, maxY: 256, 
@@ -33,8 +33,8 @@ Dshape.setFrameIds(BlockID.stoneDread);
 Dshape.setMinSize(2, 3);
  
 Callback.addCallback("ItemUse", function(coords, item, block){ 
-if(Player.getCarriedItem().id == ItemID.keyABW) 
-var rect = shape.findPortal(coords.relative.x, coords.relative.y, coords.relative.z);
+if(Player.getCarriedItem().id == ItemID.keyDW) 
+var rect = Dshape.findPortal(coords.relative.x, coords.relative.y, coords.relative.z);
   if (rect) {
             Dshape.buildPortal(rect, false);
    }
@@ -50,7 +50,7 @@ Callback.addCallback("DestroyBlock", function(pos, block){
 Callback.addCallback("tick", function() {
 let crdsP = Player.getPosition();
 if(World.getBlockID(crdsP.x, crdsP.y, crdsP.z) == BlockID.dreadLands && Player.getDimension() != Dreadlands.id) {  
-    Dimensions.transfer(Player.get(), Abyss.id);  
+    Dimensions.transfer(Player.get(), Dreadlands.id);  
     } else if(World.getBlockID(crdsP.x, crdsP.y, crdsP.z) == BlockID.dreadLands && Player.getDimension() == Dreadlands.id) {
     Dimensions.transfer(Player.get(), 0); 
     }
@@ -60,7 +60,7 @@ if(World.getBlockID(crdsP.x, crdsP.y, crdsP.z) == BlockID.dreadLands && Player.g
 var teleportd = false;
 
 Callback.addCallback('DimensionLoaded', function (dimension) {
-if (dimension != Dreadlands.id) return;
+if (dimension == Dreadlands.id) {
  if (!teleportd) {
  var CP = Player.getPosition();
   var crD = GenerationUtils.findHighSurface(CP.x, CP.z, 50, 80);
@@ -68,7 +68,7 @@ if (dimension != Dreadlands.id) return;
      Player.setPosition(CP.x, crD.y, CP.z);
    teleportd = true;
 }
-});
+}});
 
 Saver.addSavesScope("teleported",
 function read(scope){
@@ -78,3 +78,15 @@ function save(){
 return {TP : teleportd };
 }
 );
+
+Callback.addCallback("GenerateCustomDimensionChunk", function(chunkX, chunkZ, random, dimensionId){
+if(Player.getDimension() ==  Dreadlands.id)
+UniqueGen.generateOreInDimension(BlockID.oreDAbyss, 0, chunkX, chunkZ, random, { 
+veinCounts: 5, 
+minY: 12, 
+maxY: 58,  
+size: randomInt(1, 4),
+mode: true,
+check: [BlockID.stoneDread]   
+}); 
+});

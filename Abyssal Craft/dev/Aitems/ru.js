@@ -1,6 +1,6 @@
 GuideAPI.registerGuide("normalNecronomicon", { 
 item: ItemID.normalNecronomicon, 
-debug: false, 
+debug: true, 
 textures: { 
 background: "necronomicon_background", 
 nextLink: "next_page", 

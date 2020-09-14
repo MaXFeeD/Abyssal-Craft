@@ -7,14 +7,12 @@ Ablocks/altar&pillars/Altars.js
 Ablocks/ores.js
 Ablocks/flora.js
 Adimensions/generation/Normal.js
-Adimensions/generation/Ndredland.js
+Adimensions/Nabyss.js
 Adimensions/Ndreadlands.js
 Aitems/items.js
 Aitems/food.js
 Aitems/tools.js
 Aitems/armor.js
 Aitems/necronomicons.js
-Aitems/ru.js
-Adimensions/Nabyss.js
 RecipeViewer.js
 Translation.js

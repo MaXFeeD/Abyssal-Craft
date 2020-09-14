@@ -1,22 +1,23 @@
 //Generation
 var UniqueGen = { 
-generateOre: function(id, data, chunkX, chunkZ, params) {  
+randomCoords: function(random, chunkX, chunkZ, minHeight, maxHeight){
+minHeight = minHeight || 0;
+maxHeight = maxHeight || 128;
+ var x = chunkX*16 + random.nextInt(16);
+ var z = chunkZ*16 + random.nextInt(16);
+ var y = random.nextInt(maxHeight - minHeight + 1) - minHeight;
+return {x: x, y: y, z: z};
+},    
+generateOre: function(id, data, chunkX, chunkZ, random, params) {  
 for (var i = 0; i < params.veinCounts; i++) { 
-var coords = GenerationUtils.randomCoords(chunkX, chunkZ, params.min_y, params.max_y); 
-if (Math.random() < params.veinChance) GenerationUtils.genMinable(coords.x, coords.y, coords.z, { 
-id: id, 
-data: data, 
-size: params.size, 
-ratio: params.ratio, 
-checkerTile: params.checkerTile, 
-checkerMode: params.checkerMode 
-      }); 
-   }  
+var coords = this.randomCoords(random, chunkX, chunkZ, params.minY, params.maxY); 
+GenerationUtils.generateOre(coords.x, coords.y, coords.z, id, data,  params.size, false, random.nextInt());
+   } 
 },
-generateOreInDimension: function(id, data, chunkX, chunkZ, params) {  
+generateOreInDimension: function(id, data, chunkX, chunkZ, random, params) {  
 for (var i = 0; i < params.veinCounts; i++) { 
-var coords = GenerationUtils.randomCoords(chunkX, chunkZ, params.min_y, params.max_y); 
-if (Math.random() * 100 < params.veinChance) GenerationUtils.generateOreCustom(coords.x, coords.y, coords.z, id, data, params.count, params.mode, params.check);
+var coords = this.randomCoords(random, chunkX, chunkZ, params.minY, params.maxY); 
+GenerationUtils.generateOreCustom(coords.x, coords.y, coords.z, id, data, params.size, params.mode, params.check);
       }  
    }
 }

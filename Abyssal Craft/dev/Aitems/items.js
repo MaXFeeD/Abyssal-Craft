@@ -297,14 +297,14 @@ Item.createItem("skinDW", "Dreaded Monster Skin", {name: "skin_dreadlands"});
 IDRegistry.genItemID("skinO");
 Item.createItem("skinO", "Omothol Monster Skin", {name: "skin_omothol"});
 
-IDRegistry.genItemID("essencOrbeABW");
+IDRegistry.genItemID("essencOrbABW");
 Item.createItem("essenceOrbABW", "Abyss Essence", {name: "essence_abyssalwasteland"});
 
-IDRegistry.genItemID("essenceOrbABW");
-Item.createItem("essenceOrbABW", "Dreaded Essence", {name: "essence_dreadlands"});
+IDRegistry.genItemID("essenceOrbDR");
+Item.createItem("essenceOrbDR", "Dreaded Essence", {name: "essence_dreadlands"});
 
-IDRegistry.genItemID("essenceOrbDW");
-Item.createItem("essenceOrbDW", "Omothol Essence", {name: "essence_omothol"});
+IDRegistry.genItemID("essenceOrbO");
+Item.createItem("essenceOrbO", "Omothol Essence", {name: "essence_omothol"});
 
 IDRegistry.genItemID("skinSHN");
 Item.createItem("skinSHN", "Shoggoth Skin", {name: "shoggothflesh_overworld"});

@@ -74,7 +74,7 @@ TileEntity.registerPrototype(BlockID.PillarAbyssalC,{
                 bonus_coords.z += 0.06125;
                 this.data.rotation = [Math.PI / 2, Math.PI, 0];
            }
-            this.data.anim = new Animation.Item(this.x + 0.5 + 1 / 16 + bonus_coords.x, this.y + 0.75 + 0.325 + bonus_coords.y, this.z + 0.5 - 1 / 16 + bonus_coords.z);
+            this.data.anim = new Animation.Item(this.x + 0.5 + 1 / 16, this.y + 0.75 + 0.325, this.z + 0.5 - 1 / 16);
             this.data.anim.describeItem({
                 id: item.id,
                 count: 1,

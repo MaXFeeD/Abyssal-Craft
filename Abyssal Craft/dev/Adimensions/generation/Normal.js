@@ -45,30 +45,27 @@ var DarkHills = new CustomBiome("dark_hills")
 .setSurfaceBlock(1, 0)
 .setFillingBlock(BlockID.stoneDark, 0);
 
-/*Callback.addCallback("GenerateBiomeMap", function(chunkX, chunkZ, rnd, dimensionId, chunkSeed,
-worldSeed, dimensionSeed){
-if (dimensionId != 0){
-return;
-}
-genrand = new java.util.Random(Math.floor(chunkX/16)*1024 + Math.floor(chunkZ/16));
+Callback.addCallback("GenerateBiomeMap", function(chunkX, chunkZ, rnd, dimensionId, chunkSeed,
+worldSeed, dimensionSeed){ 
+  genrand = new java.util.Random(Math.floor((chunkX/16)) + Math.floor((chunkZ/16)));
  for (var x = chunkX * 16; x < (chunkX + 1) * 16; x++) {
-  for (var z = chunkZ; z < (chunkZ + 1) * 16; z++) {  
+  for (var z = chunkZ; z < (chunkZ + 1) * 16; z++) {   
    for (var i in biomes) {
-       if (genrand.nextInt(100) < 7){
-    if (GenerationUtils.getPerlinNoise(x,0,z, worldSeed,1/256,4)  && World.getBiomeMap(x, z) == biomes[i]) {  
-   World.setBiomeMap(x, z, DarkLand.id);
-                }
+       if (genrand.nextInt(100) < 75) {   
+             World.setBiomeMap(x, z, DarkLand.id); 
+              Game.message("X:  " + x + "  Z:  " + z); 
             }
-   for (var i in hills) {
-     if (GenerationUtils.getPerlinNoise(x,0,z, worldSeed,1/256,4) && World.getBiomeMap(x, z) == hills[i]) {
-   World.setBiomeMap(x, z, DarkHills.id);
-                    }
+       if (genrand.nextInt(100) < 75) {    
+   for (var i in hills) { 
+             World.setBiomeMap(x, z, DarkHills.id);  
+              Game.message("X:  " + x + "  Z:  " + z); 
+                    }    
                 }   
             }
         }
     }
 });
-
+/*
 //Structures
 Callback.addCallback("GenerateChunk", function(chunkX, chunkZ){ 
 var coords = GenerationUtils.findSurface(chunkX, chunkZ, 57, 98); 

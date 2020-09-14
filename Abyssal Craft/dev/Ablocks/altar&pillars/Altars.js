@@ -161,10 +161,10 @@ TileEntity.registerPrototype(BlockID.AltarAbyssalC,{
        }
     },
     tick: function() {
-      Particles.addParticle(this.x + 0.1, this.y + 0.1, this.z + 0.9, 7, 0, .04, 0, 0); 
-      Particles.addParticle(this.x + 0.9, this.y + 0.1, this.z + 0.1, 7, 0, .04, 0, 0);  
-      Particles.addParticle(this.x + 0.9, this.y + 0.1, this.z + 0.9, 7, 0, .04, 0, 0);
-      Particles.addParticle(this.x + 0.1, this.y + 0.1, this.z + 0.1, 7, 0, .04, 0, 0);
+      Particles.addParticle(this.x + 0.1, this.y + 0.3, this.z + 0.9, 7, 0, .04, 0, 0); 
+      Particles.addParticle(this.x + 0.9, this.y + 0.3, this.z + 0.1, 7, 0, .04, 0, 0);  
+      Particles.addParticle(this.x + 0.9, this.y + 0.3, this.z + 0.9, 7, 0, .04, 0, 0);
+      Particles.addParticle(this.x + 0.1, this.y + 0.3, this.z + 0.1, 7, 0, .04, 0, 0);
         var item = this.container.getSlot('slot');
         if ((!this.data.anim || (this.data.lastid != item.id || this.data.lastdata != item.data)) && item.id != 0) {
             if ((this.data.lastid != item.id || this.data.lastdata != item.data) && this.data.anim) this.data.anim.destroy();
@@ -182,7 +182,7 @@ TileEntity.registerPrototype(BlockID.AltarAbyssalC,{
                 bonus_coords.z += 0.06125;
                 this.data.rotation = [Math.PI / 2, Math.PI, 0];
            }
-            this.data.anim = new Animation.Item(this.x + 0.5 + 1 / 16 + bonus_coords.x, this.y + 0.75 + 0.325 + bonus_coords.y, this.z + 0.5 - 1 / 16 + bonus_coords.z);
+            this.data.anim = new Animation.Item(this.x + 0.5 + 1 / 16, this.y + 0.75 + 0.125, this.z + 0.5 - 1 / 16);
             this.data.anim.describeItem({
                 id: item.id,
                 count: 1,

@@ -18,74 +18,54 @@ Block.createBlock("oreNitre", [
 {name: "Nitre Ore", texture:[["NO", 0]],inCreative: true}],BLOCK_TYPE_ORE);
 Block.setDestroyLevel("oreNitre", 4);
 
-Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ){ 
-UniqueGen.generateOre(BlockID.Etx, 0, chunkX, chunkZ, { 
+Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ, random){ 
+UniqueGen.generateOre(BlockID.Etx, 0, chunkX, chunkZ, random, { 
 veinCounts: 4, 
-veinChance: .48, 
 minY: 12, 
 maxY: 48,  
-size: randomInt(1, 3),  
-ratio: .5, 
-checkerTile: 1, 
-checkerMode: true
+size: randomInt(1, 4)
 }); 
 });
 
 
-Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ){ 
-UniqueGen.generateOre(BlockID.oreAbyssalinite, 0, chunkX, chunkZ, { 
-veinCounts: 5, 
-veinChance: .55, 
+Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ, random){ 
+UniqueGen.generateOre(BlockID.oreAbyssalinite, 0, chunkX, chunkZ, random, { 
+veinCounts: 5,  
 minY: 4, 
 maxY: 27,  
-size: randomInt(1, 3),  
-ratio: .5, 
-checkerTile: 1, 
-checkerMode: true
+size: randomInt(1, 5)
 }); 
 });
   
  
-Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ){ 
+Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ, random){ 
 if(World.getBiome(chunkX, chunkZ) == 134 || World.getBiome(chunkX, chunkZ) == CoralSwamp.id || World.getBiome(chunkX, chunkZ) == 6)
-UniqueGen.generateOre(BlockID.oreCoral, 0, chunkX, chunkZ, { 
-veinCounts: 4, 
-veinChance: .4, 
+UniqueGen.generateOre(BlockID.oreCoral, 0, chunkX, chunkZ, random, { 
+veinCounts: 4,  
 minY: 4, 
-maxY: 27,  
-size: randomInt(1, 3),  
-ratio: .5, 
-checkerTile: 1, 
-checkerMode: true
+maxY: 45,  
+size: randomInt(1, 5)
 }); 
 });
 
 
-Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ){
+Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ, random){
 if(World.getBiome(chunkX, chunkZ) == 134 || World.getBiome(chunkX, chunkZ) == CoralSwamp.id || World.getBiome(chunkX, chunkZ) == 6)
-UniqueGen.generateOre(BlockID.oreCoralInfused, 0, chunkX, chunkZ, { 
-veinCounts: 4, 
-veinChance: .4, 
-minY: 4, 
-maxY: 30,  
-size: 1,  
-ratio: .5, 
-checkerTile: 1, 
-checkerMode: true
+UniqueGen.generateOre(BlockID.oreCoralInfused, 0, chunkX, chunkZ, random, { 
+veinCounts: 7, 
+minY: 3, 
+maxY: 40,  
+size: randomInt(1, 3)    
 }); 
 });
 
 
-Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ){ 
-UniqueGen.generateOre(BlockID.oreNitre, 0, chunkX, chunkZ, { 
-veinCounts: 5, 
-veinChance: .4, 
-minY: 22, 
-maxY: 58,  
-size: randomInt(1, 4),  
-ratio: .5, 
-checkerTile: 1, 
-checkerMode: true
+Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ, random){ 
+UniqueGen.generateOre(BlockID.oreNitre, 0, chunkX, chunkZ, random, { 
+veinCounts: 7, 
+minY: 10, 
+maxY: 45,  
+size: randomInt(1, 5)    
 }); 
 });
 
@@ -117,43 +97,3 @@ Block.createBlock("oreAcorpearl", [
 IDRegistry.genBlockID("oreDAbyss"); 
 Block.createBlock("oreDAbyss", [
 {name: "Dreaded Abyssalinite Ore", texture:[["DrSO", 0]],inCreative: true}],BLOCK_TYPE_ORE);
-/*
-Callback.addCallback("GenerateCustomDimensionChunk", function(chunkX, chunkZ, random, dimensionId){
-if(!Player.getDimension() ==  Abyss.id) return;
-for (var i = 0; i < 32; i++){ 
-var coords = GenerationUtils.randomCoords(chunkX, chunkZ, 3, 60); 
-GenerationUtils.generateOreCustom(coords.x, coords.y, coords.z, BlockID.oreAiron, 0, randomInt(2, 5), true, [BlockID.stoneAbyss]);
-}  
-});
-
-Callback.addCallback("GenerateCustomDimensionChunk", function(chunkX, chunkZ, random, dimensionId){
-if(!Player.getDimension() ==  Abyss.id) return;
-for (var i = 0; i < 23; i++){ 
-var coords = GenerationUtils.randomCoords(chunkX, chunkZ, 3, 60); 
-GenerationUtils.generateOreCustom(coords.x, coords.y, coords.z, BlockID.oreAgold, 0, randomInt(2, 5), true, [BlockID.stoneAbyss]);
-}  
-});
-
-Callback.addCallback("GenerateCustomDimensionChunk", function(chunkX, chunkZ, random, dimensionId){
-if(!Player.getDimension() ==  Abyss.id) return;
-for (var i = 0; i < 23; i++){ 
-var coords = GenerationUtils.randomCoords(chunkX, chunkZ, 3, 60); 
-GenerationUtils.generateOreCustom(coords.x, coords.y, coords.z, BlockID.oreAdiamond, 0, randomInt(2, 3), true, [BlockID.stoneAbyss]);
-}  
-});
-
-Callback.addCallback("GenerateCustomDimensionChunk", function(chunkX, chunkZ, random, dimensionId){
-if(!Player.getDimension() ==  Abyss.id) return;
-for (var i = 0; i < 23; i++){ 
-var coords = GenerationUtils.randomCoords(chunkX, chunkZ, 3, 60); 
-GenerationUtils.generateOreCustom(coords.x, coords.y, coords.z, BlockID.oreAnitre, 0, randomInt(1, 5), true, [BlockID.stoneAbyss]);
-}  
-});
-
-Callback.addCallback("GenerateCustomDimensionChunk", function(chunkX, chunkZ, random, dimensionId){
-if(!Player.getDimension() ==  Abyss.id) return;
-for (var i = 0; i < 23; i++){ 
-var coords = GenerationUtils.randomCoords(chunkX, chunkZ, 3, 60); 
-GenerationUtils.generateOreCustom(coords.x, coords.y, coords.z, BlockID.oreAcorpearl, 0, randomInt(1, 3), true, [BlockID.stoneAbyss]);
-}  
-});*/

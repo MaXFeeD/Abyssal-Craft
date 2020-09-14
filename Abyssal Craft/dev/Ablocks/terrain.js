@@ -103,7 +103,7 @@ Block.createBlock("stoneABrik", [
 
 IDRegistry.genBlockID("grassDread");
 Block.createBlock("grassDread", [
-{name: "Dreaded Wastlands Grass", texture: [["dreadlandsdirt", 0], ["drgtop", 0], ["drgsides", 1]], inCreative: true}], "opaque");
+{name: "Dreaded Wastlands Grass", texture: [["dreadlandsdirt", 0], ["drgtop", 0], ["drgsides", 0]], inCreative: true}], "opaque");
 ToolAPI.registerBlockMaterial(BlockID.grassDread, "dirt", 0, true);
 
 IDRegistry.genBlockID("dirtDread");

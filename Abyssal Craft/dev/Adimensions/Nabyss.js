@@ -34,7 +34,7 @@ Ashape.setMinSize(2, 3);
  
 Callback.addCallback("ItemUse", function(coords, item, block){ 
 if(Player.getCarriedItem().id == ItemID.keyABW) 
-var rect = shape.findPortal(coords.relative.x, coords.relative.y, coords.relative.z);
+var rect = Ashape.findPortal(coords.relative.x, coords.relative.y, coords.relative.z);
   if (rect) {
             Ashape.buildPortal(rect, false);
    }
@@ -60,7 +60,7 @@ if(World.getBlockID(crdsP.x, crdsP.y, crdsP.z) == BlockID.abyssWastes && Player.
 var teleport = false;
 
 Callback.addCallback('DimensionLoaded', function (dimension) {
-if (dimension != Abyss.id) return;
+if (dimension == Abyss.id) {
  if (!teleport) {
  var CP = Player.getPosition();
   var crD = GenerationUtils.findHighSurface(CP.x, CP.z, 65, 75);
@@ -68,7 +68,7 @@ if (dimension != Abyss.id) return;
      Player.setPosition(CP.x, crD.y, CP.z);
    teleport = true;
 }
-});
+}});
 
 Saver.addSavesScope("teleported",
 function read(scope){
@@ -78,3 +78,63 @@ function save(){
 return {TP : teleport };
 }
 );
+
+Callback.addCallback("GenerateCustomDimensionChunk", function(chunkX, chunkZ, random, dimensionId){
+if(Player.getDimension() ==  Abyss.id)
+UniqueGen.generateOreInDimension(BlockID.oreAiron, 0, chunkX, chunkZ, random, { 
+veinCounts: 7, 
+minY: 12, 
+maxY: 60,  
+size: randomInt(1, 5),
+mode: true,
+check: [BlockID.stoneAbyss]       
+}); 
+});
+
+Callback.addCallback("GenerateCustomDimensionChunk", function(chunkX, chunkZ, random, dimensionId){
+if(Player.getDimension() ==  Abyss.id)
+UniqueGen.generateOreInDimension(BlockID.oreAgold, 0, chunkX, chunkZ, random, { 
+veinCounts: 7, 
+minY: 12, 
+maxY: 55,  
+size: randomInt(1, 5),
+mode: true,
+check: [BlockID.stoneAbyss]      
+}); 
+});
+
+Callback.addCallback("GenerateCustomDimensionChunk", function(chunkX, chunkZ, random, dimensionId){
+if(Player.getDimension() ==  Abyss.id)
+UniqueGen.generateOreInDimension(BlockID.oreAdiamond, 0, chunkX, chunkZ, random, { 
+veinCounts: 5, 
+minY: 12, 
+maxY: 52,  
+size: randomInt(1, 5),
+mode: true,
+check: [BlockID.stoneAbyss]       
+}); 
+});
+
+Callback.addCallback("GenerateCustomDimensionChunk", function(chunkX, chunkZ, random, dimensionId){
+if(Player.getDimension() ==  Abyss.id)
+UniqueGen.generateOreInDimension(BlockID.oreAnitre, 0, chunkX, chunkZ, random, { 
+veinCounts: 8, 
+minY: 12, 
+maxY: 60,  
+size: randomInt(1, 6),
+mode: true,
+check: [BlockID.stoneAbyss]   
+}); 
+});
+
+Callback.addCallback("GenerateCustomDimensionChunk", function(chunkX, chunkZ, random, dimensionId){
+if(Player.getDimension() ==  Abyss.id)
+UniqueGen.generateOreInDimension(BlockID.oreAcorpearl, 0, chunkX, chunkZ, random, { 
+veinCounts: 4, 
+minY: 12, 
+maxY: 55,  
+size: randomInt(1, 4),
+mode: true,
+check: [BlockID.stoneAbyss]   
+}); 
+});
