@@ -297,3 +297,8 @@ Translation.addTranslation("Ritual Charm Power", {ru: "Ритуальный Ам
 })();
 
 Translation.addTranslation("Molecular Formula", {ru: "Молекулярная формула"});
+
+Translation.addTranslation("Crystal Clusters", {ru: "Кристаллизованные скопления"});
+Translation.addTranslation("Crystal Pieces", {ru: "Кристаллизованные куски"});
+Translation.addTranslation("Crystal Shards", {ru: "Кристаллизованные осколки"});
+Translation.addTranslation("Crystal Fragments", {ru: "Кристаллизованные фрагменты"});

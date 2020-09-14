@@ -1,3 +1,8 @@
+var CRYSTAL_CLUSTERS_GROUP = [];
+var CRYSTAL_PIECES_GROUP = [];
+var CRYSTAL_SHARDS_GROUP = [];
+var CRYSTAL_FRAGMENTS_GROUP = [];
+
 const CrystalRegistry = {
     WHITE: ["iron", "oxygen", "hydrogen", "nitrogen", "tin", "potassium", "silicon", "magnesium", "aluminium", "silica", "alumina", "magnesia", "zinc", "calcium", "beryllium", "beryl"],
     /**
@@ -77,6 +82,7 @@ const CrystalRegistry = {
         Block.setShape(BlockID["ACrystalcluster_"+material], 3/16, 0, 3/16, 13/16, 12/16, 13/16);
         BlockRenderer.setStaticICRender(BlockID["ACrystalcluster_"+material], -1, render);
         Item.registerNameOverrideFunction(BlockID["ACrystalcluster_"+material], OVERRIDE);
+        CRYSTAL_CLUSTERS_GROUP.push(BlockID["ACrystalcluster_"+material]);
         //items
         for(let i=0; i<3; i++){
             let namee = ["", "Shard", "Fragment"],
@@ -87,6 +93,10 @@ const CrystalRegistry = {
                 meta: 0
             }, {stack: 64});
             Item.registerNameOverrideFunction(ItemID["ACrystal"+size[i]+material], OVERRIDE);
+            i == 0 ? 
+            CRYSTAL_PIECES_GROUP.push(ItemID["ACrystal"+size[i]+material]) : i==1 ?
+            CRYSTAL_SHARDS_GROUP.push(ItemID["ACrystal"+size[i]+material]) :
+            CRYSTAL_FRAGMENTS_GROUP.push(ItemID["ACrystal"+size[i]+material]);
             Callback.addCallback("PostLoaded", function(){
                 if(i<2){
                     Recipes.addShaped({id: ItemID["ACrystal"+size[i]+material], count: 1, data: 0}, [

@@ -9,6 +9,7 @@ Ablocks/flora.js
 Adimensions/generation/Normal.js
 Adimensions/Nabyss.js
 Adimensions/Ndreadlands.js
+Aitems/crystals.js
 Aitems/items.js
 Aitems/food.js
 Aitems/tools.js

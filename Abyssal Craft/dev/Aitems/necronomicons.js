@@ -352,3 +352,9 @@ AbyssTable.addCraft([[ItemID.trsGem, 0], [0, 0], [111, 0], [ItemID.coralGem, 0],
 AbyssTable.addCraft([[ItemID.trsGem, 0], [0, 0], [111, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0], [325, 8], [ItemID.Bo, 0], [106, 0]], [ItemID.RCCh, 0], [ItemID.DPCh, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);
 AbyssTable.addCraft([[ItemID.trsGem, 0], [0, 0], [111, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0], [325, 8], [ItemID.Bo, 0], [106, 0]], [ItemID.RCLeg, 0], [ItemID.DPLeg, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);
 AbyssTable.addCraft([[ItemID.trsGem, 0], [0, 0], [111, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0], [325, 8], [ItemID.Bo, 0], [106, 0]], [ItemID.RCBoot, 0], [ItemID.DPBoot, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);
+
+//groups are automatically generated in Aitems/crystals.js
+Item.addCreativeGroup("ACrystalClusters", Translation.translate("Crystal Clusters"), CRYSTAL_CLUSTERS_GROUP);
+Item.addCreativeGroup("ACrystalPieces", Translation.translate("Crystal Pieces"), CRYSTAL_PIECES_GROUP);
+Item.addCreativeGroup("ACrystalShards", Translation.translate("Crystal Shards"), CRYSTAL_SHARDS_GROUP);
+Item.addCreativeGroup("ACrystalFragments", Translation.translate("Crystal Fragments"), CRYSTAL_FRAGMENTS_GROUP);
