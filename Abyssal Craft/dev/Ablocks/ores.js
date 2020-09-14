@@ -20,7 +20,7 @@ Block.setDestroyLevel("oreNitre", 4);
 
 Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ, random){ 
 UniqueGen.generateOre(BlockID.Etx, 0, chunkX, chunkZ, random, { 
-veinCounts: 4, 
+veinCounts: 6, 
 minY: 12, 
 maxY: 48,  
 size: randomInt(1, 4)
@@ -30,9 +30,9 @@ size: randomInt(1, 4)
 
 Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ, random){ 
 UniqueGen.generateOre(BlockID.oreAbyssalinite, 0, chunkX, chunkZ, random, { 
-veinCounts: 5,  
+veinCounts: 8,  
 minY: 4, 
-maxY: 27,  
+maxY: 32,  
 size: randomInt(1, 5)
 }); 
 });
@@ -41,9 +41,9 @@ size: randomInt(1, 5)
 Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ, random){ 
 if(World.getBiome(chunkX, chunkZ) == 134 || World.getBiome(chunkX, chunkZ) == CoralSwamp.id || World.getBiome(chunkX, chunkZ) == 6)
 UniqueGen.generateOre(BlockID.oreCoral, 0, chunkX, chunkZ, random, { 
-veinCounts: 4,  
+veinCounts: 8,  
 minY: 4, 
-maxY: 45,  
+maxY: 48,  
 size: randomInt(1, 5)
 }); 
 });
@@ -54,17 +54,17 @@ if(World.getBiome(chunkX, chunkZ) == 134 || World.getBiome(chunkX, chunkZ) == Co
 UniqueGen.generateOre(BlockID.oreCoralInfused, 0, chunkX, chunkZ, random, { 
 veinCounts: 7, 
 minY: 3, 
-maxY: 40,  
-size: randomInt(1, 3)    
+maxY: 44,  
+size: randomInt(1, 4)    
 }); 
 });
 
 
 Callback.addCallback("GenerateChunkUnderground", function(chunkX, chunkZ, random){ 
 UniqueGen.generateOre(BlockID.oreNitre, 0, chunkX, chunkZ, random, { 
-veinCounts: 7, 
+veinCounts: 8, 
 minY: 10, 
-maxY: 45,  
+maxY: 48,  
 size: randomInt(1, 5)    
 }); 
 });

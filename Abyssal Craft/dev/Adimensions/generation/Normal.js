@@ -44,7 +44,7 @@ var DarkHills = new CustomBiome("dark_hills")
 .setCoverBlock(BlockID.stoneDark, 0)
 .setSurfaceBlock(1, 0)
 .setFillingBlock(BlockID.stoneDark, 0);
-
+/*
 Callback.addCallback("GenerateBiomeMap", function(chunkX, chunkZ, rnd, dimensionId, chunkSeed,
 worldSeed, dimensionSeed){ 
   genrand = new java.util.Random(Math.floor((chunkX/16)) + Math.floor((chunkZ/16)));
@@ -65,7 +65,7 @@ worldSeed, dimensionSeed){
         }
     }
 });
-/*
+
 //Structures
 Callback.addCallback("GenerateChunk", function(chunkX, chunkZ){ 
 var coords = GenerationUtils.findSurface(chunkX, chunkZ, 57, 98); 

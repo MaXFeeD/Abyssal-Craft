@@ -82,10 +82,10 @@ return {TP : teleportd };
 Callback.addCallback("GenerateCustomDimensionChunk", function(chunkX, chunkZ, random, dimensionId){
 if(Player.getDimension() ==  Dreadlands.id)
 UniqueGen.generateOreInDimension(BlockID.oreDAbyss, 0, chunkX, chunkZ, random, { 
-veinCounts: 5, 
-minY: 12, 
+veinCounts: 7, 
+minY: 10, 
 maxY: 58,  
-size: randomInt(1, 4),
+size: randomInt(1, 5),
 mode: true,
 check: [BlockID.stoneDread]   
 }); 
