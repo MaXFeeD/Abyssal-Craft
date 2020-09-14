@@ -5,6 +5,7 @@ IMPORT("TileRender");
 IMPORT("StructuresAPI");
 IMPORT("PortalUtils");
 IMPORT("GuideAPI");
+IMPORT("TextureWorker");
 
 function randomInt(min, max){ 
 return Math.floor(Math.random() * (max - min + 1)) + min; 
