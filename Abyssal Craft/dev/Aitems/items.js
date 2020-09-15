@@ -457,4 +457,17 @@ Recipes.addShaped({id: BlockID.oreCoralInfused, count: 1, data: 0}, [
 
 Recipes.addFurnace(ItemID.abbChunck,ItemID.abbIron);
 Recipes.addFurnace(ItemID.coralChunck,ItemID.coralIron);
+
+Recipes.addShaped({id: ItemID.skinDW, count: 1, data: 0}, [
+"fff",
+"fef",
+"fff"
+], ['f', ItemID.dreadFragment, 0, 'e', ItemID.essenceOrbBR, 0]);
+});
+
+IDRegistry.genItemID("dreadFragment");
+Item.createItem("dreadFragment", "Dread Fragment", {name: "DF", meta: 0}, {stack: 64});
+Item.registerNameOverrideFunction(ItemID.dreadFragment, function(item, name){
+    name = "§4" + name;
+    return name;
 });
