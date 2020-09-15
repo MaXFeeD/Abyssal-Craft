@@ -90,3 +90,4 @@ EXPORT("Canvas", Canvas);
 EXPORT("Paint", Paint);
 EXPORT("ColorFilter", ColorFilter);
 EXPORT("PorterDuff", PorterDuff);
+EXPORT("TextureWorker", TextureWorker);
