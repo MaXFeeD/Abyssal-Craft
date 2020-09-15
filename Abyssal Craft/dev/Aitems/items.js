@@ -85,7 +85,6 @@ Item.createItem("coralPlate", "Reinforced Coralium Plate", {name: "CPP"});
 IDRegistry.genItemID("coralPearlD");
 Item.createItem("coralPearlD", "Coralium Pearl", {name: "EoA"});
 
-
 //Upgrade kits
 IDRegistry.genItemID("cobUpgr");
 Item.createItem("cobUpgr", "Cobblestone Upgrade", {name: "CobU"});
@@ -471,3 +470,7 @@ Item.registerNameOverrideFunction(ItemID.dreadFragment, function(item, name){
     name = "§4" + name;
     return name;
 });
+
+IDRegistry.genItemID("AMethane");
+Item.createItem("AMethane", "Methane", {name: "methane", meta: 0}, {stack: 64});
+Recipes.addFurnaceFuel(ItemID.AMethane, 10000);
