@@ -179,3 +179,89 @@ const AbyssTable = {
         onCraftEnd[item.toString()] = func;
     } 
 }
+
+const AbyssalMachine = {
+  init: function(id, Prototype){
+    if(Prototype.defaultValues && Prototype.defaultValues.isActive !== undefined){
+			if(!Prototype.renderModel){
+				Prototype.renderModel = function(){
+          TileRenderer.mapAtCoords(this.x, this.y, this.z, this.blockID, this.data.meta + (this.data.isActive? 4 : 0));
+        }
+			};
+			Prototype.setActive = Prototype.setActive || this.setActive;
+			Prototype.activate = Prototype.activate || function(){
+				this.setActive(true);
+			}
+			Prototype.deactivate = Prototype.deactivate || function(){
+				this.setActive(false);
+			}
+			Prototype.destroy = Prototype.destroy || function(){
+				BlockRenderer.unmapAtCoords(this.x, this.y, this.z);
+			}
+    }
+    if(!Prototype.init && Prototype.renderModel){
+			Prototype.init = Prototype.renderModel;
+		}
+    TileEntity.registerPrototype(id, Prototype);
+  },
+  setActive: function(isActive){
+    if(this.data.isActive != isActive){
+			this.data.isActive = isActive;
+			if(this.data.isActive){
+        TileRenderer.mapAtCoords(this.x, this.y, this.z, this.blockID, 0);
+      } else {
+        BlockRenderer.unmapAtCoords(this.x, this.y, this.z);
+      }
+		}
+  }
+}
+
+const Crystallizer = {
+  recipes: [],
+  fuel: {},
+  addFuel: function(id, ticks){
+    this.fuel[id] = ticks;
+  },
+  addFuels: function(fuels){
+    for(let i in fuels){
+      this.addFuel(fuels[i][0], fuels[i][1]);
+    }
+  },
+  isValidFuel: function(id){
+    return this.fuel[id] || -1;
+  },
+  addRecipe: function(src, result, exp){
+    this.recipes.push({
+      src: src,
+      result: result,
+      exp: exp
+    });
+  },
+  addRecipes: function(recipes){
+    for(let i in recipes){
+      this.addRecipe(recipes[i][0], recipes[i][1], recipes[i][2]);
+    }
+  },
+  isValidRecipe: function(src){
+    return this.recipes.find(function(item){
+      return item.src[0] == src.id && item.src[1] == src.data;
+    });
+  },
+  getRecipeResult: function(src){
+    this.recipes.find(function(item){
+      if(item.src[0] == src.id && item.src[1] == src.data){
+        return {
+          result: item.result,
+          exp: item.exp
+        }
+      }
+    }) || -1;
+  },
+  deleteRecipe: function(src){
+    this.recipes.splice(this.recipes.find(function(item, index){
+      if(item.src[0] == src.id && item.src[1] == src.data){
+        return index;
+      }
+    }), 1);
+  }
+}
