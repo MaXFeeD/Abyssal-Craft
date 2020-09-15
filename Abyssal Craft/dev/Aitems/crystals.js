@@ -88,7 +88,7 @@ const CrystalRegistry = {
             let namee = ["", "Shard", "Fragment"],
             size = i==0 ? "big" : i==1 ? "medium" : "small";
             IDRegistry.genItemID("ACrystal"+size[i]+material);
-            Item.createItem("ACrystal"+size[i]+material, "Crystallized "+material+" "+size[i], {
+            Item.createItem("ACrystal"+size[i]+material, "Crystallized "+material+" "+namee[i], {
                 name: "crystal"+size+ isWhite ? "" : "_"+material, 
                 meta: 0
             }, {stack: 64});
