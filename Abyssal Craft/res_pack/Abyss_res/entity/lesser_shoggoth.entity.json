@@ -1,0 +1,34 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "abyss:lesser_shoggoth",
+      "materials": {
+        "default": "abyss"
+      },
+      "textures": {
+        "default": "textures/entity/shoggoth/LesserShoggoth"
+      },
+      "geometry": {
+        "default": "geometry.shoggoth"
+      },
+      "animations": {
+        "move": "animation.shoggoth.move",    
+        "look_at_target": "animation.common.look_at_target"   
+      },
+      "animation_controllers": [ 
+       { "move": "controller.animation.shoggoth.move" }
+      ],
+      "scripts": {  
+        "animate": [
+          "move"
+        ]
+      },
+      "render_controllers": [ "controller.render.shoggoth" ],
+       "spawn_egg": {
+        "overlay_color": "#12800",
+        "base_color": "#101013"
+      }
+    }
+  }
+}

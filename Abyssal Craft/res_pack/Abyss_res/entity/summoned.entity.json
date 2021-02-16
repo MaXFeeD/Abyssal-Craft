@@ -15,11 +15,12 @@
       "animations": {
         "move": "animation.summoned.move",  
         "attack": "animation.summoned.attack",
-        "look_at_target": "animation.common.look_at_target",
-
-        "move": "controller.animation.summoned.move",
-        "attack": "controller.animation.summoned.attack"
-      },
+        "look_at_target": "animation.common.look_at_target"
+      }, 
+      "animation_controllers": [
+        { "move": "controller.animation.summoned.move" },
+        { "attack": "controller.animation.summoned.attack" }
+      ],
       "scripts": {
         "animate": [
           "move", "attack"

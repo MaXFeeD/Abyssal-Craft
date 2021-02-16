@@ -1,0 +1,267 @@
+##===========================
+## Block textures
+##===========================
+
+AbyDrS_0           ->         cobblestone_abyssalnite_0
+AbyDrSO_0          ->         dreadlands_abyssalnite_ore_0
+ACO_0              ->         abyssal_copper_ore_0
+ACorO-0            ->         abyssal_coralium_ore_0
+ADO_0              ->         abyssal_diamond_ore_0
+AGO_0              ->         abyssal_gold_ore_0
+AIO_0              ->         abyssal_iron_ore_0
+ANO_0              ->         abyssal_nitre_ore_0
+AO_0               ->         abyssalnite_ore_0
+ALCorO_0           ->         liquified_coralium_ore_0
+APCorO_0           ->         pearlescent_coralium_ore_0
+AS_0               ->         abyssal_stone_0
+ASB_0              ->         abyssal_stone_bricks_0
+ATO_0              ->         abyssal_tin_ore_0
+BOA_0              ->         abyssalnite_block_0
+BOC_0              ->         coralium_block_0
+BOD_0              ->         dreadium_block_0
+BOE_0              ->         ethaxium_block_0
+CO_0               ->         coralium_ore_0
+CIS_0              ->         coralium_infused_stone_0
+cstone_0           ->         coralium_stone_0
+cstonebrick_0      ->         coralium_bricks_0
+DEB_0              ->         dark_ethaxium_bricks_0
+DEBC_0             ->         chiseled_dark_ethaxium_bricks_0
+DEBP_0             ->         dark_ethaxium_pillar_side_0
+DEBP_top_0         ->         dark_ethaxium_pillar_top_0
+DLT_L_0            ->         darklands_oak_leaves_0
+DLTplank_0         ->         darklands_oak_wood_planks_0
+DLTS_0             ->         darklands_oak_sapling_0
+DLTTside_0         ->         darklands_oak_wood_side_glowing_0
+DLTTside.anim.15   ->         darklands_oak_wood_side_glowing.anim.15
+DLTTtop_0          ->         darklands_oak_wood_top_0
+dreadlandsdirt_0   ->         dreadlands_dirt_0
+DrGsides_0         ->         dreadlands_grass_side_0
+DrGtop_0           ->         dreadlands_grass_top_0
+DrS_0              ->         dreadstone_0
+DrSB_0             ->         dreadstone_bricks_0
+DrSO_0             ->         dreaded_abyssalnite_ore_0
+DrT_L_0            ->         dreadlands_wood_leaves_0
+DrTplank_0         ->         dreadlands_wood_planks_0
+DrTS_0             ->         dreadlands_wood_sapling_0
+DrTside_0          ->         dreadlands_wood_log_side_0
+DrTtop_0           ->         dreadlands_wood_log_top_0
+DS_0               ->         darkstone_0
+DSB_0              ->         darkstone_bricks_0
+DSC_0              ->         darkstone_cobblestone_0
+DSGlow_0           ->         glowing_darkstone_bricks_0
+DSsSides_0         ->         darkstone_slab_side_0
+DSsTop_0           ->         darkstone_slab_top_0
+EB_0               ->         ethaxium_bricks_0
+EBC_0              ->         chiseled_ethaxium_bricks_0
+EBP_0              ->         ethaxium_pillar_side_0
+EBP_top_0          ->         ethaxium_pillar_top_0
+Eth_0              ->         ethaxium_0
+fusedabyssalsand_0 ->         fused_abyssal_sand_top_0
+fusedabyssalsand_side_0 ->    fused_abyssal_sand_side_0
+luminousthistle_0  ->         luminous_thistle_0
+NO_0               ->         nitre_ore_0
+OS_0               ->         omothol_stone_0
+DLGbottom_0        ->         darklands_grass_bottom_0
+DLGsides_0         ->         darklands_grass_side_0
+DLGSides_1         ->         darklands_grass_side_1
+DLGtop_0           ->         darklands_grass_top_0
+
+##===========================
+## Armor textures
+##===========================
+
+dread_1            ->        dreaded_abyssalnite_1
+dread_2            ->        dreaded_abyssalnite_2
+coralium_1         ->        refined_coralium_1
+coralium_2         ->        refined_coralium_2
+coraliumP_1        ->        plated_coralium_1
+coraliumP_2        ->        plated_coralium_2
+dreadiumS_1        ->        dreadium_samurai_1
+dreadiumS_2        ->        dreadium_samurai_2
+
+##===========================
+## Item textures
+##===========================
+
+AA_0               ->         abyssalnite_axe_0
+AAB_0              ->         abyssalnite_boots_0
+AAC_0              ->         abyssalnite_chestplate_0
+AAH_0              ->         abyssalnite_helmet_0
+AAP_0              ->         abyssalnite_leggings_0
+AbyU_0             ->         abyssalnite_upgrade_kit_0
+AC_0               ->         abyssalnite_chunk_0
+ACB_0              ->         refined_coralium_boots_0
+ACBP_0             ->         plated_coralium_boots_0
+ACC_0              ->         refined_coralium_chestplate_0
+ACCP_0             ->         plated_coralium_chestplate_0
+ACH_0              ->         refined_coralium_helmet_0
+ACHP_0             ->         plated_coralium_helmet_0
+ACP_0              ->         refined_coralium_leggings_0
+ACPP_0             ->         plated_coralium_leggings_0
+ADAB_0             ->         dreaded_abyssalnite_boots_0
+ADAC_0             ->         dreaded_abyssalnite_chestplate_0
+ADAH_0             ->         dreaded_abyssalnite_helmet_0
+ADAP_0             ->         dreaded_abyssalnite_leggings_0
+ADB_0              ->         depths_boots_0
+ADC_0              ->         depths_chestplate_0
+ADH_0              ->         depths_helmet_0
+ADP_0              ->         depths_leggings_0
+ADDB_0             ->         dreadium_boots_0
+ADDC_0             ->         dreadium_chestplate_0
+ADDH_0             ->         dreadium_helmet_0
+ADDP_0             ->         dreadium_leggings_0
+ADSB_0             ->         dreadium_samurai_boots_0
+ADSC_0             ->         dreadium_samurai_chestplate_0
+ADSH_0             ->         dreadium_samurai_helmet_0
+ADSP_0             ->         dreadium_samurai_leggings_0
+AEB_0              ->         ethaxium_boots_0
+AEC_0              ->         ethaxium_chestplate_0
+AEH_0              ->         ethaxium_helmet_0
+AEP_0              ->         ethaxium_leggings_0
+AH_0               ->         abyssalnite_hoe_0
+AI_0               ->         abyssalnite_ingot_0
+Antibucket_0       ->         antiBucket_0
+antiCB_0           ->         anti_plagued_flesh_on_a_bone_0
+antiCF_0           ->         anti_plagued_flesh_0
+AP_0               ->         abyssalnite_pickaxe_0
+AS_0               ->         abyssalnite_shovel_0
+ASW_0              ->         abyssalnite_sword_0
+BeeP_0             ->         beef_on_a_plate_0
+CarbC_0            ->         carbon_cluster_0
+CB_0               ->         coralium_plagued_flesh_on_a_bone_0
+cbrick_0           ->         coralium_brick_0
+Cbucket_0          ->         liquid_coralium_bucket_0
+CC_0               ->         coralium_chunk_0
+CF_0               ->         coralium_plagued_flesh_0
+CG_0               ->         coralium_gem_0
+charcoal_0         ->         cha_rcoal_0
+charm_0            ->         charm_empty_0
+ChiP_0             ->         chicken_on_a_plate_0
+cloth_0            ->         washcloth_0
+CobU_0             ->         cobblestone_upgrade_kit_0
+coralium_antidote_0 ->        coralium_plague_antidote_0
+Corbow_0           ->         coralium_longbow_0
+Corbow_pulling_0   ->         coralium_longbow_pulling_0
+Corbow_pulling_1   ->         coralium_longbow_pulling_1
+Corbow_pulling_2   ->         coralium_longbow_pulling_2
+CorU_0             ->         coralium_upgrade_kit_0
+CP_0               ->         coralium_pearl_0
+CPP_0              ->         coralium_plate_0
+DA_0               ->         darkstone_axe_0
+DAC_0              ->         dreaded_abyssalnite_chunk_0
+DB_0               ->         dreadium_katana_blade_0
+DC_0               ->         dread_cloth_0
+DCarbC_0           ->         dense_carbon_cluster_0
+DDA_0              ->         dreadium_axe_0
+DDH_0              ->         dreadium_hoe_0
+DDP_0              ->         dreadium_pickaxe_0
+DDS_0              ->         dreadium_shovel_0
+DDSW_0             ->         dreadium_sword_0
+DF_0               ->         dread_fragment_0
+DH_0               ->         darkstone_hoe_0
+DI_0               ->         dreadium_ingot_0
+DiaU_0             ->         diamond_upgrade_kit_0
+DK_0               ->         dread_plagued_gateway_key_0
+DLTS_1             ->         darklands_oak_sapling_0
+DP_0               ->         darkstone_pickaxe_0
+DPP_0              ->         dreadium_plate_0
+dread_antidote_0   ->         dread_plague_antidote_0
+DreU_0             ->         dreadium_upgrade_kit_0
+DrTS_1             ->         dreadlands_wood_sapling_0
+DS_0               ->         darkstone_shovel_0
+DSOA_0             ->         dreaded_abyssalnite_shard_0
+DSW_0              ->         darkstone_sword_0
+EA_0               ->         ethaxium_axe_0
+EB_0               ->         ethaxium_brick_0
+eggp_0             ->         fried_egg_on_a_plate_0
+EH_0               ->         ethaxium_hoe_0
+EI_0               ->         ethaxium_ingot_0
+eldritchScale_0    ->         eldritch_scale_0
+EoA_0              ->         eye_of_the_abyss_0
+EP_0               ->         ethaxium_pickaxe_0
+ES_0               ->         ethaxium_shovel_0
+ESW_0              ->         ethaxium_sword_0
+EthU_0             ->         ethaxium_upgrade_kit_0
+FisP_0             ->         fish_on_a_plate_0
+friedegg_0         ->         fried_egg_0
+gatekeeperessence_0 ->        essence_of_the_gatekeeper_0
+GK_0               ->         gateway_key_0
+GKD_0              ->         asorahs_dreaded_gateway_key_0
+GKJ_0              ->         chagaroths_rlyehian_gateway_key_0
+GolU_0             ->         golden_upgrade_kit_0
+interdimensionalcage_0  ->    interdimensional_cage_0
+IroU_0             ->         iron_upgrade_kit_0
+lifeCrystal_0      ->         life_crystal_0
+luminousthistle_1  ->         luminous_thistle_0
+necronomicon_cor_0 ->         abyssal_wasteland_necronomicon_0
+necronomicon_dre_0 ->         dreadlands_necronomicon_0
+necronomicon_omt_0 ->         omothol_necronomicon_0
+OC_0               ->         oblivion_catalyst_0
+omotholflesh_0     ->         omothol_ghoul_flesh_0
+OS_0               ->         shard_of_oblivion_0
+PorP_0             ->         porkchop_on_a_plate_0
+PSDLf_0            ->         powerstone_tracker_0
+RCA_0              ->         refined_coralium_axe_0
+RCH_0              ->         refined_coralium_hoe_0
+RCI_0              ->         refined_coralium_ingot_0
+RCP_0              ->         refined_coralium_pickaxe_0
+RCS_0              ->         refined_coralium_shovel_0
+RCSW_0             ->         refined_coralium_sword_0
+SF_0               ->         shadow_fragment_0
+SG_0               ->         shadow_gem_0
+SOTG_0             ->         staff_of_the_gatekeeper_0
+soulReaper_0       ->         sacthoths_soul_reaper_blade_0
+SS_0               ->         shadow_gem_shard_0
+TG_0               ->         transmutation_gem_0
+wastelandsthorn_1  ->         wastelands_thorn_0
+
+##===========================
+## BlockIDs
+##===========================
+
+darkLog            ->         darklandsOakWood
+deleted darkLogS
+added darklandsOakWoodGlowing
+dreadLog           ->         dreadlandsWoodLog
+darkP              ->         darklandsOakWoodPlanks
+darkPS             ->         darklandsOakWoodSlab
+darkPF             ->         darklandsOakWoodFence
+darkLeaves         ->         darklandsOakLeaves
+darkSapling        ->         darklandsOakSapling
+deleted dreadLogS
+dreadP             ->         dreadlandsWoodPlanks
+deleted dreadPS
+dreadPF            ->         dreadlandsWoodFence
+dreadLeaves        ->         dreadlandsWoodLeaves
+dreadSapling       ->         dreadlandsWoodSapling
+plantWaste         ->         wastelandsThorn
+plantWasteL        ->         luminousThistle
+deleted plantWDh
+oreAbyssalinite    ->         oreAbyssalnite
+oreCoral           ->         oreCoralium
+oreCoralInfused    ->         oreCoraliumInfused
+oreAiron           ->         oreIronAbyssal
+oreAgold           ->         oreGoldAbyssal
+oreAdiamond        ->         oreDiamondAbyssal
+oreAnitre          ->         oreNitreAbyssal
+oreAcorpearl       ->         oreCoraliumPearlescent
+oreDAbyss          ->         oreDreadedAbyssalnite
+grassDark          ->         darklandsGrass
+all darkstone, dreadstone and ethaxium blocks rewritten
+grassAbyss         ->         fusedAbyssalSand
+sandAbyss          ->         abyssalSand
+glassAbyss         ->         abyssalSandGlass
+stoneAbyss         ->         abyssalStone
+stoneABri          ->         abyssalStoneBricks
+stoneABriS         ->         abyssalStoneBrickSlab
+abyssal stone blocks reworked
+
+##===========================
+## ItemIDs
+##===========================
+
+darkSapling        ->         darklandsOakSapling
+dreadSapling       ->         dreadlandsWoodSapling
+plantWaste         ->         wastelandsThorn
+plantWasteL        ->         luminousThistle
+deleted plantWDh

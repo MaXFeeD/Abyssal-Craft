@@ -1,0 +1,34 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "abyss:spawn",
+      "materials": {
+        "default": "abyss"
+      },
+      "textures": {
+        "default": "textures/entity/boss/Dread_guard"
+      },
+      "geometry": {
+        "default": "geometry.spawn"
+      },
+      "animations": {
+        "move": "animation.spawn.move",    
+        "look_at_target": "animation.common.look_at_target"
+      }, 
+      "animation_controllers": [
+        { "move": "controller.animation.spawn.move" }
+      ],
+      "scripts": {
+        "animate": [
+          "move"
+        ]
+      },
+      "render_controllers": [ "controller.render.spawn" ],
+       "spawn_egg": {
+        "overlay_color": "#2202060",
+        "base_color": "#13900"
+      }
+    }
+  }
+}

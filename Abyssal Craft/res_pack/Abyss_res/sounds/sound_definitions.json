@@ -1,8 +1,7 @@
 {
     "mob.abyssal_zombie.attack": {
         "category": "neutral",
-        "sounds": [
-            {
+        "sounds": [{
                 "name": "sounds/zombies/mob/hurt1",
                 "volume": 0.2
             },
@@ -17,17 +16,14 @@
     },
     "mob.abyssal_zombie.death": {
         "category": "neutral",
-        "sounds": [
-            {
-                "name": "sounds/zombies/mob/death",
-                "volume": 0.25
-            }
-        ]
+        "sounds": [{
+            "name": "sounds/zombies/mob/death",
+            "volume": 0.25
+        }]
     },
     "mob.abyssal_zombie.idle": {
         "category": "neutral",
-        "sounds": [
-            {
+        "sounds": [{
                 "name": "sounds/zombies/mob/idle1",
                 "volume": 0.25
             },
@@ -42,8 +38,7 @@
     },
     "mob.abyssal_golem.attack": {
         "category": "neutral",
-        "sounds": [
-            {
+        "sounds": [{
                 "name": "sounds/golem/mob/hit2",
                 "volume": 0.2
             },
@@ -55,17 +50,14 @@
     },
     "mob.abyssal_golem.death": {
         "category": "neutral",
-        "sounds": [
-            {
-                "name": "sounds/golem/mob/death",
-                "volume": 0.2
-            }
-        ]
+        "sounds": [{
+            "name": "sounds/golem/mob/death",
+            "volume": 0.2
+        }]
     },
-        "mob.snake.say": {
+    "mob.snake.say": {
         "category": "neutral",
-        "sounds": [
-            {
+        "sounds": [{
                 "name": "sounds/snake/say1",
                 "volume": 1.1
             },
@@ -74,20 +66,17 @@
                 "volume": 10.94
             }
         ]
-    }, 
+    },
     "mob.shadow_creature.death": {
         "category": "neutral",
-        "sounds": [
-            {
-                "name": "sounds/shadow/mob/death",
-                "volume": 0.4
-            }
-        ]
+        "sounds": [{
+            "name": "sounds/shadow/mob/death",
+            "volume": 0.4
+        }]
     },
     "mob.shadow_creature.attack": {
         "category": "neutral",
-        "sounds": [
-            {
+        "sounds": [{
                 "name": "sounds/shadow/mob/hurt2",
                 "volume": 0.4
             },
@@ -96,20 +85,17 @@
                 "volume": 0.4
             }
         ]
-    }, 
+    },
     "mob.summoned.death": {
         "category": "neutral",
-        "sounds": [
-            {
-                "name": "sounds/mob/blaze/death",
-                "volume": 0.5
-            }
-        ]
+        "sounds": [{
+            "name": "sounds/mob/blaze/death",
+            "volume": 0.5
+        }]
     },
     "mob.summoned.idle": {
         "category": "neutral",
-        "sounds": [
-            {
+        "sounds": [{
                 "name": "sounds/mob/blaze/breathe2",
                 "volume": 0.5
             },
@@ -121,8 +107,7 @@
     },
     "mob.summoned.attack": {
         "category": "neutral",
-        "sounds": [
-            {
+        "sounds": [{
                 "name": "sounds/mob/blaze/hit1",
                 "volume": 0.5
             },
@@ -132,31 +117,67 @@
             }
         ]
     },
-      "mob.remnant.attack": {
+    "mob.remnant.attack": {
         "category": "neutral",
-        "sounds": [
-            {
-                "name": "sounds/mob/remnant/scream",
-                "volume": 0.5
-            }
-        ]
+        "sounds": [{
+            "name": "sounds/mob/remnant/scream",
+            "volume": 0.5
+        }]
     },
-     "mob.remnant.idle": {
+    "mob.remnant.idle": {
         "category": "neutral",
-        "sounds": [   
-            {
-                "name": "sounds/mob/remnant/scream",
-                "volume": 0.5
-            }
-        ]
+        "sounds": [{
+            "name": "sounds/mob/remnant/scream",
+            "volume": 0.5
+        }]
     },
     "mob.remnant.death": {
         "category": "neutral",
-        "sounds": [   
-            {
-                "name": "sounds/mob/remnant/yes",
-                "volume": 0.5
-            }
-        ]
+        "sounds": [{
+            "name": "sounds/mob/remnant/yes",
+            "volume": 0.5
+        }]
+    },
+    "mob.ghoul.idle": {
+        "category": "neutral",
+        "sounds": [{
+            "name": "sounds/mob/ghoul/normal/idle1",
+            "volume": 0.5
+        }]
+    },
+    "mob.ghoul.attack": {
+        "category": "neutral",
+        "sounds": [{
+            "name": "sounds/mob/ghoul/hurt2",
+            "volume": 0.5
+        }]
+    },
+    "mob.ghoul.death": {
+        "category": "neutral",
+        "sounds": [{
+            "name": "sounds/mob/ghoul/death",
+            "volume": 0.5
+        }]
+    },
+    "mob.shoggoth.idle": {
+        "category": "neutral",
+        "sounds": [{
+            "name": "sounds/mob/shoggoth/idle1",
+            "volume": 0.5
+        }]
+    },
+    "mob.shoggoth.attack": {
+        "category": "neutral",
+        "sounds": [{
+            "name": "sounds/mob/shoggoth/hurt2",
+            "volume": 0.5
+        }]
+    },
+    "mob.shoggoth.death": {
+        "category": "neutral",
+        "sounds": [{
+            "name": "sounds/mob/shoggoth/death",
+            "volume": 0.5
+        }]
     }
 }

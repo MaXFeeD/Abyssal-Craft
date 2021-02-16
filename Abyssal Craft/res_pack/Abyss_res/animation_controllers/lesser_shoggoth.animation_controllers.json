@@ -1,0 +1,13 @@
+{
+    "format_version" : "1.8.0",
+    "animation_controllers" : {  
+        "animation.shoggoth.move" : {
+            "initial_state" : "default",
+            "states" : {
+                "default" : {
+                    "animations" : [ "move" ]
+                }
+            }
+        }
+    }
+}

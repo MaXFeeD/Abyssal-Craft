@@ -15,11 +15,12 @@
       "animations": {
         "move": "animation.remnant.move",  
         "attack": "animation.remnant.attack",
-        "look_at_target": "animation.common.look_at_target",
-
-        "move": "controller.animation.remnant.move",
-        "attack": "controller.animation.remnant.attack"
-      },
+        "look_at_target": "animation.common.look_at_target"
+      }, 
+      "animation_controllers": [
+        { "move": "controller.animation.remnant.move" },
+        { "attack": "controller.animation.remnant.attack" }
+      ],
       "scripts": {
         "animate": [
           "move", "attack"

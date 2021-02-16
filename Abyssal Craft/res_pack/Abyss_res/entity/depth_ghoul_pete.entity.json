@@ -13,16 +13,15 @@
         "default": "geometry.depth_ghoul"
       },
       "animations": {
-        "move": "animation.remnant.move",  
-        "attack": "animation.remnant.attack",
-        "look_at_target": "animation.common.look_at_target",
-
-        "move": "controller.animation.remnant.move",
-        "attack": "controller.animation.remnant.attack"
-      },
+        "move": "animation.depth_ghoul.move",   
+        "look_at_target": "animation.common.look_at_target" 
+      }, 
+      "animation_controllers": [
+        { "move": "controller.animation.depth_ghoul.move" }
+      ],
       "scripts": {
         "animate": [
-          "move", "attack"
+          "move"
         ],
         "pre_animation": [
           "variable.attack = Math.sin(variable.attack_time * 38.17);"

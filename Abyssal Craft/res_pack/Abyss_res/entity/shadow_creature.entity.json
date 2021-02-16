@@ -4,7 +4,7 @@
     "description": {
       "identifier": "abyss:shadow_creature",
       "materials": {
-        "default": "abyss"
+        "default": "slime_outer"
       },
       "textures": {
         "default": "textures/entity/shadow/ShadowCreature"
@@ -14,10 +14,11 @@
       },
       "animations": {
         "move": "animation.shadow_creature.move",  
-        "look_at_target": "animation.common.look_at_target",
-
-        "move": "controller.animation.shadow_creature.move",
-      },
+        "look_at_target": "animation.common.look_at_target"
+      }, 
+      "animation_controllers": [
+        { "move": "controller.animation.shadow_creature.move" }
+      ],
       "scripts": {
         "animate": [
           "move"

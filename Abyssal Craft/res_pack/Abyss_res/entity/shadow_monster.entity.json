@@ -13,15 +13,13 @@
         "default": "geometry.shadow_monster"
       },
       "animations": {  
-        "look_at_target": "animation.common.look_at_target", 
-      },
-      "scripts": {    
-      },
+        "look_at_target": "animation.common.look_at_target"
+      },   
       "render_controllers": [ "controller.render.shadow_monster" ],
        "spawn_egg": {
         "overlay_color": "#12800",
         "base_color": "#101013"
+      }
     }
   }
-}
 }

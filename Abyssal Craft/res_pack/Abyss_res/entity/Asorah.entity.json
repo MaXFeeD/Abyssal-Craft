@@ -1,0 +1,16 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "abyss:asorah",
+      "textures": {
+        "default": "textures/entity/boss/dragonboss",
+        "exploding": "textures/entity/boss/dragonboss_exploding",
+        "beam": "textures/entity/endercrystal/endercrystal_beam"
+      },
+      "geometry": {
+        "default": "geometry.dragon"
+      }
+    }
+  }
+}

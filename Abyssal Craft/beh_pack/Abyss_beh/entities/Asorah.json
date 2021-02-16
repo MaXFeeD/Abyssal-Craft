@@ -1,0 +1,96 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "abyss:asorah",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+
+    "component_groups": { 
+        "minecraft:behavior.dragonchargeplayer": {
+          "priority": 0
+        },
+        "minecraft:behavior.dragonstrafeplayer": {
+          "priority": 1
+        },  
+        "minecraft:shooter": {
+          "type": "dragonfireball",
+          "def": "minecraft:dragon_fireball"
+        }
+      },
+      "dragon_death": {
+        "minecraft:behavior.dragondeath": {
+          "priority": 0
+        }
+      }
+    },
+
+    "components": {
+      "minecraft:type_family": {
+        "family": [ "dragon" ]
+      },
+      "minecraft:health": {
+        "value": 400,
+        "max": 400
+      },
+      "minecraft:collision_box": {
+        "width": 13,
+        "height": 4
+      },
+      "minecraft:movement": {
+        "value": 0.32
+      },
+      "minecraft:fire_immune": true,
+      "minecraft:knockback_resistance": {
+        "value": 100,
+        "max": 100
+      },
+      "minecraft:flying_speed": {
+        "value": 0.62
+      },
+      "minecraft:attack": {
+        "damage": 7
+      },
+      "minecraft:fall_damage": {
+        "value": 0.0
+      }, 
+      "minecraft:on_death": {
+        "event": "minecraft:start_death",
+        "target": "self"
+      },
+      "minecraft:physics": {
+        "has_gravity": false,
+        "has_collision": false
+      }
+    },
+
+    "events": { 
+        "add": {
+          "component_groups": [
+            "dragon_flying"
+          ]
+        }
+      }, 
+        "add": {
+          "component_groups": [
+            "dragon_flying"
+          ]
+        }
+      },
+      "minecraft:start_death": {
+        "remove": {
+          "component_groups": [   
+            "dragon_flying"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "dragon_death"
+          ]
+        }
+      }
+    }
+  }
+}

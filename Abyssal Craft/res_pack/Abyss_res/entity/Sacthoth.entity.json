@@ -1,0 +1,36 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "abyss:sacthoth",
+      "materials": {
+        "default": "slime_outer"
+      },
+      "textures": {
+        "default": "textures/entity/boss/sacthoth"
+      },
+      "geometry": {
+        "default": "geometry.sacthoth"
+      },
+      "animations": {
+        "move": "animation.sacthoth.move",
+        "attack": "animation.sacthoth.attack",    
+        "look_at_target": "animation.common.look_at_target"   
+      },
+      "animation_controllers": [ 
+       { "move": "controller.animation.sacthoth.move" },
+       { "attack": "controller.animation.sacthoth.attack" }
+      ],
+      "scripts": {  
+        "animate": [
+          "move", "attack"
+        ]
+      },
+      "render_controllers": [ "controller.render.sacthoth" ],
+       "spawn_egg": {
+        "overlay_color": "#12800",
+        "base_color": "#101013"
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+  {
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "abyss:chagoroth_fist",
+      "materials": {
+        "default": "abyss"
+      },
+      "textures": {
+        "default": "textures/entity/boss/ChagarothFist"
+      },
+      "geometry": {
+        "default": "geometry.fist"
+      },
+      "animations": { 
+        "look_at_target": "animation.common.look_at_target"
+      }, 
+      "render_controllers": [ "controller.render.fist" ],
+       "spawn_egg": {
+        "overlay_color": "#2202060",
+        "base_color": "#13900"
+      }
+    }
+  }
+}

@@ -14,10 +14,11 @@
       },
       "animations": {
         "attack": "animation.jzahar.summon",
-        "look_at_target": "animation.common.look_at_target",
-
-        "attack": "controller.animation.jzahar.summon"
-      },
+        "look_at_target": "animation.common.look_at_target"
+      }, 
+      "animation_controllers": [  
+        { "attack": "controller.animation.jzahar.summon" }
+      ],
       "scripts": {
         "animate": [
           "move", "attack"

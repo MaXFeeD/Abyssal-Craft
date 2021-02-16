@@ -18,6 +18,71 @@ var PortalUtils = {
     RENDER_TYPE_HORIZONTAL_PLANE: "h-plane",
     RENDER_TYPE_UNIVERSAL_PLANE: "u-plane",
     
+    portalBlocks: [],
+    
+    lastTickPortal: null,
+    
+    getPortalForBlock: function(id) {
+      for(var k in this.portalBlocks){
+       this.portalBlocks[k] = portalBlock;
+        return portalBlock.id;  
+        } 
+    },
+    
+    getPortalForEntityPos: function(pos) {
+        var x = Math.floor(pos.x);
+        var y = Math.floor(pos.y);
+        var z = Math.floor(pos.z);
+        return this.getPortalForBlock(World.getBlockID(x, y, z)) || this.getPortalForBlock(World.getBlockID(x, y - 1, z));
+    },
+    
+    getPortalDimension: function(id) {
+      for(var k in this.portalBlocks){
+       this.portalBlocks[k] = portalBlock;
+       if(portalBlock.id == id) 
+        return portalBlock.dim;  
+        }   
+    },
+    
+    tick: function() {
+        var players = Network.getConnectedPlayers();
+         for(var i in players){
+        player = players[i];   
+        var pos = Entity.getPosition(player);
+        if (pos.y > 255) {
+            return;
+        }
+      
+        var portal = this.getPortalForEntityPos(pos);
+        if (portal) {
+            if (!this.lastTickPortal) {
+                this.lastTickPortal = portal;
+                Dimensions.transfer(player, this.getPortalDimension(portal));
+               Updatable.addUpdatable({
+                age: 0,
+                 update: function () {
+                 Entity.setPosition(player, CP.x, CP.y + 2, CP.z);
+                  //shape.buildPortal(pos, true);
+                this.remove = this.age++ > 5;    
+                }
+            });                  
+            }
+        }
+        else {
+            this.lastTickPortal = null;
+        }       
+        }
+    },
+    
+    registerPortalBlock: function(id, portal, dim) {
+        var id = Block.getNumericId(id);
+        if (id != -1) {
+            if (portal) {
+                this.portalBlocks.push(portal, dim);
+            }           
+        }
+    },
+    
     setupPortalBlock: function(id, texture, portalRenderParams) {
         id = Block.getNumericId(id);
         if (id == -1) {
@@ -99,7 +164,7 @@ var PortalUtils = {
         BlockRenderer.setStaticICRender(id, -1, render);
     },
     
-    newPortalBlock: function(id, texture, portalRenderParams, debugEnabled) {
+    newPortalBlock: function(id, texture, portal, portalRenderParams, dim, debugEnabled) {
         IDRegistry.genBlockID(id);
         
         if (texture && typeof(texture[0]) == "string") {
@@ -113,6 +178,10 @@ var PortalUtils = {
         var shape = new ICRender.CollisionShape();
         BlockRenderer.setCustomCollisionShape(Block.getNumericId(id), -1, shape); 
         Block.setDestroyTime(Block.getNumericId(id), -1, -1);    
+        
+        if (portal) {
+            this.registerPortalBlock(id, portal, dim);
+        }
         
         if (portalRenderParams) {
             this.setupPortalBlock(id, texture, portalRenderParams);
@@ -536,7 +605,7 @@ var DimensionHelper = {
                 this._checkAround(pos.x, pos.y, pos.z);
             }
         })
-    }  
+    } 
 }
 
 EXPORT("PortalUtils", PortalUtils);

@@ -2,23 +2,25 @@
 IMPORT("SoundAPI");
 IMPORT("ToolLib");
 IMPORT("TileRender");
-IMPORT("StructuresAPI");
+IMPORT("BaseBlocks");
+IMPORT("Structures");
 IMPORT("PortalUtils");
 IMPORT("GuideAPI");
 IMPORT("TextureWorker");
 
 function randomInt(min, max){ 
-return Math.floor(Math.random() * (max - min + 1)) + min; 
+    return Math.floor(Math.random() * (max - min + 1)) + min; 
 }
 
-var elder_screams = new Sound("cthulhu_2.ogg");
+var elder_screams = new Sound("cthulhu_3.ogg");
+var elder_boss = new Sound("sleeping_2.ogg");
 var levelloaded = false;
 
 const searchItem = function(id, data){
     var dat = data || -1;
     var od = id || -1;
     for(var i = 9;i < 45;i++) {
-     var item = Player.getInventorySlot(i);
+        var item = Player.getInventorySlot(i);
         if((item.id == od || (od == -1 && item.id != 0)) && (item.data == dat || dat == -1)){
             return {
                 id: item.id,
@@ -96,17 +98,14 @@ Callback.addCallback("ModsLoaded", function () {
 });
 
 const allParams = function(json, fullParams){
- if(typeof(json) != "object") return json;
- var params = '{\n';
- for(var key in json){
-    if(fullParams){
-     params += key + ' : ' + allParams(json[key], true) + '\n';
-    } else {
-     params += key + ' : ' + json[key] + '\n';
+    if(typeof json != "object") return json;
+    let params = "{\n";
+    for(let key in json){
+        if(fullParams) params += key + " : " + allParams(json[key], true) + "\n";
+        else params += key + " : " + json[key] + "\n";
     }
- }
- params += '}';
- return params;
+    params += "}";
+    return params;
 }
 
 const JSONlength = function(json){
@@ -160,27 +159,43 @@ const sides = [
     [0, -1, 0]
 ];
 
-const drop = function(x, y, z, id, count, data, extra){
-  var container = new UI.Container();
-  var item = container.getSlot("asd");
-  item.id = Number(id);
-  item.count = Number(count);
-  item.data = Number(data);
-  item.extra = extra;
-  container.dropAt(x, y, z);
-}
-
 const onCallbacks = {};
 
-function onCallback(name,func){
-  if(!onCallbacks[name]){
-    onCallbacks[name] = [];
-    Callback.addCallback(name, function (a,b,c,d,e,f,g,h){
-      for(var i in onCallbacks[name]){
-        var res = onCallbacks[name][i](a,b,c,d,e,f,g,h);
-        if(res == "delete")onCallbacks[name].splice(i,1);
-      }
-    });
-  }
-  onCallbacks[name].push(func);
+function onCallback(name, func){
+    if(!onCallbacks[name]){
+        onCallbacks[name] = [];
+        Callback.addCallback(name, function(a, b, c, d, e, f, g, h){
+            for(let i in onCallbacks[name]){
+                let res = onCallbacks[name][i](a, b, c, d, e, f, g, h);
+                if(res == "delete") onCallbacks[name].splice(i, 1);
+            }
+        });
+    }
+    onCallbacks[name].push(func);
+}
+
+function toChemicalFormule(str){
+    str = str.split("");
+    let newStr = "";
+    for(let i in str){
+        let s = str[i];
+        if(!isNaN(Number(s))){
+            newStr += s.sub();
+        } else newStr += s;
+    }
+    return newStr;
+}
+
+/**@param {number} id @param {number} count @param {number} data @param {string[]} mask @param {(string | number)[]} keys */
+function addShapedRecipe(id, count, data, mask, keys){
+    Recipes.addShaped({id: id, count: count, data: data}, mask, keys);
+}
+
+/**@param {number} id @param {number} count @param {number} data @param {[number, number][]} items */
+function addShapelessRecipe(id, count, data, items){
+    let ingredients = [];
+    for(let item of items){
+        ingredients.push({id: item[0], data: item[1]});
+    }
+    Recipes.addShapeless({id: id, count: count, data: data}, ingredients);
 }

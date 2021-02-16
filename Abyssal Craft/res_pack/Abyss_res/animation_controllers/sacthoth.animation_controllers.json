@@ -1,0 +1,21 @@
+{
+    "format_version": "1.8.0",
+    "animation_controllers": {
+        "controller.animation.sacthoth.move": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "animations": ["move"]
+                }
+            }
+        }
+    },
+    "controller.animation.sacthoth.attack": {
+        "initial_state": "default",
+        "states": {
+            "default": {
+                "animations": ["attack"]
+            }
+        }
+    }
+}

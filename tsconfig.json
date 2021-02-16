@@ -1,0 +1,55 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "target": "ES5",
+        "lib": ["ESNext"],
+        "allowJs": true,
+        "experimentalDecorators": false,
+        "outFile": "Abyssal Craft/main.js"
+    },
+    "exclude": [
+        "Abyssal Craft/launcher.js",
+        "Abyssal Craft/main.js"
+    ],
+    "include": [
+        "declarations/*.d.ts",
+
+        "Abyssal Craft/dev/header.js",
+
+        "Abyssal Craft/dev/api/UniqueGen.js",
+        "Abyssal Craft/dev/api/Machine.js",
+        "Abyssal Craft/dev/api/Necronomicons.js",
+        "Abyssal Craft/dev/api/RitualAltar.js",
+        "Abyssal Craft/dev/api/Crystallizer.js",
+
+        "Abyssal Craft/dev/blocks/blocktypes.js",
+
+        "Abyssal Craft/dev/blocks/simple/flora.js",
+        "Abyssal Craft/dev/blocks/simple/ores.js",
+        "Abyssal Craft/dev/blocks/simple/resource.js",
+        "Abyssal Craft/dev/blocks/simple/stone.js",
+        "Abyssal Craft/dev/blocks/simple/terrain.js",
+
+        "Abyssal Craft/dev/generation/biomes.js",
+        "Abyssal Craft/dev/generation/structures.js",
+
+        "Abyssal Craft/dev/dimensions/AbyssalWasteland.js",
+        "Abyssal Craft/dev/dimensions/Dreadlands.js",
+        "Abyssal Craft/dev/dimensions/Omothol.js",
+
+        "Abyssal Craft/dev/items/items.js",
+        "Abyssal Craft/dev/items/crystals.js",
+        "Abyssal Craft/dev/items/food.js",
+        "Abyssal Craft/dev/items/armor.js",
+        "Abyssal Craft/dev/items/tools.js",
+
+        "Abyssal Craft/dev/blocks/tech/ritual_altar.js",
+        "Abyssal Craft/dev/items/necronomicons.js",
+        "Abyssal Craft/dev/blocks/tech/crystallizer.js",
+
+        "Abyssal Craft/dev/mobs/spawn.js",
+
+        "Abyssal Craft/dev/RecipeViewer.js",
+        "Abyssal Craft/dev/Translation.js"
+    ]
+}

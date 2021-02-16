@@ -1,82 +1,53 @@
-const Builds = ["Dark_Str1"];
-const biomes = [1, 4, 27, 155];
-const hills = [3, 131, 162, 20];
+// //TODO REMAKE
+// //Structures
 
-//Biomes
-var CoralSwamp = new CustomBiome("coral_swamp")
-//цвет травы(возможно 48D1CC)
-.setGrassColor(0x00CED1)
-// цвет листвы(возможно 48D1CC)
-.setFoliageColor(0x00CED1)
-.setCoverBlock(2, 0)
-.setSurfaceBlock(1, 0)
-.setFillingBlock(3, 0);
+// //shoggothN = new DungeonAPI("shoggoth1.json");
+// var dungeonDO = new Structure("Dark1");
+// var dungeonDT = new Structure("Dark2");
+// var dungeonDTH = new Structure("Dark3");
+// var dungeonDFI = new Structure("Dark5");
+// Callback.addCallback("GenerateChunk", function(chunkX, chunkZ, random) {
+// var coords = GenerationUtils.randomCoords(chunkX, chunkZ);
+//  coords = GenerationUtils.findSurface(coords.x, 95, coords.z);
+//  var Biome = World.getBiome(coords.x, coords.z);
+//   let regi = BlockSource.getCurrentWorldGenRegion();
+// if(coords.y < 54) return;
+ 
+//  if (Biome == DarkLand.id && random.nextFloat() < .01) {
+//   if (World.getBlockID(coords.x, coords.y, coords.z) == BlockID.grassDark)
+// dungeonDO.build(coords.x, coords.y + 1, coords.z, Structure.ROTATE_Y, random, regi); 
+//    }
 
+// if (Biome == DarkLand.id && random.nextFloat() < .004) {
+//   if (World.getBlockID(coords.x, coords.y, coords.z) == BlockID.grassDark)
+// dungeonDTH.build(coords.x, coords.y + 1, coords.z, Structure.ROTATE_Y, random, regi); 
+//    }
 
-Callback.addCallback("GenerateBiomeMap", function(chunkX, chunkZ, rnd, dimensionId, chunkSeed,
-worldSeed, dimensionSeed) {
-if (dimensionId != 0) {
-return;
-}
-for (var x = chunkX * 16; x < (chunkX + 1) * 16; x++) {
- for (var z = chunkZ; z < (chunkZ + 1) * 16; z++) {
-if (World.getBiomeMap(x, z) == 6) {
-World.setBiomeMap(x, z, CoralSwamp.id);
-            }
-        }
-    }
-});
+// if (Biome == DarkLand.id && random.nextFloat() < .003) {
+//   if (World.getBlockID(coords.x, coords.y, coords.z) == BlockID.grassDark)
+// dungeonDFI.build(coords.x, coords.y + 1, coords.z, Structure.ROTATE_Y, random, regi); 
+//    }
 
-var DarkLand = new CustomBiome("dark_land")
-//цвет травы(возможно 483D8B)
-.setGrassColor(0x191970)
-// цвет листвы(возможно 483D8B)
-.setFoliageColor(0x191970)
-.setCoverBlock(BlockID.grassDark, 0)
-.setSurfaceBlock(1, 0)
-.setFillingBlock(BlockID.stoneDark, 0);
+// if (Biome == DarkHills.id && random.nextFloat() < .006) {
+//   if (World.getBlockID(coords.x, coords.y, coords.z) == BlockID.stoneDark)
+// dungeonDT.build(coords.x, coords.y + 1, coords.z, Structure.ROTATE_Y, random, regi); 
+//    }
 
-var DarkHills = new CustomBiome("dark_hills")
-//цвет травы(возможно 483D8B)
-.setGrassColor(0x191970)
-// цвет листвы(возможно 483D8B)
-.setFoliageColor(0x191970)
-.setCoverBlock(BlockID.stoneDark, 0)
-.setSurfaceBlock(1, 0)
-.setFillingBlock(BlockID.stoneDark, 0);
-/*
-Callback.addCallback("GenerateBiomeMap", function(chunkX, chunkZ, rnd, dimensionId, chunkSeed,
-worldSeed, dimensionSeed){ 
-  genrand = new java.util.Random(Math.floor((chunkX/16)) + Math.floor((chunkZ/16)));
- for (var x = chunkX * 16; x < (chunkX + 1) * 16; x++) {
-  for (var z = chunkZ; z < (chunkZ + 1) * 16; z++) {   
-   for (var i in biomes) {
-       if (genrand.nextInt(100) < 75) {   
-             World.setBiomeMap(x, z, DarkLand.id); 
-              Game.message("X:  " + x + "  Z:  " + z); 
-            }
-       if (genrand.nextInt(100) < 75) {    
-   for (var i in hills) { 
-             World.setBiomeMap(x, z, DarkHills.id);  
-              Game.message("X:  " + x + "  Z:  " + z); 
-                    }    
-                }   
-            }
-        }
-    }
-});
+// if (Biome == DarkLand.id && random.nextFloat() < .006) {
+//   if (World.getBlockID(coords.x, coords.y, coords.z) == BlockID.grassDark)
+// darkN.build(coords.x, coords.y + 1, coords.z, Structure.ROTATE_Y, random, regi); 
+//    }
 
-//Structures
-Callback.addCallback("GenerateChunk", function(chunkX, chunkZ){ 
-var coords = GenerationUtils.findSurface(chunkX, chunkZ, 57, 98); 
- if (World.getBlockID(coords.x,coords.y,coords.z) == 2 && Math.random() < .12) {
-Structure.setInWorld("Dark_Str1", coords.x, coords.y+1, coords.z); 
-//Game.message("X: " + coords.x + "Y: " + coords.y+ "Z: " + coords.z);
-   } 
-if (World.getBiome(coords.x, coords.z) == CoralSwamp.id && Math.random() < .29 || World.getBiome(coords.x, coords.z) == 134 && Math.random() < .18) {
- if (World.getBlockID(coords.x,coords.y,coords.z) == 9) {
-  Structure.setInWorld("Dark_Str2", coords.x, coords.y+1, coords.z); 
-//Game.message("X: " + coords.x + "Y: " + coords.y+ "Z: " + coords.z);
-        } 
-    }
-});*/
+// if (Biome == DarkLand.id && random.nextFloat() < .85) {
+//   if (World.getBlockID(coords.x, coords.y, coords.z) == BlockID.grassDark)
+// darkC.build(coords.x, coords.y + 1, coords.z, Structure.ROTATE_Y, random, regi); 
+//    }
+
+// if (Biome == CoralSwamp.id && random.nextFloat() < .4 || Biome == 134 && random.nextFloat() < .25) {
+//  if (World.getBlockID(coords.x,coords.y,coords.z) == 9 || World.getBlockID(coords.x,coords.y,coords.z) == 8) {
+// shoggothM.build(coords.x, coords.y + 1, coords.z, Structure.ROTATE_Y, random, regi);
+// shoggothS.build(coords.x, coords.y + 1, coords.z, Structure.ROTATE_Y, random, regi);
+//         } 
+//     }
+
+// });

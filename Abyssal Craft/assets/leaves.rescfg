@@ -1,0 +1,8 @@
+{
+    "better-foliage": {
+        "leaves": [
+            {"texture": "terrain-atlas/darklands_oak_leaves_0.png"},
+            {"texture": "terrain-atlas/dreadlands_wood_leaves_0.png"}
+        ]
+    }
+}

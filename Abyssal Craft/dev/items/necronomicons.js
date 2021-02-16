@@ -1,0 +1,25 @@
+// AbyssTable.addCraft([[371, 0], [371, 0], [371, 0], [371, 0], [371, 0], [371, 0], [371, 0], [371, 0]], [ItemID.coralPearl, 0], [ItemID.trsGem, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 2000);
+AbyssTable.addCraft([[331, 0], [331, 0], [331, 0], [331, 0], [ItemID.shardObl, 0], [ItemID.shardOfOblivion, 0], [ItemID.shardOfOblivion, 0], [ItemID.shardOfOblivion, 0]], [381, 0], [ItemID.oblivionCatalyst, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 5000);
+AbyssTable.addCraft([[ItemID.refinedCoraliumIngot, 0], [ItemID.refinedCoraliumIngot, 0], [ItemID.refinedCoraliumIngot, 0], [ItemID.refinedCoraliumIngot, 0], [ItemID.coraliumGem, 0], [ItemID.coraliumGem, 0], [ItemID.coraliumGem, 0], [ItemID.coraliumGem, 0]], [ItemID.coraliumPearl, 0], [ItemID.CoraliumPlate, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);
+// AbyssTable.addCraft([[101, 0], [101, 0], [101, 0], [101, 0], [101, 0], [101, 0], [101, 0], [101, 0]], [ItemID.shardObl, 0], [ItemID.cageI, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
+
+// AbyssTable.addCraft([[340, 0], [340, 0], [340, 0], [340, 0], [339, 0], [339, 0], [339, 0], [339, 0]], [339, 0], [ItemID.scrollB, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
+// AbyssTable.addCraft([[340, 0], [ItemID.plantWaste, 0], [340, 0], [ItemID.plantWasteL, 0], [339, 0], [339, 0], [339, 0], [339, 0]], [339, 0], [ItemID.scrollL, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
+// AbyssTable.addCraft([[340, 0], [ItemID.dreadPeace, 0], [340, 0], [ItemID.dreadChunck, 0], [339, 0], [339, 0], [339, 0], [339, 0]], [339, 0], [ItemID.scrollM, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
+// AbyssTable.addCraft([[340, 0], [ItemID.dreadPeace, 0], [340, 0], [ItemID.dreadChunck, 0], [339, 0], [339, 0], [339, 0], [339, 0]], [339, 0], [ItemID.scrollM, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
+
+// AbyssTable.addCraft([[0, 0], [ItemID.trsGem, 0], [ItemID.dreadChunck, 0], [ItemID.coralPearlD, 0], [339, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [339, 0]], [339, 0], [ItemID.scrollM, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
+
+// AbyssTable.addCraft([[ItemID.soulPe, 0], [ItemID.soulPe, 0], [ItemID.soulPe, 0], [ItemID.soulPe, 0], [262, 0], [262, 0], [262, 0], [262, 0]], [ItemID.charmRe, 0], [ItemID.charmRr, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
+// AbyssTable.addCraft([[ItemID.soulPe, 0], [ItemID.soulPe, 0], [ItemID.soulPe, 0], [ItemID.soulPe, 0], [348, 0], [348, 0], [348, 0], [348, 0]], [ItemID.charmRe, 0], [ItemID.charmRpe, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1000);
+// AbyssTable.addCraft([[325, 1], [ItemID.catalObl, 0], [325, 8], [BlockID.Pedestal, 0], [BlockID.stoneMonolith, 0], [BlockID.stoneMonolith, 0], [BlockID.stoneMonolith, 0], [BlockID.stoneMonolith, 0]], [ItemID.essenceOrbO, 0], [ItemID.soulSword, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);
+
+// AbyssTable.addCraft([[ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0]], [ItemID.ABHelm, 0], [ItemID.DABHelm, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);
+// AbyssTable.addCraft([[ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0]], [ItemID.ABCh, 0], [ItemID.DABCh, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);
+// AbyssTable.addCraft([[ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0]], [ItemID.ABLeg, 0], [ItemID.DABLeg, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);
+// AbyssTable.addCraft([[ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0], [ItemID.dreadPeace, 0]], [ItemID.ABBoot, 0], [ItemID.DABBoot, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);
+
+// AbyssTable.addCraft([[ItemID.trsGem, 0], [0, 0], [111, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0], [325, 8], [ItemID.Bo, 0], [106, 0]], [ItemID.RCHelm, 0], [ItemID.DPHelm, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);
+// AbyssTable.addCraft([[ItemID.trsGem, 0], [0, 0], [111, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0], [325, 8], [ItemID.Bo, 0], [106, 0]], [ItemID.RCCh, 0], [ItemID.DPCh, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);
+// AbyssTable.addCraft([[ItemID.trsGem, 0], [0, 0], [111, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0], [325, 8], [ItemID.Bo, 0], [106, 0]], [ItemID.RCLeg, 0], [ItemID.DPLeg, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);
+// AbyssTable.addCraft([[ItemID.trsGem, 0], [0, 0], [111, 0], [ItemID.coralGem, 0], [ItemID.coralGem, 0], [325, 8], [ItemID.Bo, 0], [106, 0]], [ItemID.RCBoot, 0], [ItemID.DPBoot, 0], [0,-1,7,-1,2,-1,4,-1,1,-1,6,-1,3,-1,5,-1], 1500);

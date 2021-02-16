@@ -1,0 +1,16 @@
+{
+    "pools": [{
+        "rolls": 1,
+        "entries": [{
+            "type": "item",
+            "name": "minecraft:item_soul_g",
+            "functions": [{
+                "function": "set_count",
+                "count": {
+                    "min": 2,
+                    "max": 5
+                }
+            }]
+        }]
+    }]
+}
